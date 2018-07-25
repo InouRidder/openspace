@@ -1,0 +1,52 @@
+<div class="container">
+  <%= simple_form_for :search, { url: root_path, method: 'get' } do |f| %>
+    <%= f.input :from_price %>
+    <%= f.input :to_price %>
+    <%= f.input :capacity %>
+    <div class="row">
+      <h1>
+       Features
+      </h1>
+      <% @features.each do |feature| %>
+        <div class="col-xs-1">
+          <label class="checkbox-inline">
+            <input type="checkbox" name="search[properties][]" value="<%= feature.id %>"> <%= feature.content %>
+          </label>
+        </div>
+      <% end %>
+    </div>
+    <div class="row">
+      <h2>
+        Space Types
+      </h2>
+      <% @space_types.each do |space_type| %>
+        <div class="col-xs-1">
+          <label class="checkbox-inline">
+            <input type="checkbox" name="search[types][]" value="<%= space_type.id %>"> <%= space_type.content %>
+          </label>
+        </div>
+      <% end %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>
+
+
+<ul>
+  <% @spaces.each do |space| %>
+    <li>
+      <h1>
+        <%= space.title %>
+      </h1>
+      <p>
+        <%= space.address %>
+      </p>
+      <p>
+        <%= space.capacity %>
+      </p>
+      <p>
+        <%= space.price_per_hour %>
+      </p>
+    </li>
+  <% end %>
+</ul>
