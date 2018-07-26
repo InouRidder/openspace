@@ -12,7 +12,8 @@ class FindSpaces
   # PROPERTIES
 
   def call(params)
-    scoped = search(@initial_scope, params[:search])
+    params = format_params(params)
+    scoped = @initial_scope
     scoped = filter_by_price(scoped, params[:from_price], params[:to_price])
     scoped = filter_by_capacity(scoped, params[:capacity])
     scoped = filter_by_properties(scoped, params[:properties])
@@ -34,12 +35,13 @@ class FindSpaces
   end
 
   def filter_by_capacity(scoped, capacity = nil)
-    capacity ? scoped.where('capacity > ?', capacity.to_i) : scoped
+    capacity ? scoped.where('capacity >= ?', capacity.to_i) : scoped
   end
 
   def filter_by_properties(scoped, properties = nil)
     if properties
-      scoped.joins(:space_properties).where(space_properties: {property_id: properties})
+      properties.map!(&:to_i)
+      scoped.select { |space| (space.space_properties.pluck(:property_id) & properties).length == properties.length }
     else
       scoped
     end
@@ -56,4 +58,8 @@ class FindSpaces
   # def paginate(scoped, page_number = 0)
   #   scoped.page(page_number)
   # end
+
+  def format_params(params)
+    params.transform_values! { |value| value == "" ? nil : value }
+  end
 end
