@@ -2,9 +2,12 @@ const clientQuery = {
   initializeForm: function() {
     const form = document.getElementById('query-form');
     if (!form) return;
-    console.log('Initialized !')
+
     this.form = form;
-    this.properties = form.querySelectorAll('#properties input');
+
+    this.properties = Array.from(form.querySelectorAll('#properties input'));
+    this.properties.push(form.querySelector('#character_inputs select'));
+
     this.characterInputs = form.querySelectorAll('#character_inputs input');
     this.spaceContainer = document.getElementById('space-container');
     form.onchange = this.updateResults.bind(this);
@@ -15,12 +18,6 @@ const clientQuery = {
     // let queryString = this.generateQueryString(body);
     this.submitForm(body)
     // Submit the form :)
-  },
-
-  generateQueryString: function(body) {
-    return Object.keys(body).map(key => {
-      return `${key}=${body[key]}`
-    }).join("&")
   },
 
   submitForm(body) {
@@ -52,7 +49,7 @@ const clientQuery = {
   getFormValues: function() {
     let body = {properties: []}
     this.properties.forEach((input) => {
-      if (input.checked) {
+      if (input.checked || input.type == "select-one") {
         body.properties.push(input.value)
       }
     })
@@ -61,7 +58,6 @@ const clientQuery = {
     })
     return body
   }
-
 }
 
 export {clientQuery};

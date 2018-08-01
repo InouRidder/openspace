@@ -3,9 +3,9 @@ class SpacesController < ApplicationController
   skip_before_action :authenticate_user!
   def index
     if params[:search]
-      @spaces = FindSpaces.new(Space.includes(:space_properties)).call(search_params).first(10)
+      @spaces = FindSpaces.new(Space.includes(:space_properties)).call(search_params)
     else
-      @spaces = Space.all.first(10)
+      @spaces = Space.all.first(20)
     end
     @features = Property.features
     @space_types = Property.space_types

@@ -7,6 +7,8 @@
       <div id="character_inputs">
         <%= f.input :from_price, input_html: {"data-name" => "from_price"}%>
         <%= f.input :to_price, input_html: {"data-name" => "to_price"}%>
+        <%= f.input :location, input_html: {"data-name" => "location"} %>
+        <%= f.input :event_type, collection: Property.activity_types, label_method: :content, value_method: :id %>
         <%= f.input :capacity, input_html: {"data-name" => "capacity"}%>
       </div>
       <div id="properties">
