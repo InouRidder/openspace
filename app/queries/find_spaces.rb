@@ -14,6 +14,7 @@ class FindSpaces
   def call(params)
     params = format_params(params)
     scoped = @initial_scope
+    scoped = filter_by_location(scoped, params[:location])
     scoped = filter_by_price(scoped, params[:from_price], params[:to_price])
     scoped = filter_by_capacity(scoped, params[:capacity])
     scoped = filter_by_properties(scoped, params[:properties])
@@ -27,6 +28,10 @@ class FindSpaces
 
   def search(scoped, query = nil)
     query ? scoped.where("title ILIKE '%?%'", query) : scoped
+  end
+
+  def filter_by_location(scoped, location = nil)
+    location ? scoped.near(location, 50) : scoped
   end
 
   def filter_by_price(scoped, from_price = nil, to_price = nil)

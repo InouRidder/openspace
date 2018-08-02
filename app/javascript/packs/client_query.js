@@ -3,15 +3,24 @@ const clientQuery = {
     const form = document.getElementById('query-form');
     if (!form) return;
 
-    this.form = form;
+    this.setProps(form)
+    this.setListeners(form)
+  },
 
+  setListeners: function(form) {
+    form.addEventListener('change', this.updateResults.bind(this));
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+    });
+  },
+
+  setProps: function(form) {
+    this.form = form;
     this.properties = Array.from(form.querySelectorAll('#properties input'));
     this.properties.push(form.querySelector('#character_inputs select'));
 
     this.characterInputs = form.querySelectorAll('#character_inputs input');
     this.spaceContainer = document.getElementById('space-container');
-    console.log('initialized')
-    form.onchange = this.updateResults.bind(this);
   },
 
   updateResults: function() {

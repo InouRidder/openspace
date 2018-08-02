@@ -1,3 +1,4 @@
+import { autocomplete } from '../components/autocomplete';
 import GMaps from 'gmaps/gmaps.js';
 
 const mapElement = document.getElementById('map');
@@ -14,3 +15,5 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
     map.fitLatLngBounds(markers);
   }
 }
+
+autocomplete()
