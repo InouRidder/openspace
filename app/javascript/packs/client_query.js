@@ -49,7 +49,7 @@ const clientQuery = {
   getFormValues: function() {
     let body = {properties: []}
     this.properties.forEach((input) => {
-      if (input.checked || input.type == "select-one") {
+      if (input.checked || (input.type == "select-one" && input.value !== "")) {
         body.properties.push(input.value)
       }
     })
