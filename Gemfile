@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.4.3'
 
+gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'devise'
 gem 'figaro'
@@ -17,6 +18,9 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+
+# GOOGLE GEMS FOR LOCATION SERVICES
+gem "geocoder"
 
 gem 'faker'
 

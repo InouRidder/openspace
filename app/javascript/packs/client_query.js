@@ -10,6 +10,7 @@ const clientQuery = {
 
     this.characterInputs = form.querySelectorAll('#character_inputs input');
     this.spaceContainer = document.getElementById('space-container');
+    console.log('initialized')
     form.onchange = this.updateResults.bind(this);
   },
 

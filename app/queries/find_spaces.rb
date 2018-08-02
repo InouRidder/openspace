@@ -40,6 +40,7 @@ class FindSpaces
 
   def filter_by_properties(scoped, properties = nil)
     if properties
+      # TO DO: Find an inclusive search through SQL query to improve performancegem -> Did not want to attribute time to investigating
       properties.map!(&:to_i)
       scoped.select { |space| (space.space_properties.pluck(:property_id) & properties).length == properties.length }
     else

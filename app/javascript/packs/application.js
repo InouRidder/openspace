@@ -1,6 +1,12 @@
 import "bootstrap";
 import {clientQuery} from './client_query.js'
 
-clientQuery.initializeForm();
-console.log('hello');
-global.clientQuery = clientQuery;
+const Turbolinks = require("turbolinks")
+Turbolinks.start()
+
+document.addEventListener('DOMContentLoaded', () => {
+  clientQuery.initializeForm();
+  global.clientQuery = clientQuery;
+})
+
+
