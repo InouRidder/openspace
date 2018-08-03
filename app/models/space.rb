@@ -8,7 +8,11 @@ class Space < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
 
 
-  def html_to_string
+  def partial_to_string
     ApplicationController.render(partial: 'spaces/space', locals: { space: self})
+  end
+
+  def partial_title
+    "<h1> #{title} </h1>"
   end
 end

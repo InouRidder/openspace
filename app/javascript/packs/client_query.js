@@ -1,5 +1,5 @@
 const clientQuery = {
-  initializeForm: function() {
+  startListening: function() {
     const form = document.getElementById('query-form');
     if (!form) return;
 
@@ -8,7 +8,7 @@ const clientQuery = {
   },
 
   setListeners: function(form) {
-    form.addEventListener('change', this.updateResults.bind(this));
+    form.addEventListener('change', this.initiateChange.bind(this));
     form.addEventListener('submit', (e) => {
       e.preventDefault();
     });
@@ -23,7 +23,7 @@ const clientQuery = {
     this.spaceContainer = document.getElementById('space-container');
   },
 
-  updateResults: function() {
+  initiateChange: function() {
     let body = this.getFormValues();
     // let queryString = this.generateQueryString(body);
     this.submitForm(body)
@@ -50,10 +50,32 @@ const clientQuery = {
 
   updateUI: function(data) {
     // update the view using the JSON response
+    console.log(data)
+    global.map.removeMarkers();
     this.spaceContainer.innerHTML = "";
+    let markers = [];
     data.forEach(space => {
       this.spaceContainer.insertAdjacentHTML('beforeend', space.body)
+      if (space.coordinates.lat && space.coordinates.lng) {
+        let marker = {
+            lat: Number.parseFloat(space.coordinates.lat),
+            lng: Number.parseFloat(space.coordinates.lng),
+            infoWindow: space.infoWindow
+          }
+        global.map.addMarker(marker);
+        markers.push(marker);
+      }
     })
+
+    if (markers.length === 0) {
+      map.setZoom(2);
+    } else if (markers.length === 1) {
+      map.setCenter(markers[0].lat, markers[0].lng);
+      map.setZoom(14);
+    } else {
+      map.fitLatLngBounds(markers);
+    }
+
   },
 
   getFormValues: function() {
