@@ -42,11 +42,7 @@ class FindSpaces
       # ActiveRecord::Base.connection.execute("SELECT * FROM spaces s JOIN space_properties sp ON sp.space_id = s.id WHERE sp.property_id = ALL (SELECT property_id FROM space_properties WHERE property_id IN (#{properties.join(",")}))")
       properties.map!(&:to_i)
 
-
-      sql = "SELECT *, COUNT(sp.id) as c FROM spaces s JOIN space_properties sp ON sp.space_id = s.id WHERE c >= ALL(SELECT COUNT(*) FROM space_properties spd WHERE spd.property_id IN (#{properties.join(",")}))"
-
-
-
+      # sql = "SELECT *, COUNT(sp.id) as c FROM spaces s JOIN space_properties sp ON sp.space_id = s.id WHERE c >= ALL(SELECT COUNT(*) FROM space_properties spd WHERE spd.property_id IN (#{properties.join(",")}))"
 
       # SELECT * FROM spaces s JOIN space_properties sp ON sp.space_id = s.id WHERE COUNT(sp) > ALL (SELECT COUNT(*) FROM sp WHERE sp.property_id IN properties)
 

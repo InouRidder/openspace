@@ -50,31 +50,30 @@ const clientQuery = {
 
   updateUI: function(data) {
     // update the view using the JSON response
-    console.log(data)
-    global.map.removeMarkers();
+    // global.map.removeMarkers();
     this.spaceContainer.innerHTML = "";
-    let markers = [];
+    // let markers = [];
     data.forEach(space => {
       this.spaceContainer.insertAdjacentHTML('beforeend', space.body)
-      if (space.coordinates.lat && space.coordinates.lng) {
-        let marker = {
-            lat: Number.parseFloat(space.coordinates.lat),
-            lng: Number.parseFloat(space.coordinates.lng),
-            infoWindow: space.infoWindow
-          }
-        global.map.addMarker(marker);
-        markers.push(marker);
-      }
+      // if (space.coordinates.lat && space.coordinates.lng) {
+      //   let marker = {
+      //       lat: Number.parseFloat(space.coordinates.lat),
+      //       lng: Number.parseFloat(space.coordinates.lng),
+      //       infoWindow: space.infoWindow
+      //     }
+      //   global.map.addMarker(marker);
+      //   markers.push(marker);
+      // }
     })
 
-    if (markers.length === 0) {
-      map.setZoom(2);
-    } else if (markers.length === 1) {
-      map.setCenter(markers[0].lat, markers[0].lng);
-      map.setZoom(14);
-    } else {
-      map.fitLatLngBounds(markers);
-    }
+    // if (markers.length === 0) {
+    //   map.setZoom(2);
+    // } else if (markers.length === 1) {
+    //   map.setCenter(markers[0].lat, markers[0].lng);
+    //   map.setZoom(14);
+    // } else {
+    //   map.fitLatLngBounds(markers);
+    // }
 
   },
 

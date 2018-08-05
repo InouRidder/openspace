@@ -34,12 +34,14 @@ class SpacesController < ApplicationController
     @features = Property.features
     @space_types = Property.space_types
     # TO DO: revert back to @spaces.where.not(longitude: nil, latitude: nil) as soon as SQL statement used in query object
-    @markers = @spaces.select { |space| space.longitude && space.latitude }.map do |space|
-      {
-        lat: space.latitude,
-        lng: space.longitude,
-        infoWindow: { content: render_to_string(partial: "/spaces/map_box", locals: { space: space }) }
-      }
+    @markers = @spaces.map do |space|
+      if space.geocoded?
+        {
+          lat: space.latitude,
+          lng: space.longitude,
+          infoWindow: { content: render_to_string(partial: "/spaces/map_box", locals: { space: space })}
+        }
+      end
     end
   end
 end
