@@ -31,7 +31,8 @@ const clientQuery = {
   },
 
   submitForm(body) {
-    fetch("/spaces", {
+    // TO DO: CHANGE THIS TO A GET REQUEST
+    fetch("/spaces/query", {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -52,7 +53,7 @@ const clientQuery = {
     // update the view using the JSON response
     // global.map.removeMarkers();
     this.spaceContainer.innerHTML = "";
-    // let markers = [];
+    let markers = [];
     data.forEach(space => {
       this.spaceContainer.insertAdjacentHTML('beforeend', space.body)
       // if (space.coordinates.lat && space.coordinates.lng) {
