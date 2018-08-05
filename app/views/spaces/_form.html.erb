@@ -1,0 +1,35 @@
+<%= simple_form_for @space do |f| %>
+  <%= f.input :title %>
+  <%= f.input :address, input_html: {id: :space_address_autocomplete } %>
+  <%= f.input :capacity %>
+  <%= f.input :price_per_hour %>
+  <%= f.input :price_per_day %>
+
+  <div id="properties">
+    <div class="row">
+      <h1>
+       Features
+     </h1>
+     <% @features.each do |feature| %>
+       <div class="col-xs-3">
+        <label class="checkbox-inline">
+          <input type="checkbox" name="space[properties][]" value="<%= feature.id %>" <%= 'checked' if @selected_props.include?(feature.id) %>> <%= feature.content %>
+        </label>
+      </div>
+    <% end %>
+    </div>
+    <div class="row">
+      <h2>
+        Space Types
+      </h2>
+      <% @space_types.each do |space_type| %>
+        <div class="col-xs-3">
+          <label class="checkbox-inline">
+            <input type="checkbox" name="space[properties][]" value="<%= space_type.id %>" <%= 'checked' if @selected_props.include?(space_type.id) %>> <%= space_type.content %>
+          </label>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<%= f.submit %>
+<% end %>
