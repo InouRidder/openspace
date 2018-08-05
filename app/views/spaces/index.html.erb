@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <%= simple_form_for :search, url: root_path, html: { method: 'get', id: 'query-form' } do |f| %>
+      <div id="character_inputs">
+        <%= f.input :from_price, input_html: {"data-name" => "from_price"}%>
+        <%= f.input :to_price, input_html: {"data-name" => "to_price"}%>
+        <%= f.input :location, input_html: {"data-name" => "location", id: 'space_address_autocomplete'} %>
+        <%= f.input :event_type, collection: Property.activity_types, label_method: :content, value_method: :id %>
+        <%= f.input :capacity, input_html: {"data-name" => "capacity"}%>
+      </div>
+      <div id="properties">
+        <div class="row">
+          <h1>
+           Features
+         </h1>
+         <% @features.each do |feature| %>
+         <div class="col-xs-3">
+          <label class="checkbox-inline">
+            <input type="checkbox" name="search[properties][]" value="<%= feature.id %>"> <%= feature.content %>
+          </label>
+        </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <h2>
+          Space Types
+        </h2>
+        <% @space_types.each do |space_type| %>
+        <div class="col-xs-3">
+          <label class="checkbox-inline">
+            <input type="checkbox" name="search[properties][]" value="<%= space_type.id %>"> <%= space_type.content %>
+          </label>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <%= f.submit %>
+    <% end %>
+  <div
+    id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-markers="<%= @markers.to_json %>"
+  ></div>
+</div>
+
+  <div class="col-xs-12 col-sm-6">
+    <ul id="space-container">
+      <% @spaces.each do |space| %>
+        <%= render 'space', space: space %>
+      <% end %>
+    </ul>
+  </div>
+  </div>
+</div>
+
+
