@@ -22,7 +22,7 @@ class Space < ApplicationRecord
   end
 
   def partial_to_string
-    ApplicationController.render(partial: 'spaces/space', locals: { space: self})
+    ApplicationController.render(partial: 'spaces/space', locals: { space: self, favorite: Favorite.new })
   end
 
   def partial_map_box
