@@ -1,9 +1,10 @@
 class BookingsController < ApplicationController
   before_action :set_space, only: :create
-  before_action :set_booking, only: :destroy
+  before_action :set_booking, only: [:destroy, :update]
 
   def index
-    @bookings = current_user.bookings
+    @user_bookings = current_user.bookings.includes(:space)
+    @spaces_bookings = current_user.spaces_bookings.includes(:space)
   end
 
   def create
@@ -14,6 +15,17 @@ class BookingsController < ApplicationController
       redirect_to root_path
     else
       render 'spaces/show'
+    end
+  end
+
+  def update
+    @booking.state = params[:state]
+    if @booking.save
+      redirect_to bookings_path
+    else
+      @user_bookings = current_user.bookings.includes(:spaces)
+      @spaces_bookings = current_user.spaces_bookings.includes(:spaces)
+      render :index
     end
   end
 

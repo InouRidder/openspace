@@ -1,0 +1,4 @@
+<%= simple_form_for([@reviewable, @review], url: reviews_path(reviewable: @reviewable.class_to_route, reviewable_id: @reviewable.id)) do |f| %>
+  <%= f.input :content %>
+  <%= f.submit %>
+<% end %>
