@@ -1,30 +1,38 @@
 const clientQuery = {
-  initializeForm: function() {
+  startListening: function() {
     const form = document.getElementById('query-form');
     if (!form) return;
-    console.log('Initialized !')
-    this.form = form;
-    this.properties = form.querySelectorAll('#properties input');
-    this.characterInputs = form.querySelectorAll('#character_inputs input');
-    this.spaceContainer = document.getElementById('space-container');
-    form.onchange = this.updateResults.bind(this);
+
+    this.setProps(form)
+    this.setListeners(form)
   },
 
-  updateResults: function() {
+  setListeners: function(form) {
+    form.addEventListener('change', this.initiateChange.bind(this));
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+    });
+  },
+
+  setProps: function(form) {
+    this.form = form;
+    this.properties = Array.from(form.querySelectorAll('#properties input'));
+    this.properties.push(form.querySelector('#character_inputs select'));
+
+    this.characterInputs = form.querySelectorAll('#character_inputs input');
+    this.spaceContainer = document.getElementById('space-container');
+  },
+
+  initiateChange: function() {
     let body = this.getFormValues();
     // let queryString = this.generateQueryString(body);
     this.submitForm(body)
     // Submit the form :)
   },
 
-  generateQueryString: function(body) {
-    return Object.keys(body).map(key => {
-      return `${key}=${body[key]}`
-    }).join("&")
-  },
-
   submitForm(body) {
-    fetch("/spaces", {
+    // TO DO: CHANGE THIS TO A GET REQUEST
+    fetch("/spaces/query", {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -43,16 +51,37 @@ const clientQuery = {
 
   updateUI: function(data) {
     // update the view using the JSON response
+    global.map.removeMarkers();
     this.spaceContainer.innerHTML = "";
+    let markers = [];
     data.forEach(space => {
       this.spaceContainer.insertAdjacentHTML('beforeend', space.body)
+      if (space.coordinates.lat && space.coordinates.lng) {
+        let marker = {
+            lat: Number.parseFloat(space.coordinates.lat),
+            lng: Number.parseFloat(space.coordinates.lng),
+            infoWindow: space.infoWindow
+          }
+        global.map.addMarker(marker);
+        markers.push(marker);
+      }
     })
+
+    if (markers.length === 0) {
+      map.setZoom(2);
+    } else if (markers.length === 1) {
+      map.setCenter(markers[0].lat, markers[0].lng);
+      map.setZoom(14);
+    } else {
+      map.fitLatLngBounds(markers);
+    }
+
   },
 
   getFormValues: function() {
     let body = {properties: []}
     this.properties.forEach((input) => {
-      if (input.checked) {
+      if (input.checked || (input.type == "select-one" && input.value !== "")) {
         body.properties.push(input.value)
       }
     })
@@ -61,7 +90,6 @@ const clientQuery = {
     })
     return body
   }
-
 }
 
 export {clientQuery};

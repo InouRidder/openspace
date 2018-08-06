@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6">
-
-
       <%= simple_form_for :search, url: root_path, html: { method: 'get', id: 'query-form' } do |f| %>
       <div id="character_inputs">
         <%= f.input :from_price, input_html: {"data-name" => "from_price"}%>
         <%= f.input :to_price, input_html: {"data-name" => "to_price"}%>
+        <%= f.input :location, input_html: {"data-name" => "location", id: 'space_address_autocomplete'} %>
+        <%= f.input :event_type, collection: Property.activity_types, label_method: :content, value_method: :id %>
         <%= f.input :capacity, input_html: {"data-name" => "capacity"}%>
       </div>
       <div id="properties">
@@ -37,7 +37,13 @@
     </div>
     <%= f.submit %>
     <% end %>
-  </div>
+  <div
+    id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-markers="<%= @markers.to_json %>"
+  ></div>
+</div>
 
   <div class="col-xs-12 col-sm-6">
     <ul id="space-container">
@@ -48,3 +54,5 @@
   </div>
   </div>
 </div>
+
+

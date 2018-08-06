@@ -1,6 +1,12 @@
 import "bootstrap";
 import {clientQuery} from './client_query.js'
+import { autocomplete } from '../components/autocomplete';
 
-clientQuery.initializeForm();
-console.log('hello');
-global.clientQuery = clientQuery;
+const Turbolinks = require("turbolinks")
+Turbolinks.start()
+
+document.addEventListener('DOMContentLoaded', () => {
+  clientQuery.startListening();
+})
+
+
