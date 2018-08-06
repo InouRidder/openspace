@@ -2,9 +2,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-6">
 			<ul id="space-container">
-				<% @spaces.each do |space| %>
-				<%= render 'spaces/space', space: space, favorite: Favorite.new %>
-				<% end %>
+        <%= render partial: 'spaces/space', collection: @spaces, as: :space %>
 			</ul>
 		</div>
 	</div>

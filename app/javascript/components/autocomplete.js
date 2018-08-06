@@ -1,5 +1,5 @@
 function autocomplete() {
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("turbolinks:load", function() {
     var spaceAutocomplete = document.getElementById('space_address_autocomplete');
 
     if (spaceAutocomplete) {

@@ -22,6 +22,8 @@ class SpacesController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
+    @favorite = Favorite.new
   end
 
   def new

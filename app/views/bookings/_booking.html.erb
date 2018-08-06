@@ -1,0 +1,9 @@
+<li>
+  <%= booking.start_datetime.strftime("%b %e, %l:%M %p") %>
+  <b> -> </b>
+  <%= booking.end_datetime.strftime("%b %e, %l:%M %p") %>
+  <% if booking.user == current_user %>
+  <!-- TO DO: Pundit -->
+    <%= link_to 'Cancel', booking_path(booking), method: :delete %>
+  <% end %>
+</li>
