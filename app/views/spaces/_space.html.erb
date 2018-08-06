@@ -1,7 +1,9 @@
 <li>
-  <h1>
-    <%= space.title %>
-  </h1>
+    <%= link_to space_path(space) do %>
+      <h1>
+        <%= space.title %>
+      </h1>
+    <% end %>
   <p>
     <%= space.address %>
   </p>
@@ -11,5 +13,4 @@
   <p>
     <%= space.price_per_hour %>
   </p>
-  <%= render 'favorites/form', space: space, favorite: favorite %>
 </li>

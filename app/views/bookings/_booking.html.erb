@@ -1,0 +1,19 @@
+<li>
+  <%= booking.space.title %>
+  <%= booking.start_datetime.strftime("%b %e, %l:%M %p") %>
+  <b> -> </b>
+  <%= booking.end_datetime.strftime("%b %e, %l:%M %p") %>
+  <% if booking.user_id == current_user.id %>
+    <%= link_to 'Cancel', booking_path(booking), method: :delete %>
+  <% end %>
+  <% if booking.space.user_id == current_user.id %>
+    <% if booking.approved? %>
+      <%= link_to 'Decline', booking_path(booking, state: 'declined'), method: :patch %>
+    <% else %>
+      <%= link_to 'Approve', booking_path(booking, state: 'approved'), method: :patch %>
+    <% end %>
+  <% end %>
+  <% if booking.can_review?(current_user) %>
+    <%= link_to 'Add review', new_review_path(booking.class.to_s.downcase, booking.id) %>
+  <% end %>
+</li>

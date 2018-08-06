@@ -3,14 +3,19 @@ Rails.application.routes.draw do
 
   root to: 'spaces#index'
 
+  get ':reviewable/:reviewable_id/reviews/new', to: 'reviews#new', as: :new_review
+  post ':reviewable/:reviewable_id/reviews', to: 'reviews#create', as: :reviews
+
   resources :spaces do
     resources :favorites, only: [:create]
+    resources :bookings, only: [:create]
     collection do
       post 'query', to: 'spaces#index'
     end
   end
 
+  resources :bookings, except: [:create, :edit]
+
   resources :favorites, only: [:index, :destroy]
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

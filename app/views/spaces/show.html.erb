@@ -7,4 +7,13 @@
   <% end %>
 </ul>
 
-<%= link_to 'Destroy', space_path, method: :delete %>
+<%= render 'favorites/form', space: @space, favorite: @favorite %>
+
+<%= link_to 'Destroy', space_path(@space), method: :delete %>
+
+<%= render 'bookings/form', space: @space, booking: @booking  %>
+
+<h1>bookings</h1>
+<ul>
+  <%= render partial: 'bookings/booking', collection: @space.bookings, as: :booking %>
+</ul>
