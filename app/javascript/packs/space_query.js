@@ -1,4 +1,4 @@
-const clientQuery = {
+const spaceQuery = {
   startListening: function() {
     const form = document.getElementById('query-form');
     if (!form) return;
@@ -92,4 +92,4 @@ const clientQuery = {
   }
 }
 
-export {clientQuery};
+export {spaceQuery};

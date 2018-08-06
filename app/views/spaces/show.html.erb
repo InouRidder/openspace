@@ -17,3 +17,6 @@
 <ul>
   <%= render partial: 'bookings/booking', collection: @space.bookings, as: :booking %>
 </ul>
+
+
+<%= link_to "Talk to host", conversations_path(host_id: @space.user.id), method: :post %>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+
   devise_for :users
+  mount ActionCable.server => "/cable"
 
   root to: 'spaces#index'
 
@@ -12,6 +14,10 @@ Rails.application.routes.draw do
     collection do
       post 'query', to: 'spaces#index'
     end
+  end
+
+  resources :conversations do
+    resources :messages, only: [:create]
   end
 
   resources :bookings, except: [:create, :edit]
