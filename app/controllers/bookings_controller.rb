@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_space, only: :create
+  before_action :set_booking, only: :destroy
 
   def index
     @bookings = current_user.bookings
@@ -16,10 +17,19 @@ class BookingsController < ApplicationController
     end
   end
 
+  def destroy
+    @booking.destroy
+    redirect_to bookings_path
+  end
+
   private
 
   def booking_params
     params.require(:booking).permit(:start_datetime, :end_datetime)
+  end
+
+  def set_booking
+    @booking = Booking.find(params[:id])
   end
 
   def set_space
