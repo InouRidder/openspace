@@ -1,8 +1,8 @@
 puts "Clearing DB!"
 
 User.destroy_all
-user = User.create(email: 'a@a.a', password: 'password')
-puts "#{user.email} created!"
+User.create(email: 'a@a.a', password: 'password')
+User.create(email: 'b@b.b', password: 'password')
 
 
 puts "Destroying all properties"
@@ -33,7 +33,7 @@ Space.destroy_all
 puts "Creating spaces"
 50.times do
   price_hour = rand(100)
-  space = Space.create(title: Faker::Artist.name, address: Faker::Address.full_address, user: user, capacity: rand(50), price_per_hour: price_hour, price_per_day: price_hour * 8, address: cities.sample)
+  space = Space.create(title: Faker::Artist.name, address: Faker::Address.full_address, user: User.all.sample, capacity: rand(50), price_per_hour: price_hour, price_per_day: price_hour * 8, address: cities.sample)
   Property.all.sample(rand(18)).each do |prop|
     SpaceProperty.create(space: space, property: prop, quantity: prop.quantifiable? ? rand(3) : nil)
   end
