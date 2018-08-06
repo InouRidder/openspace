@@ -3,7 +3,7 @@
 		<div class="col-xs-12 col-sm-6">
 			<ul id="space-container">
 				<% @spaces.each do |space| %>
-				<%= render 'space', space: space, favorite: Favorite.new %>
+				<%= render 'spaces/space', space: space, favorite: Favorite.new %>
 				<% end %>
 			</ul>
 		</div>

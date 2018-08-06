@@ -3,7 +3,7 @@ class FavoritesController < ApplicationController
   before_action :set_favorite, only: :destroy
 
   def index
-    @spaces = current_user.favorites.includes(:spaces)
+    @spaces = current_user.favorited_spaces
   end
 
   def create
