@@ -10,7 +10,6 @@ class ConversationsController < ApplicationController
 
   def create
     @conversation = Conversation.find_or_create([current_user.id, params[:host_id].to_i])
-
     redirect_to conversation_path(@conversation)
   end
 

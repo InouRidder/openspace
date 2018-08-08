@@ -5,10 +5,14 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.conversation = @conversation
     @message.user = current_user
-    if @message.save
-      redirect_to conversation_path(@conversation)
-    else
-      render 'conversations/show'
+    respond_to do |format|
+      if @message.save
+        format.js
+        format.html { redirect_to conversation_path(@conversation) }
+      else
+        format.js
+        format.html { render 'conversations/show' }
+      end
     end
   end
 
