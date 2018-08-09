@@ -1,12 +1,14 @@
 import "bootstrap";
+import Rails from 'rails-ujs';
+import Turbolinks from 'turbolinks';
 import { spaceQuery } from './space_query.js'
 import { autocomplete } from '../components/autocomplete';
+import { chatController } from './chat_controller';
 
-const Turbolinks = require("turbolinks")
-Turbolinks.start()
-
+Turbolinks.start();
+Rails.start();
 document.addEventListener('turbolinks:load', () => {
   spaceQuery.startListening();
-})
+});
 
-
+global.chatController = chatController;

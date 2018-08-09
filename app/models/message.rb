@@ -2,7 +2,6 @@ class Message < ApplicationRecord
   belongs_to :conversation
   belongs_to :user
   after_create :broadcast_message
-  # ...
 
   def broadcast_message
     ActionCable.server.broadcast("conversation_#{conversation.id}", {

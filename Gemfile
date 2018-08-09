@@ -22,6 +22,8 @@ gem 'webpacker'
 # GOOGLE GEMS FOR LOCATION SERVICES
 gem "geocoder"
 
+gem 'htmlrender'
+
 gem 'faker'
 
 gem 'date_validator'

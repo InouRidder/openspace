@@ -1,4 +1,5 @@
 class SpacesController < ApplicationController
+  include HtmlRender
   skip_before_action :verify_authenticity_token
   skip_before_action :authenticate_user!, only: [:show, :index]
   before_action :set_space, only: [:show, :edit, :update, :destroy]
@@ -10,13 +11,16 @@ class SpacesController < ApplicationController
       @spaces = Space.all.first(20)
     end
 
-    unless request.format.json?
-      property_selection_objects
-      load_markers
-    end
+    property_selection_objects unless request.format.json?
+
+    load_markers
 
     respond_to do |format|
-      format.json
+      format.json { render json: {
+        spaces_html: render_html_content(partial: "spaces/space", collection: @spaces),
+        markers: @markers.to_json
+        }
+      }
       format.html
     end
   end
@@ -49,7 +53,7 @@ class SpacesController < ApplicationController
 
   def update
     if @space.update(space_params)
-      @space.update_properties(space_properties)
+      @space.update_properties(space_properties) unless space_properties.empty?
       redirect_to space_path(@space)
     else
       render :new
@@ -82,7 +86,6 @@ class SpacesController < ApplicationController
   def property_selection_objects
     @features = Property.features
     @space_types = Property.space_types
-    # TO DO: revert back to @spaces.where.not(longitude: nil, latitude: nil) as soon as SQL statement used in query object
   end
 
   def load_markers
@@ -91,9 +94,10 @@ class SpacesController < ApplicationController
         {
           lat: space.latitude,
           lng: space.longitude,
-          infoWindow: { content: render_to_string(partial: "/spaces/map_box", locals: { space: space })}
+          infoWindow: { content: render_html_content(partial: "/spaces/map_box", locals: { space: space })}
         }
       end
     end
+    @markers
   end
 end

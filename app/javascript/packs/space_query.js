@@ -44,6 +44,7 @@ const spaceQuery = {
       return response.json();
     })
     .then(data => {
+      console.log(data)
       this.updateUI(data)
     })
     .catch(error => console.log(error))
@@ -52,19 +53,10 @@ const spaceQuery = {
   updateUI: function(data) {
     // update the view using the JSON response
     global.map.removeMarkers();
-    this.spaceContainer.innerHTML = "";
-    let markers = [];
-    data.forEach(space => {
-      this.spaceContainer.insertAdjacentHTML('beforeend', space.body)
-      if (space.coordinates.lat && space.coordinates.lng) {
-        let marker = {
-            lat: Number.parseFloat(space.coordinates.lat),
-            lng: Number.parseFloat(space.coordinates.lng),
-            infoWindow: space.infoWindow
-          }
-        global.map.addMarker(marker);
-        markers.push(marker);
-      }
+    this.spaceContainer.innerHTML = data.spaces_html;
+    let markers = JSON.parse(data.markers)
+    markers.forEach(marker => {
+      global.map.addMarker(marker);
     })
 
     if (markers.length === 0) {
