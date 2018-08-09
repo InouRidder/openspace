@@ -1,9 +1,26 @@
-.form-inline.form-control {
+#query-form .form-control {
+  position: relative;
+  display: block;
   width: 100% !important;
-  height: 50px !important;
+  line-height: 24px;
+  padding: 8px;
+  color: #2c3e50;
+  border: 1px solid #4ca1af;
+  height: 48px;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 0px;
 }
 
-.form-groups select input {
-  width: 100%;
+form .form-group {
+  width: 20% !important;
 }
 
+#character-inputs {
+  display: flex;
+  align-items: center;
+}
+
+#more-filters {
+  margin-bottom: -10px;
+}

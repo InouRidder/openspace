@@ -3,27 +3,25 @@
         <div class="row">
           <div class="col-md-12">
             <div class="page-title-heading">
-              Discover the Best Places
+              Discover the spaces
             </div>
             <div class="text-heading">
-              Expolore top-rated attractions, activities and more
+              Explore spaces
             </div>
             <div class="wrap-box-search">
-              <form action="#" method="get" accept-charset="utf-8">
-                <span>
-                  <input type="text" placeholder="What are you looking for ?" name="search">
+              <form action="/spaces" method="get" accept-charset="utf-8">
+                <span class="categories">
+                  <span class="ti-angle-down"></span>
+                  <select name="search[properties][]">
+                    <option value="" disabled selected>What are you planning?</option>
+                    <% Property.activity_types.each do |prop| %>
+                      <option value="<%= prop.id %>"><%= prop.content.capitalize %></option>
+                    <% end %>
+                  </select>
                 </span>
                 <span class="location">
                   <span class="ti-location-pin"></span>
-                  <input type="text" placeholder="Location" name="location">
-                </span>
-                <span class="categories">
-                  <span class="ti-angle-down"></span>
-                  <select name="categories">
-                    <option value="">All Categories</option>
-                    <option value="">All Categories</option>
-                    <option value="">All Categories</option>
-                  </select>
+                  <input type="text" placeholder="Location" name="search[location]" id="space_address_autocomplete">
                 </span>
                 <button type="submit" class="search-btn">Search</button>
               </form><!-- /form -->

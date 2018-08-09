@@ -1,0 +1,42 @@
+<%= simple_form_for :search, url: root_path, html: { method: 'get', id: 'query-form', class: 'form-inline' } do |f| %>
+<div id="character_inputs">
+  <%= f.input :price_per_hour, collection: [['Any', nil], ['Under 80', 80], ['80 - 150', '80,150'], ['150-300', '150,300'], ['300 and up', '300']], label_method: :first, value_method: :second, label: false, prompt: 'Price per hour', input_html: {"data-name" => "price"} %>
+  <%= f.input :location, label: false, placeholder: 'Location', input_html: {"data-name" => "location", id: 'space_address_autocomplete'} %>
+  <%= f.input :event_type, label: false, prompt: 'What are you planning?',collection: Property.activity_types, label_method: :content, value_method: :id , input_html: {id: 'activity-property'}%>
+  <%= f.input :capacity, collection: [['Any', nil], ['10+', 10], ['25+',25], ['50+',50], ['100+',100]], label_method: :first, value_method: :second, label: false, prompt: 'Attendees',input_html: {"data-name" => "capacity"}%>
+  <button id="more-filters" data-hidden="hidden">
+    More filters
+  </button>
+</div>
+
+
+<div id="filter-container" hidden>
+  <div id="properties">
+    <div class="row">
+      <h1>
+       Features
+     </h1>
+
+     <% @features.each do |feature| %>
+     <div class="col-xs-3">
+      <label class="checkbox-inline">
+        <input type="checkbox" name="search[properties][]" value="<%= feature.id %>"> <%= feature.content %>
+      </label>
+    </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <h2>
+      Space Types
+    </h2>
+    <% @space_types.each do |space_type| %>
+    <div class="col-xs-3">
+      <label class="checkbox-inline">
+        <input type="checkbox" name="search[properties][]" value="<%= space_type.id %>"> <%= space_type.content %>
+      </label>
+    </div>
+    <% end %>
+  </div>
+</div>
+</div>
+<% end %>

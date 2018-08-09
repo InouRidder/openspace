@@ -8,7 +8,7 @@ class SpacesController < ApplicationController
     if params[:search]
       @spaces = FindSpaces.new(Space.includes(:space_properties)).call(search_params)
     else
-      @spaces = Space.all.first(20)
+      @spaces = Space.all
     end
 
     property_selection_objects unless request.format.json?
@@ -90,14 +90,14 @@ class SpacesController < ApplicationController
 
   def load_markers
     @markers = @spaces.map do |space|
-      unless space.latitude.nil? || space.longitude.nil?
+      if !space.latitude.nil? && !space.longitude.nil?
         {
           lat: space.latitude,
           lng: space.longitude,
           infoWindow: { content: render_html_content(partial: "/spaces/map_box", locals: { space: space })}
         }
       end
-    end
+    end.compact
     @markers
   end
 end
