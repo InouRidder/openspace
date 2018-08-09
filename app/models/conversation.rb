@@ -11,9 +11,9 @@ class Conversation < ApplicationRecord
     if conversation
       conversation
     else
-      conversation = Conversation.create
-      users.each {|user_id| conversation.subscriptions.create(user_id: user_id) }
-      conversation
+      new_conversation = Conversation.create
+      users.each {|user_id| new_conversation.subscriptions.create(user_id: user_id) }
+      new_conversation
     end
 
     # TO DO: Convert this into SQL for performance.
