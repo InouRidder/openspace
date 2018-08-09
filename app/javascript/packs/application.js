@@ -12,3 +12,4 @@ document.addEventListener('turbolinks:load', () => {
 });
 
 global.chatController = chatController;
+global.spaceQuery = spaceQuery;

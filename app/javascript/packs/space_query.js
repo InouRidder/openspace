@@ -7,8 +7,24 @@ const spaceQuery = {
     this.setListeners(form)
   },
 
+  toggleFilter: function(event) {
+    event.preventDefault();
+    let direction = event.currentTarget.dataset.hidden
+    if ( direction === 'hidden' ) {
+      event.currentTarget.dataset.hidden = 'display';
+      event.currentTarget.innerHTML = 'Less filters';
+      this.filterContainer.hidden = false;
+    } else {
+      event.currentTarget.dataset.hidden = 'hidden';
+      event.currentTarget.innerHTML = 'More filters';
+      this.filterContainer.hidden = true;
+    }
+  },
+
+
   setListeners: function(form) {
     form.addEventListener('change', this.initiateChange.bind(this));
+    this.filterButton.addEventListener('click', this.toggleFilter.bind(this));
     form.addEventListener('submit', (e) => {
       e.preventDefault();
     });
@@ -17,8 +33,12 @@ const spaceQuery = {
   setProps: function(form) {
     this.form = form;
     this.properties = Array.from(form.querySelectorAll('#properties input'));
-    this.properties.push(form.querySelector('#character_inputs select'));
-
+    this.properties.push(form.querySelector('#activity-property'));
+    this.resultCount = document.getElementById('result-count');
+    this.filterContainer = document.getElementById('filter-container');
+    this.filterButton = document.getElementById('more-filters');
+    this.capacityForm = form.querySelector('#search_capacity');
+    this.priceForm = form.querySelector('#search_price_per_hour');
     this.characterInputs = form.querySelectorAll('#character_inputs input');
     this.spaceContainer = document.getElementById('space-container');
   },
@@ -44,7 +64,6 @@ const spaceQuery = {
       return response.json();
     })
     .then(data => {
-      console.log(data)
       this.updateUI(data)
     })
     .catch(error => console.log(error))
@@ -54,7 +73,9 @@ const spaceQuery = {
     // update the view using the JSON response
     global.map.removeMarkers();
     this.spaceContainer.innerHTML = data.spaces_html;
-    let markers = JSON.parse(data.markers)
+    let markers = JSON.parse(data.markers);
+    this.resultCount.innerHTML = markers.length;
+
     markers.forEach(marker => {
       global.map.addMarker(marker);
     })
@@ -67,7 +88,6 @@ const spaceQuery = {
     } else {
       map.fitLatLngBounds(markers);
     }
-
   },
 
   getFormValues: function() {
@@ -80,6 +100,8 @@ const spaceQuery = {
     this.characterInputs.forEach((input) => {
       body[input.dataset.name] = input.value
     })
+    if (this.capacityForm.value !== "") {body['capacity'] = this.capacityForm.value};
+    if (this.priceForm.value !== "") {body['price'] = this.priceForm.value};
     return body
   }
 }
