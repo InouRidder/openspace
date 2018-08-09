@@ -80,7 +80,7 @@ class SpacesController < ApplicationController
   end
 
   def search_params
-    params.require(:search).permit(:capacity, :location, :from_price, :to_price, :properties => [])
+    params.require(:search).permit(:capacity, :location, :price, :properties => [])
   end
 
   def property_selection_objects
@@ -90,7 +90,7 @@ class SpacesController < ApplicationController
 
   def load_markers
     @markers = @spaces.map do |space|
-      if space.geocoded?
+      unless space.latitude.nil? || space.longitude.nil?
         {
           lat: space.latitude,
           lng: space.longitude,

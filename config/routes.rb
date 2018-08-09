@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   mount ActionCable.server => "/cable"
 
-  root to: 'spaces#index'
+  root to: 'pages#home'
 
   get ':reviewable/:reviewable_id/reviews/new', to: 'reviews#new', as: :new_review
   post ':reviewable/:reviewable_id/reviews', to: 'reviews#create', as: :reviews
