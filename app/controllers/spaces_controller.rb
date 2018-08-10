@@ -32,6 +32,7 @@ class SpacesController < ApplicationController
 
   def new
     @space = Space.new
+    @selected_props = []
     property_selection_objects
   end
 

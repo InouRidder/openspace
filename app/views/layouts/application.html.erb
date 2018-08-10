@@ -12,8 +12,7 @@
     <%= javascript_pack_tag "map" %>
     <%= javascript_include_tag 'application' %>
   </head>
-  <body>
-    <%#= render 'shared/preloader' %>
+  <body class="header_sticky">
     <%= render 'shared/flashes' %>
     <%= render 'shared/navbar' %>
     <%= yield %>

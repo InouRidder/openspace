@@ -1,7 +1,15 @@
 <% if user_signed_in? && favorited = current_user.favorited?(space) %>
-  <%= link_to 'Unfavorite', favorite_path(favorited), method: :delete %>
+  <%= link_to favorite_path(favorited), method: :delete do %>
+    <p>
+      Unfavorite
+      <i class="far fa-heart"></i>
+    </p>
+  <% end %>
 <% else %>
-  <%= simple_form_for([space, favorite]) do |f| %>
-    <%= f.submit 'Favorite' %>
+  <%= link_to space_favorites_path(space), method: :post do %>
+    <p>
+      Favorite
+      <i class="fas fa-heart"></i>
+    </p>
   <% end %>
 <% end %>

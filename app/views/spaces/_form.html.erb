@@ -1,35 +1,208 @@
-<%= simple_form_for @space do |f| %>
-  <%= f.input :title %>
-  <%= f.input :address, input_html: {id: :space_address_autocomplete } %>
-  <%= f.input :capacity %>
-  <%= f.input :price_per_hour %>
-  <%= f.input :price_per_day %>
 
-  <div id="properties">
-    <div class="row">
-      <h1>
-       Features
-     </h1>
-     <% @features.each do |feature| %>
-       <div class="col-xs-3">
-        <label class="checkbox-inline">
-          <input type="checkbox" name="space[properties][]" value="<%= feature.id %>" <%= 'checked' if @selected_props.include?(feature.id) %>> <%= feature.content %>
-        </label>
-      </div>
-    <% end %>
+<form action="<%= spaces_path %>" class="form-listing" method="post" accept-charset="utf-8">
+  <% if @space.id %>
+    <input type="hidden" name="_method" value="patch"/>
+  <% end %>
+  <div class="inner-box form">
+    <div class="wrap-listing your-name">
+      <label>Listing Name</label>
+      <input type="text" name="space[title]" placeholder="Your listing title" value="<%= @space.title %>">
+    </div><!-- /.wrap-listing -->
+    <div class="clearfix"></div>
+    <div class="wrap-listing location">
+      <label>Location</label>
+      <span class="ti-target"></span>
+      <input type="text" name="space[location]" placeholder="e.g.”New York”" id="space_address_autocomplete" value="<%= @space.address %>">
+    </div><!-- /.wrap-listing -->
+    <div class="clearfix"></div>
+  </div><!-- /.inner-box -->
+  <div class="inner-box form style1">
+    <div class="one-half">
+      <div class="wrap-listing category">
+        <label>Category</label>
+        <span class="ti-angle-down"></span>
+        <select name="category">
+          <option value="">Choose Your Bussines Category</option>
+          <option value="">Choose Your Bussines Category</option>
+          <option value="">Choose Your Bussines Category</option>
+        </select>
+      </div><!-- /.wrap-listing -->
+      <div class="wrap-listing price">
+        <label>Price Range</label>
+        <span class="ti-angle-down"></span>
+        <select name="category">
+          <option value="">Pricey</option>
+          <option value="">Pricey</option>
+          <option value="">Pricey</option>
+        </select>
+      </div><!-- /.wrap-listing -->
+      <div class="wrap-listing price-from">
+        <label>Price From</label>
+        <input type="text" name="price" placeholder="Price From">
+      </div><!-- /.wrap-listing -->
+      <div class="wrap-listing price-to">
+        <label>Price To</label>
+        <input type="text" name="price" placeholder="Price To">
+      </div><!-- /.wrap-listing -->
     </div>
-    <div class="row">
-      <h2>
-        Space Types
-      </h2>
-      <% @space_types.each do |space_type| %>
-        <div class="col-xs-3">
-          <label class="checkbox-inline">
-            <input type="checkbox" name="space[properties][]" value="<%= space_type.id %>" <%= 'checked' if @selected_props.include?(space_type.id) %>> <%= space_type.content %>
-          </label>
+    <div class="one-half">
+      <label>Add Business Hours</label>
+      <div class="wrap-listing business">
+        <div class="day">
+          <span class="ti-angle-down"></span>
+          <select name="day">
+            <option value="">Saturday</option>
+            <option value="">Saturday</option>
+            <option value="">Saturday</option>
+          </select>
         </div>
-      <% end %>
+        <div class="hour-from">
+          <span class="ti-angle-down"></span>
+          <select name="hour-from">
+            <option value="">09:00</option>
+            <option value="">09:00</option>
+            <option value="">09:00</option>
+          </select>
+        </div>
+        <div class="hour-to">
+          <span class="ti-angle-down"></span>
+          <select name="hour-to">
+            <option value="">22:00</option>
+            <option value="">22:00</option>
+            <option value="">22:00</option>
+          </select>
+        </div>
+        <div class="btn-business">
+          <button class="ti-plus" type="button"></button>
+        </div>
+        <span class="clearfix"></span>
+      </div><!-- /.wrap-listing -->
+      <div class="info-business">
+        <div class="item">
+          <span class="date">Monday</span>
+          <span class="hour-from">09:00</span>
+          <span class="line">-</span>
+          <span class="hour-to">22:00</span>
+          <span class="btn-close ti-close"></span>
+        </div>
+        <div class="item">
+          <span class="date">Tuesday</span>
+          <span class="hour-from">09:00</span>
+          <span class="line">-</span>
+          <span class="hour-to">22:00</span>
+          <span class="btn-close ti-close"></span>
+        </div>
+        <div class="item">
+          <span class="date">Wednesday</span>
+          <span class="hour-from">09:00</span>
+          <span class="line">-</span>
+          <span class="hour-to">22:00</span>
+          <span class="btn-close ti-close"></span>
+        </div>
+        <div class="item">
+          <span class="date">Thursday</span>
+          <span class="hour-from">09:00</span>
+          <span class="line">-</span>
+          <span class="hour-to">22:00</span>
+          <span class="btn-close ti-close"></span>
+        </div>
+        <div class="item">
+          <span class="date">Friday</span>
+          <span class="hour-from">09:00</span>
+          <span class="line">-</span>
+          <span class="hour-to">22:00</span>
+          <span class="btn-close ti-close"></span>
+        </div>
+        <div class="item">
+          <span class="date">Saturday</span>
+          <span class="hour-from">09:00</span>
+          <span class="line">-</span>
+          <span class="hour-to">22:00</span>
+          <span class="btn-close ti-close"></span>
+        </div>
+        <div class="item">
+          <span class="date">Sunday</span>
+          <span class="hour-from">09:00</span>
+          <span class="line">-</span>
+          <span class="hour-to">22:00</span>
+          <span class="btn-close ti-close"></span>
+        </div>
+      </div>
     </div>
+    <div class="clearfix"></div>
+  </div><!-- /.inner-box -->
+  <div class="inner-box form style2">
+    <div class="one-half">
+      <label>Description</label>
+      <textarea placeholder="Detail description about your listing"></textarea>
+      <input type="text" name="urlFacebook" placeholder="Your Facebook URL">
+      <input type="text" name="urlTwitter" placeholder="Your Twitter URL">
+      <input type="text" name="urlYoutube" placeholder="Your Youtube URL">
+    </div><!-- /.one-half -->
+    <div class="one-half">
+      <label>Tags or keywords (Comma seprated)</label>
+      <textarea placeholder="Enter tag or keywords coma seprated ..."></textarea>
+      <input type="text" name="urlInstagram" placeholder="Your Instagram URL">
+      <input type="text" name="urlGooglePlus" placeholder="Your Google Plus URL">
+      <input type="text" name="urlLinkedin" placeholder="Your linkedin URL">
+    </div><!-- /.one-half -->
+    <div class="clearfix"></div>
+  </div><!-- /.inner-box -->
+  <div class="inner-box style3">
+    <div class="one-half">
+      <label>Your Business Images</label>
+      <div class="browse">
+        <p>Drag & Drop files here</p>
+        <span>or</span>
+        <div class="upload">
+          <span>Browse files</span>
+          <input type="file" name="upload-file">
+        </div>
+      </div>
+    </div><!-- /.one-half -->
+    <div class="one-half">
+      <label>Your Business video(Optional)</label>
+      <input type="text" value="" placeholder="ex: https://www.youtube.com/watch?v=XZiki0D_81U">
+      <button class="submit-form-listing" type="submit">Save & Preview</button>
+    </div><!-- /.one-half -->
+    <div class="clearfix"></div>
+  </div><!-- /.inner-box -->
+</form><!-- /.form-listing -->
+
+
+
+<%= simple_form_for @space do |f| %>
+<%= f.input :title %>
+<%= f.input :address, input_html: {id: :space_address_autocomplete } %>
+<%= f.input :capacity %>
+<%= f.input :price_per_hour %>
+<%= f.input :price_per_day %>
+
+<div id="properties">
+  <div class="row">
+    <h1>
+     Features
+   </h1>
+   <% @features.each do |feature| %>
+   <div class="col-xs-3">
+    <label class="checkbox-inline">
+      <input type="checkbox" name="space[properties][]" value="<%= feature.id %>" <%= 'checked' if @selected_props.include?(feature.id) %>> <%= feature.content %>
+    </label>
   </div>
+  <% end %>
+</div>
+<div class="row">
+  <h2>
+    Space Types
+  </h2>
+  <% @space_types.each do |space_type| %>
+  <div class="col-xs-3">
+    <label class="checkbox-inline">
+      <input type="checkbox" name="space[properties][]" value="<%= space_type.id %>" <%= 'checked' if @selected_props.include?(space_type.id) %>> <%= space_type.content %>
+    </label>
+  </div>
+  <% end %>
+</div>
+</div>
 <%= f.submit %>
 <% end %>

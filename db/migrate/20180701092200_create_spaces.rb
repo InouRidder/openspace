@@ -8,6 +8,7 @@ class CreateSpaces < ActiveRecord::Migration[5.1]
       t.float :price_per_hour
       t.float :price_per_day
       t.string :state
+      t.text :description
 
       t.timestamps
     end
