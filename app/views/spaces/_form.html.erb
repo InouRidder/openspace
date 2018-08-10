@@ -1,94 +1,90 @@
+<%= simple_form_for @space, html: {class: 'form-listing'} do |f| %>
+<div class="inner-box form">
+  <div class="wrap-listing one-half">
+    <%= f.input :title %>
+  </div><!-- /.wrap-listing -->
+  <div class="wrap-listing one-half">
+    <%= f.input :address %>
+  </div><!-- /.wrap-listing -->
+  <div class="clearfix"></div>
+  <div class="wrap-listing location">
+    <%= f.input :description %>
+  </div><!-- /.wrap-listing -->
+  <div class="clearfix"></div>
+</div><!-- /.inner-box -->
 
-<form action="<%= spaces_path %>" class="form-listing" method="post" accept-charset="utf-8">
-  <% if @space.id %>
-    <input type="hidden" name="_method" value="patch"/>
-  <% end %>
-  <div class="inner-box form">
-    <div class="wrap-listing one-half">
-      <label>Listing Title</label>
-      <input type="text" name="space[title]" placeholder="Your listing title" value="<%= @space.title %>">
-    </div><!-- /.wrap-listing -->
-    <div class="wrap-listing one-half">
-      <label>Location</label>
-      <span class="ti-target"></span>
-      <input type="text" name="space[location]" placeholder="e.g.”New York”" id="space_address_autocomplete" value="<%= @space.address %>">
-    </div><!-- /.wrap-listing -->
+<div class="inner-box form">
+  <div class="wrap-listing one-half">
+    <%= f.input :price_per_hour %>
+  </div><!-- /.wrap-listing -->
+  <div class="wrap-listing one-half">
+    <%= f.input :price_per_day %>
+  </div><!-- /.wrap-listing -->
+  <div class="clearfix"></div>
+</div><!-- /.inner-box -->
+
+<div class="inner-box form style2">
+  <div class="amenities">
+    <h3>Possible activities</h3>
+    <% Property.activity_types.each do |prop| %>
+    <label class="checkbox-inline">
+      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
+    </label>
+    <% end %>
     <div class="clearfix"></div>
-    <div class="wrap-listing location">
-      <label>Listing Description</label>
-      <input type="text" name="space[description]" placeholder="The flat was built in 1928.." value="<%= @space.description %>">
-    </div><!-- /.wrap-listing -->
-    <div class="clearfix"></div>
-  </div><!-- /.inner-box -->
-
-  <div class="inner-box form">
-    <div class="wrap-listing one-half">
-      <label>Price per Hour</label>
-
-        <input type="text" name="search[price_per_hour]" placeholder="Price per Hour">
-    </div><!-- /.wrap-listing -->
-    <div class="wrap-listing one-half">
-      <label>Price per Day</label>
-        <input type="text" name="search[price_per_day]" placeholder="Price per Day">
-    </div><!-- /.wrap-listing -->
-    <div class="clearfix"></div>
-  </div><!-- /.inner-box -->
-
-
-  <div class="inner-box form style2">
-      <div class="amenities">
-        <h3>Possible activities</h3>
-        <% Property.activity_types.each do |prop| %>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
-          </label>
-        <% end %>
-      <div class="clearfix"></div>
-    </div>
   </div>
+</div>
 
-  <div class="inner-box form style2">
-      <div class="amenities">
-        <h3>Features</h3>
-        <% Property.features.each do |prop| %>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
-          </label>
-        <% end %>
-      <div class="clearfix"></div>
-    </div>
-  </div><!-- /.inner-box -->
-
-  <div class="inner-box form style2">
-      <div class="amenities">
-        <h3>Space Types</h3>
-        <% Property.space_types.each do |prop| %>
-          <label class="checkbox-inline">
-            <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
-          </label>
-        <% end %>
-      <div class="clearfix"></div>
-    </div>
-  </div><!-- /.inner-box -->
-
-
-  <div class="inner-box style3">
-    <div class="one-half">
-      <label>Your Business Images</label>
-      <div class="browse">
-        <p>Drag & Drop files here</p>
-        <span>or</span>
-        <div class="upload">
-          <span>Browse files</span>
-          <input type="file" name="upload-file">
-        </div>
-      </div>
-    </div><!-- /.one-half -->
-    <div class="one-half">
-      <label>Your Business video(Optional)</label>
-      <input type="text" value="" placeholder="ex: https://www.youtube.com/watch?v=XZiki0D_81U">
-      <button class="submit-form-listing" type="submit">Save & Preview</button>
-    </div><!-- /.one-half -->
+<div class="inner-box form style2">
+  <div class="amenities">
+    <h3>Features</h3>
+    <% Property.features.each do |prop| %>
+    <label class="checkbox-inline">
+      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
+    </label>
+    <% end %>
     <div class="clearfix"></div>
-  </div><!-- /.inner-box -->
+  </div>
+</div><!-- /.inner-box -->
+
+<div class="inner-box form style2">
+  <div class="amenities">
+    <h3>Space Types</h3>
+    <% Property.space_types.each do |prop| %>
+    <label class="checkbox-inline">
+      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
+    </label>
+    <% end %>
+    <div class="clearfix"></div>
+  </div>
+</div><!-- /.inner-box -->
+
+
+<div class="inner-box style3">
+  <div class="one-half">
+    <label>Your Business Images</label>
+    <div class="browse">
+      <p>Drag & Drop files here</p>
+      <span>or</span>
+      <div class="upload">
+        <span>Browse files</span>
+        <input type="file" name="upload-file">
+      </div>
+    </div>
+  </div><!-- /.one-half -->
+  <div class="one-half">
+    <label>Your Business video(Optional)</label>
+    <input type="text" value="" placeholder="ex: https://www.youtube.com/watch?v=XZiki0D_81U">
+    <button class="submit-form-listing" type="submit">Save & Preview</button>
+  </div><!-- /.one-half -->
+  <div class="clearfix"></div>
+</div><!-- /.inner-box -->
 </form><!-- /.form-listing -->
+
+<% end %>
+
+
+
+
+
+
