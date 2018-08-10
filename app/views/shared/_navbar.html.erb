@@ -1,5 +1,5 @@
 
-<div class="header">
+<div class="header header_sticky">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
@@ -13,27 +13,7 @@
             <nav id="mainnav" class="mainnav">
              <ul class="menu">
               <li>
-                <a href="#" title="">Explore</a>
-                <ul class="submenu">
-                  <li>
-                    <a href="explore-v1.html" title="">Explore Map Zoom In</a>
-                  </li>
-                  <li>
-                    <a href="explore-v2.html" title="">Explore Map Zoom Out</a>
-                  </li>
-                  <li>
-                    <a href="explore-v3.html" title="">Explore Map List</a>
-                  </li>
-                  <li>
-                    <a href="explore-v4.html" title="">Explore Grid</a>
-                  </li>
-                  <li>
-                    <a href="explore-v5.html" title="">Explore List</a>
-                  </li>
-                  <li>
-                    <a href="explore-detail.html" title="">Explore Details</a>
-                  </li>
-                </ul>
+                <a href="/spaces" title="">Explore</a>
               </li>
               <li>
                 <a href="#" title="">Learn</a>
@@ -81,7 +61,10 @@
             </ul>
           </nav><!-- /.mainnav -->
           <div class="button-header">
-            <a href="http://corpthemes.com/html/dailist/register.html" title=""><i class="ti-plus"></i>Add Your Properties</a>
+            <%= link_to new_space_path do %>
+              <i class="ti-plus"></i>
+              Add Your Space
+            <% end %>
           </div>
           <div class="show-search">
             <button><span class="ti-search"></span></button>

@@ -11,7 +11,7 @@ class FindSpaces
     scoped = filter_by_location(scoped, params[:location])
     scoped = filter_by_price(scoped, params[:price])
     scoped = filter_by_capacity(scoped, params[:capacity])
-    scoped = filter_by_properties(scoped, params[:properties])
+    scoped = filter_by_properties(scoped, params[:properties]) if params[:properties]
     # scoped = sort(scoped, params[:sort_type], params[:sort_direction])
     # scoped = paginate(scoped, params[:page])
     scoped
@@ -30,7 +30,7 @@ class FindSpaces
   def filter_by_price(scoped, price = nil)
     return scoped if price.nil?
     prices = price.split(",")
-
+    # move this to client ?
     if prices.length == 1
       if prices.first == '80'
         to_price = 80

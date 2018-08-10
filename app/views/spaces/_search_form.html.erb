@@ -1,3 +1,12 @@
+<style>
+  #character_inputs {
+    display: flex;
+    width: 100%;
+    flex: 0 20%;
+  }
+
+</style>
+
 <%= simple_form_for :search, url: root_path, html: { method: 'get', id: 'query-form', class: 'form-inline' } do |f| %>
 <div id="character_inputs">
   <%= f.input :price_per_hour, collection: [['Any', nil], ['Under 80', 80], ['80 - 150', '80,150'], ['150-300', '150,300'], ['300 and up', '300']], label_method: :first, value_method: :second, label: false, prompt: 'Price per hour', input_html: {"data-name" => "price"} %>

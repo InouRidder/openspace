@@ -12,13 +12,10 @@
   margin-bottom: 0px;
 }
 
-form .form-group {
-  width: 20% !important;
-}
-
-#character-inputs {
+#character_inputs {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 #more-filters {

@@ -1,35 +1,90 @@
-<%= simple_form_for @space do |f| %>
-  <%= f.input :title %>
-  <%= f.input :address, input_html: {id: :space_address_autocomplete } %>
-  <%= f.input :capacity %>
-  <%= f.input :price_per_hour %>
-  <%= f.input :price_per_day %>
+<%= simple_form_for @space, html: {class: 'form-listing'} do |f| %>
+<div class="inner-box form">
+  <div class="wrap-listing one-half">
+    <%= f.input :title %>
+  </div><!-- /.wrap-listing -->
+  <div class="wrap-listing one-half">
+    <%= f.input :address %>
+  </div><!-- /.wrap-listing -->
+  <div class="clearfix"></div>
+  <div class="wrap-listing location">
+    <%= f.input :description %>
+  </div><!-- /.wrap-listing -->
+  <div class="clearfix"></div>
+</div><!-- /.inner-box -->
 
-  <div id="properties">
-    <div class="row">
-      <h1>
-       Features
-     </h1>
-     <% @features.each do |feature| %>
-       <div class="col-xs-3">
-        <label class="checkbox-inline">
-          <input type="checkbox" name="space[properties][]" value="<%= feature.id %>" <%= 'checked' if @selected_props.include?(feature.id) %>> <%= feature.content %>
-        </label>
-      </div>
+<div class="inner-box form">
+  <div class="wrap-listing one-half">
+    <%= f.input :price_per_hour %>
+  </div><!-- /.wrap-listing -->
+  <div class="wrap-listing one-half">
+    <%= f.input :price_per_day %>
+  </div><!-- /.wrap-listing -->
+  <div class="clearfix"></div>
+</div><!-- /.inner-box -->
+
+<div class="inner-box form style2">
+  <div class="amenities">
+    <h3>Possible activities</h3>
+    <% Property.activity_types.each do |prop| %>
+    <label class="checkbox-inline">
+      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
+    </label>
     <% end %>
-    </div>
-    <div class="row">
-      <h2>
-        Space Types
-      </h2>
-      <% @space_types.each do |space_type| %>
-        <div class="col-xs-3">
-          <label class="checkbox-inline">
-            <input type="checkbox" name="space[properties][]" value="<%= space_type.id %>" <%= 'checked' if @selected_props.include?(space_type.id) %>> <%= space_type.content %>
-          </label>
-        </div>
-      <% end %>
-    </div>
+    <div class="clearfix"></div>
   </div>
-<%= f.submit %>
+</div>
+
+<div class="inner-box form style2">
+  <div class="amenities">
+    <h3>Features</h3>
+    <% Property.features.each do |prop| %>
+    <label class="checkbox-inline">
+      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
+    </label>
+    <% end %>
+    <div class="clearfix"></div>
+  </div>
+</div><!-- /.inner-box -->
+
+<div class="inner-box form style2">
+  <div class="amenities">
+    <h3>Space Types</h3>
+    <% Property.space_types.each do |prop| %>
+    <label class="checkbox-inline">
+      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
+    </label>
+    <% end %>
+    <div class="clearfix"></div>
+  </div>
+</div><!-- /.inner-box -->
+
+
+<div class="inner-box style3">
+  <div class="one-half">
+    <label>Your Business Images</label>
+    <div class="browse">
+      <p>Drag & Drop files here</p>
+      <span>or</span>
+      <div class="upload">
+        <span>Browse files</span>
+        <input type="file" name="upload-file">
+      </div>
+    </div>
+  </div><!-- /.one-half -->
+  <div class="one-half">
+    <label>Your Business video(Optional)</label>
+    <input type="text" value="" placeholder="ex: https://www.youtube.com/watch?v=XZiki0D_81U">
+    <button class="submit-form-listing" type="submit">Save & Preview</button>
+  </div><!-- /.one-half -->
+  <div class="clearfix"></div>
+</div><!-- /.inner-box -->
+</form><!-- /.form-listing -->
+
 <% end %>
+
+
+
+
+
+
