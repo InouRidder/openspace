@@ -558,7 +558,7 @@
 }
 
 .flat-filter {
-	padding: 0px 0 20px 52px;
+	padding: 0px 20px 20px 52px;
 }
 
 .pdmap {
@@ -585,9 +585,10 @@
 
 .imagebox.style3 {
 	width: 50%;
-    float: left;
-    padding-left: 15px;
-    padding-right: 15px
+  float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 10px 0px;
 }
 
 .height33 {
