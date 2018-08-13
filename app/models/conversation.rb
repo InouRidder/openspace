@@ -7,7 +7,6 @@ class Conversation < ApplicationRecord
     conversation = self.includes(:subscriptions).find do |conversation|
       (conversation.subscriptions.pluck(:user_id) & users).sort == users.sort
     end
-
     if conversation
       conversation
     else
