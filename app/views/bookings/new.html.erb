@@ -1,0 +1,7 @@
+<%= render 'bookings/form', space: @space, booking: @booking  %>
+
+<h1>bookings</h1>
+
+<ul>
+  <%= render partial: 'bookings/booking', collection: @space.bookings, as: :booking %>
+</ul>

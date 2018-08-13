@@ -42,31 +42,33 @@
 
         var responsiveMenu = function() {
             var menuType = 'desktop';
-
             $(window).on('load resize', function() {
                 var currMenuType = 'desktop';
-
                 if ( matchMedia( 'only screen and (max-width: 991px)' ).matches ) {
                     currMenuType = 'mobile';
+                    console.log('its mobile');
                 }
 
                 if ( currMenuType !== menuType ) {
                     menuType = currMenuType;
 
                     if ( currMenuType === 'mobile' ) {
+                      console.log('here')
                         var $mobileMenu = $('#mainnav').attr('id', 'mainnav-mobi').hide();
                         var hasChildMenu = $('#mainnav-mobi').find('li:has(ul)');
-
+                        console.log(hasChildMenu)
                         $('.header').after($mobileMenu);
                         hasChildMenu.children('ul').hide();
                         hasChildMenu.children('a').after('<span class="btn-submenu"></span>');
                         $('.btn-menu').removeClass('active');
+                        $('.btn-menu').show();
                     } else {
                         var $desktopMenu = $('#mainnav-mobi').attr('id', 'mainnav').removeAttr('style');
 
                         $desktopMenu.find('.submenu').removeAttr('style');
                         $('.header').find('.button-header').before($desktopMenu);
                         $('.btn-submenu').remove();
+                        $('.btn-menu').hide();
                     }
                 }
             });
@@ -1117,9 +1119,9 @@
         headerFixed();
         slideTeam();
         searchButton();
-        // filterToggle();
+        filterToggle();
         CountDown();
-        // googleMap();
+        googleMap();
         slideSearch();
         loadMore();
         loadMore_s2();

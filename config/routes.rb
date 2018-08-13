@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-
-  devise_for :users
   mount ActionCable.server => "/cable"
 
+  devise_for :users
 
-  scope '(:locale)', locale: /fr|es/ do
+
+  scope '(:locale)', locale: /nl/ do
     root to: 'pages#home'
 
     get ':reviewable/:reviewable_id/reviews/new', to: 'reviews#new', as: :new_review
@@ -12,19 +12,19 @@ Rails.application.routes.draw do
 
     resources :spaces do
       resources :favorites, only: [:create]
-      resources :bookings, only: [:create]
+      resources :bookings, only: [:create, :new]
       collection do
         post 'query', to: 'spaces#index'
       end
     end
+
+    resources :conversations do
+      resources :messages, only: [:create]
+    end
+
+    resources :bookings, except: [:create, :edit]
+
+    resources :favorites, only: [:index, :destroy]
+
   end
-
-  resources :conversations do
-    resources :messages, only: [:create]
-  end
-
-  resources :bookings, except: [:create, :edit]
-
-  resources :favorites, only: [:index, :destroy]
-
 end
