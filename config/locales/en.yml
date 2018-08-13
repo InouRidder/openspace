@@ -31,3 +31,52 @@
 
 en:
   hello: "Hello world"
+
+# Buttons
+  buttons:
+    cancel: "Cancel"
+    decline: "Decline"
+    approve: "Approve"
+    add_review: "Add review"
+    search: "Search"
+
+# Bookings
+  bookings:
+    my_trips: "My Trips"
+    bookings_on_spaces_i_own: "Bookings on spaces I own"
+
+# Conversations
+  conversations:
+
+# Favorites
+  favorites:
+    unfavorite: "Unfavorite"
+    favorite: "Favorite"
+
+# Pages > not done on page home.html
+  pages:
+    discover_the_spaces: "Discover the spaces"
+    expore_spaces: "Explore spaces"
+    what_are_you_planning: "What are you planning?"
+    foot: "Foot"
+    hotel: "Hotel"
+    play: "Play"
+    automove: "Automove"
+    shop: "Shop"
+    fitness: "Fitness"
+    nightlife: "Nightlife"
+    park: "Park"
+
+# Navbar
+  navbar:
+    explore:
+
+
+
+
+
+
+
+
+
+

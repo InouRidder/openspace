@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <h1> My trips</h1>
+    <h1><%= t('bookings.my_trips') %></h1>
     <%= render partial: 'bookings/booking', collection: @user_bookings, as: :booking %>
-    <h2> Bookings on spaces I own</h2>
+    <h2><%= t('bookings.bookings_on_spaces_i_own') %></h2>
     <%= render partial: 'bookings/booking', collection: @spaces_bookings %>
   </div>
 </div>
