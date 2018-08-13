@@ -1,24 +1,24 @@
 <%= simple_form_for @space, html: {class: 'form-listing'} do |f| %>
 <div class="inner-box form">
   <div class="wrap-listing one-half">
-    <%= f.input :title %>
+    <%= f.input :title, label: I18n.t('list.title') %>
   </div><!-- /.wrap-listing -->
   <div class="wrap-listing one-half">
-    <%= f.input :address %>
+    <%= f.input :address, label: I18n.t('list.address') %>
   </div><!-- /.wrap-listing -->
   <div class="clearfix"></div>
   <div class="wrap-listing location">
-    <%= f.input :description %>
+    <%= f.input :description, label: I18n.t('list.description') %>
   </div><!-- /.wrap-listing -->
   <div class="clearfix"></div>
 </div><!-- /.inner-box -->
 
 <div class="inner-box form">
   <div class="wrap-listing one-half">
-    <%= f.input :price_per_hour %>
+    <%= f.input :price_per_hour, label: I18n.t('list.price_per_hour') %>
   </div><!-- /.wrap-listing -->
   <div class="wrap-listing one-half">
-    <%= f.input :price_per_day %>
+    <%= f.input :price_per_day, label: I18n.t('list.price_per_day') %>
   </div><!-- /.wrap-listing -->
   <div class="clearfix"></div>
 </div><!-- /.inner-box -->
@@ -28,7 +28,7 @@
     <h3>Possible activities</h3>
     <% Property.activity_types.each do |prop| %>
     <label class="checkbox-inline">
-      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
+      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= t("properties.#{prop.content.downcase}") %>
     </label>
     <% end %>
     <div class="clearfix"></div>
@@ -40,7 +40,7 @@
     <h3>Features</h3>
     <% Property.features.each do |prop| %>
     <label class="checkbox-inline">
-      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
+      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= t("properties.#{prop.content.downcase}") %>
     </label>
     <% end %>
     <div class="clearfix"></div>
@@ -52,7 +52,7 @@
     <h3>Space Types</h3>
     <% Property.space_types.each do |prop| %>
     <label class="checkbox-inline">
-      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
+      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= t("properties.#{prop.content.downcase}") %>
     </label>
     <% end %>
     <div class="clearfix"></div>

@@ -11,6 +11,7 @@ Property.destroy_all
 puts "Creating properties"
 
 features = %w(Bathtub Cyclorama Deck Elevator Exposed-Brick Fire-Pit Fireplace Gazebo Green-Screen Grill Kitchen Library Lounge Patio Piano Pool)
+# TO FIX > YOGA STUDIO IS ONE SPACE TYPE (ALSO FIX IN I18n)
 space_types = %w(Auditorium Ballroom Banquet Hall Bar Boardroom Cabin Cafe Church Classroom Club Dance Studio Film Studio Fitness Studio Gallery Garage Garden Gym Hotel House Loft Mansion Office Outdoor Palace Party Hall Photo-Studio Ranch Recording-Studio Restaurant Rooftop Sound Stage Storefront Theater Video Studio Villa Warehouse Yoga Studio)
 activity_types = ["Corporate Event", "Dinner", "Film Shoot", "Fitness Class", "Meeting","Networking","Party","Performance","Photo Shoot","Pop-Up","Retreat","Wedding","Workshop"]
 cities = %w(Amsterdam Delft Haarlem Utrecht Amstelveen Berlin Barcelona Madrid Taragona Potsdam Oranienburg Leipzig Magdeburg Sabadell Terrassa)
