@@ -1,10 +1,14 @@
 class BookingsController < ApplicationController
-  before_action :set_space, only: :create
+  before_action :set_space, only: [:create, :new]
   before_action :set_booking, only: [:destroy, :update]
 
   def index
     @user_bookings = current_user.bookings.includes(:space)
     @spaces_bookings = current_user.spaces_bookings.includes(:space)
+  end
+
+  def new
+    @booking = Booking.new
   end
 
   def create

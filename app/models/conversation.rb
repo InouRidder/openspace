@@ -7,7 +7,6 @@ class Conversation < ApplicationRecord
     conversation = self.includes(:subscriptions).find do |conversation|
       (conversation.subscriptions.pluck(:user_id) & users).sort == users.sort
     end
-
     if conversation
       conversation
     else
@@ -15,14 +14,16 @@ class Conversation < ApplicationRecord
       users.each {|user_id| new_conversation.subscriptions.create(user_id: user_id) }
       new_conversation
     end
+  end
 
-    # TO DO: Convert this into SQL for performance.
-    # " WHERE EXISTS ( SELECT 2
-    #                  FROM subscriptions s
-    #                  WHERE s.conversation_id = conversations.id
-    #                  AND s.user_id IN (#{ids})
-    #                 )"
-    #  ActiveRecord::Base.connection.execute(sql)
+  def last_message(user)
+    messages_with_user = messages.includes(:user)
+    message = messages_with_user.where.not(user: user).last
+    message ? message : messages_with_user.includes(:user).last
+  end
+
+  def partner(current_user)
+    users.find { |user| user != current_user }
   end
 end
 

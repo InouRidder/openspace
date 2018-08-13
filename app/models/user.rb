@@ -18,4 +18,14 @@ class User < ApplicationRecord
     favorites.find_by(space: space)
   end
 
+  def full_name
+    if first_name && last_name
+      first_name.capitalize + " " + last_name.capitalize
+    elsif first_name
+      first_name.capitalize
+    else
+      ""
+    end
+  end
+
 end

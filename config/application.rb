@@ -14,7 +14,7 @@ module Openspace
       generate.test_framework  :test_unit, fixture: false
     end
     ['blog','icon','page','parallax','slider'].each { |pipeline| config.assets.paths << "#{Rails.root}/app/assets/images/#{pipeline}" }
-
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 

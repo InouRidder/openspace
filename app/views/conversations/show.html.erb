@@ -1,16 +1,26 @@
-<div class="container">
-  <div class="row text-center">
-    <div id="messages">
-      <% @conversation.messages.each do |message| %>
-        <%= render 'messages/message', message: message, user_is_messages_author: message.user == current_user %>
+<section class="flat-row flat-explore-detail">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="comment-area">
+          <h3 class="comment-title"><%= @conversation.partner(current_user).try(:full_name) %> </h3>
+          <ol class="comment-list" id="messages">
+            <% @conversation.messages.each do |message| %>
+              <%= render 'messages/message', message: message %>
+            <% end %>
+          </ol><!-- /.comment-list -->
+        </div><!-- /.comment-area -->
+      </div>
+      <%= simple_form_for([@conversation, @message], remote: true) do |f| %>
+        <div class="inline-form">
+          <%= f.input :content, label: false %>
+          <%= f.submit %>
+        </div>
       <% end %>
     </div>
-    <%= simple_form_for([@conversation, @message], remote: true) do |f| %>
-      <%= f.input :content %>
-      <%= f.submit %>
-    <% end %>
   </div>
-</div>
+</section>
+
 
 <script>
   document.addEventListener('turbolinks:load', () => {
@@ -22,3 +32,5 @@
   )
 
 </script>
+
+

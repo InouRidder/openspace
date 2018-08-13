@@ -1,6 +1,10 @@
 class ConversationsController < ApplicationController
   def index
-    @conversations = current_user.conversations.includes(:message)
+    @conversations = current_user.conversations.includes(:messages)
+    respond_to do |format|
+      format.html
+      format.json { render json: {succes: 200} }
+    end
   end
 
   def show

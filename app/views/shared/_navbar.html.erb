@@ -1,4 +1,3 @@
-
 <div class="header header_sticky">
   <div class="container-fluid">
     <div class="row">
@@ -15,57 +14,35 @@
               <li>
                 <a href="/spaces" title="">Explore</a>
               </li>
+              <% if user_signed_in? %>
               <li>
-                <a href="#" title="">Learn</a>
+                <%= link_to 'Trips', "#" %>
+              </li>
+              <li>
+                <%= link_to 'Messages', conversations_path, id: 'conversation-button' %>
                 <ul class="submenu">
-                  <li>
-                    <a href="index.html" title="">Index Layout</a>
-                  </li>
-                  <li>
-                    <a href="404.html" title="">404 Page</a>
-                  </li>
-                  <li>
-                    <a href="addlisting.html" title="">Add Listings</a>
-                  </li>
-                  <li>
-                    <a href="comingsoon.html" title="">Comming Soon</a>
-                  </li>
-                  <li>
-                    <a href="contact.html" title="">Contact</a>
-                  </li>
-                  <li>
-                    <a href="price.html" title="">Price Page</a>
-                  </li>
-                  <li>
-                    <a href="work.html" title="">How It Works</a>
-                  </li>
+                  <% current_user.conversations.each do |conversation| %>
+                    <li>
+                      <%= link_to conversation_path(conversation) do %>
+                        <%= conversation.last_message(current_user).content %>
+                      <% end %>
+                    </li>
+                  <% end %>
                 </ul>
               </li>
+              <% else %>
               <li>
-                <a href="blog.html" title="">Blog</a>
-                <ul class="submenu">
-                  <li>
-                    <a href="blog.html" title="">Blog</a>
-                  </li>
-                  <li>
-                    <a href="blog-single.html" title="">Blog Single</a>
-                  </li>
-                </ul>
+                <%= link_to 'Log in', new_user_session_path %>
               </li>
-              <li>
-                <a href="login.html" title="">Log In</a>
-              </li>
-              <li>
-                <a href="register.html" title="">Sign Up</a>
-              </li>
+              <% end %>
+              <div class="button-header">
+                <%= link_to new_space_path do %>
+                <i class="ti-plus"></i>
+                Add Your Space
+                <% end %>
+              </div>
             </ul>
           </nav><!-- /.mainnav -->
-          <div class="button-header">
-            <%= link_to new_space_path do %>
-              <i class="ti-plus"></i>
-              Add Your Space
-            <% end %>
-          </div>
           <div class="show-search">
             <button><span class="ti-search"></span></button>
             <div class="submenu top-search search-header">

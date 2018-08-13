@@ -1,3 +1,20 @@
-<div class="message <%= 'right' if user_is_messages_author %>">
-  <div class="message-content"><%= message.content %></div>
+<div class="col-xs-12">
+  <li class="comment">
+    <article class="comment-body">
+      <div class="comment-image">
+        <img src="<%= image_path 'comment_01.png' %>" alt="">
+      </div><!-- /.comment-image -->
+      <div class="comment-content">
+        <div class="comment-metadata">
+          <%= message.created_at.strftime("%A, %b %d") %>
+        </div>
+        <div class="comment-author">
+          by <a href="#" title=""><%= message.user.full_name %></a>
+        </div>
+        <p>
+          <%= message.content %>
+        </p>
+      </div><!-- /.comment-content -->
+    </article><!-- /.comment-body -->
+  </li><!-- /.comment -->
 </div>
