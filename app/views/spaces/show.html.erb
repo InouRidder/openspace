@@ -1,251 +1,242 @@
 
-    <section class="tp-banner">
-      <div id="rev_slider_1078_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="classic4export" data-source="gallery" style="margin:0px auto;background-color:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
-            <!-- START REVOLUTION SLIDER 5.3.0.2 auto mode -->
-              <div id="rev_slider_1078_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.3.0.2">
-                  <div class="slotholder"></div>
-                  <ul><!-- SLIDE  -->
+<section class="tp-banner">
+  <div id="rev_slider_1078_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="classic4export" data-source="gallery" style="margin:0px auto;background-color:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
+    <!-- START REVOLUTION SLIDER 5.3.0.2 auto mode -->
+    <div id="rev_slider_1078_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.3.0.2">
+      <div class="slotholder"></div>
+      <ul><!-- SLIDE  -->
 
-                      <!-- SLIDE 1 -->
-                      <li data-index="rs-3049" data-transition="slideremovedown" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"    data-rotate="0"  data-saveperformance="off"  data-title="Ken Burns" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+        <!-- SLIDE 1 -->
+        <li data-index="rs-3049" data-transition="slideremovedown" data-slotamount="7" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"    data-rotate="0"  data-saveperformance="off"  data-title="Ken Burns" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
 
-                          <!-- MAIN IMAGE -->
-                          <img src="<%= image_path '01.png' %>"  alt=""  data-bgposition="center center" data-kenburns="off" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+          <!-- MAIN IMAGE -->
+          <img src="<%= image_path '01.png' %>"  alt=""  data-bgposition="center center" data-kenburns="off" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+        </li>
+
+        <!-- SLIDE 2 -->
+        <li data-index="rs-3048" data-transition="slideremoveright" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"    data-rotate="0"  data-saveperformance="off"  data-title="HTML5 Video" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+          <!-- MAIN IMAGE -->
+          <img src="<%= image_path '02.png' %>"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+        </li>
+
+        <li data-index="rs-3048" data-transition="slideremoveright" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"    data-rotate="0"  data-saveperformance="off"  data-title="HTML5 Video" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+          <!-- MAIN IMAGE -->
+          <img src="<%= image_path '03.png' %>"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+        </li>
+      </ul>
+    </div>
+  </div><!-- END REVOLUTION SLIDER -->
+</section><!-- /.tp-banner -->
+
+<section class="flat-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="title-left">
+          <div class="queue">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <i class="fa fa-star-half-o" aria-hidden="true"></i>
+          </div><!-- /.queue -->
+          <div class="box-title">
+            <span>Ad</span><a href="#" title=""><%= @space.title %></a><i class="fa fa-check-circle" aria-hidden="true"></i>
+          </div><!-- /.box-title -->
+          <ul class="box-address">
+            <li class="address"><i class="fa fa-map-marker" aria-hidden="true"></i><%= @space.address %> </li>
+            <li class="phone"><i class="fa fa-phone" aria-hidden="true"></i></li>
+            <li>
+              <i class="fas fa-comments"></i>
+            <%= link_to "Talk to host", conversations_path(host_id: @space.user.id), method: :post %>
+            </li>
+          </ul><!-- /.box-address -->
+        </div><!-- /.title-left -->
+      </div><!-- /.col-md-8 -->
+      <div class="col-md-4">
+        <div class="title-right">
+          <p><a href="#" title="">Share<i class="fas fa-share-square"></i></a>
+          </p>
+          <p>
+            <%= render 'favorites/form', space: @space, favorite: @favorite %>
+          </p>
+          <div class="btn-more review">
+            <%= link_to 'Review', new_review_path(reviewable: @space.class_to_route, reviewable_id: @space.id) %>
+          </div>
+          <div class="btn-more">
+            <%= link_to 'Book Now', new_space_booking_path(@space) %>
+          </div>
+          <div class="clearfix"></div>
+        </div><!-- /.title-right -->
+      </div><!-- /.col-md-4 -->
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+</section><!-- /.flat-title -->
+
+<section class="flat-row flat-explore-detail">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="text-box">
+          <h3>TO DO: Space description?</h3>
+          <div class="text-desc">
+            <p>
+
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <i>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla qui officia deserunt mollit anim id est laborum.</i>
+
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+          </div>
+        </div>
+        <div class="amenities">
+          <h3>Amenities</h3>
+          <% @space.properties.each_slice(4) do |props| %>
+          <ul class="quater">
+            <% props.each do |prop| %>
+            <li><span class="ti-check-box"></span><%= prop.content.capitalize %></li>
+            <% end %>
+          </ul>
+          <% end %>
+          <div class="clearfix"></div>
+        </div>
+        <div class="comment-area">
+          <h3 class="comment-title">3 Reviews</h3>
+          <ol class="comment-list">
+            <li class="comment">
+              <article class="comment-body">
+                <div class="comment-image">
+                  <img src="<%= image_path 'comment_01.png' %>" alt="">
+                </div><!-- /.comment-image -->
+                <div class="comment-content">
+                  <div class="comment-metadata">
+                    April 8, 2017 9:48 pm
+                  </div>
+                  <h5>
+                    The food was amazing
+                    <span>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                      <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                    </span>
+                  </h5>
+                  <div class="comment-author">
+                    by <a href="#" title="">Alex luthor</a>
+                  </div>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                  <div class="comment-like">
+                    <ul>
+                      <li>
+                        <a href="#" title=""><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 2</a>
                       </li>
-
-                      <!-- SLIDE 2 -->
-                     <li data-index="rs-3048" data-transition="slideremoveright" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"    data-rotate="0"  data-saveperformance="off"  data-title="HTML5 Video" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-                          <!-- MAIN IMAGE -->
-                          <img src="<%= image_path '02.png' %>"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                      <li>
+                        <a href="#" title=""><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 0</a>
                       </li>
-
-                      <li data-index="rs-3048" data-transition="slideremoveright" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"    data-rotate="0"  data-saveperformance="off"  data-title="HTML5 Video" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-                          <!-- MAIN IMAGE -->
-                          <img src="<%= image_path '03.png' %>"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgparallax="10" class="rev-slidebg" data-no-retina>
-                      </li>
-                  </ul>
-              </div>
-        </div><!-- END REVOLUTION SLIDER -->
-    </section><!-- /.tp-banner -->
-
-    <section class="flat-title">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="title-left">
-              <div class="queue">
+                    </ul>
+                    <div class="comment-reply">
+                      <a href="#" title="">Reply</a>
+                    </div>
+                  </div><!-- /.comment-like -->
+                </div><!-- /.comment-content -->
+              </article><!-- /.comment-body -->
+            </li><!-- /.comment -->
+          </ol><!-- /.comment-list -->
+          <div class="comment-respond">
+            <h2 class="comment-reply-title">Leave a Review</h2>
+            <div class="comment-vote">
+              <p>Your Rating for this listing</p>
+              <span class="queue">
                 <i class="fa fa-star" aria-hidden="true"></i>
                 <i class="fa fa-star" aria-hidden="true"></i>
                 <i class="fa fa-star" aria-hidden="true"></i>
                 <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star-half-o" aria-hidden="true"></i>
-              </div><!-- /.queue -->
-              <div class="box-title">
-                <span>Ad</span><a href="#" title=""><%= @space.title %></a><i class="fa fa-check-circle" aria-hidden="true"></i>
-              </div><!-- /.box-title -->
-              <ul class="box-address">
-                <li class="address"><i class="fa fa-map-marker" aria-hidden="true"></i><%= @space.address %> </li>
-                <li class="phone"><i class="fa fa-phone" aria-hidden="true"></i></li>
-              </ul><!-- /.box-address -->
-            </div><!-- /.title-left -->
-          </div><!-- /.col-md-8 -->
-          <div class="col-md-4">
-            <div class="title-right">
-              <p><a href="#" title="">Share<i class="fas fa-share-square"></i></a>
-              </p>
-              <p>
-                <%= render 'favorites/form', space: @space, favorite: @favorite %>
-              </p>
-              <div class="btn-more review">
-                <a href="#" title="">Write A Review</a>
-              </div>
-              <div class="btn-more">
-                <a href="#" title="">Book Now</a>
-              </div>
-              <div class="clearfix"></div>
-            </div><!-- /.title-right -->
-          </div><!-- /.col-md-4 -->
-        </div><!-- /.row -->
-      </div><!-- /.container -->
-    </section><!-- /.flat-title -->
-
-    <section class="flat-row flat-explore-detail">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="text-box">
-              <h3>TO DO: Space description?</h3>
-              <div class="text-desc">
-                <p>
-
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <i>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla qui officia deserunt mollit anim id est laborum.</i>
-
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-              </div>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              </span>
+              <span>Good!!!</span>
             </div>
-            <div class="amenities">
-              <h3>Amenities</h3>
-              <% @space.properties.each_slice(4) do |props| %>
-              <ul class="quater">
-                <% props.each do |prop| %>
-                <li><span class="ti-check-box"></span><%= prop.content.capitalize %></li>
-                <% end %>
-              </ul>
-              <% end %>
-              <div class="clearfix"></div>
+          </div><!-- /.comment-respond -->
+        </div><!-- /.comment-area -->
+      </div><!-- /.col-md-8 -->
+      <div class="col-md-4">
+        <div class="sidebar">
+          <div class="box pdmap style1" id="flat-map-4">
+            <div class="flat-maps" data-address="Ngõ 178 Nguyễn Lương Bằng, Chợ Dừa, Đống Đa, Hà Nội, Việt Nam" data-image="<%= image_path 'map.png' %>" data-name="Themesflat Map"></div>
+            <div class="gm-map">
+              <div class="map-4"></div>
             </div>
-            <div class="comment-area">
-              <h3 class="comment-title">3 Reviews</h3>
-              <ol class="comment-list">
-                <li class="comment">
-                  <article class="comment-body">
-                    <div class="comment-image">
-                      <img src="<%= image_path 'comment_01.png' %>" alt="">
-                    </div><!-- /.comment-image -->
-                    <div class="comment-content">
-                      <div class="comment-metadata">
-                        April 8, 2017 9:48 pm
-                      </div>
-                      <h5>
-                        The food was amazing
-                        <span>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star" aria-hidden="true"></i>
-                          <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                        </span>
-                      </h5>
-                      <div class="comment-author">
-                        by <a href="#" title="">Alex luthor</a>
-                      </div>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      </p>
-                      <div class="comment-like">
-                        <ul>
-                          <li>
-                            <a href="#" title=""><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 2</a>
-                          </li>
-                          <li>
-                            <a href="#" title=""><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 0</a>
-                          </li>
-                        </ul>
-                        <div class="comment-reply">
-                          <a href="#" title="">Reply</a>
-                        </div>
-                      </div><!-- /.comment-like -->
-                    </div><!-- /.comment-content -->
-                  </article><!-- /.comment-body -->
-                </li><!-- /.comment -->
-              </ol><!-- /.comment-list -->
-              <div class="comment-respond">
-                <h2 class="comment-reply-title">Leave a Review</h2>
-                <div class="comment-vote">
-                  <p>Your Rating for this listing</p>
-                  <span class="queue">
+          </div><!-- /#flat-map -->
+          <div class="box contact-box">
+            <ul class="contact-list">
+              <li class="address"><i class="fa fa-map-marker" aria-hidden="true"></i>2 / 51 Hoang Cau Street, Hanoi, Vietnam</li>
+              <li><i class="fa fa-phone" aria-hidden="true"></i><a href="#">(+84) 936 736 288</a></li>
+              <li><i class="fa fa-globe" aria-hidden="true"></i><a href="#" title="">http://www.anrestaurant.com</a></li>
+            </ul>
+          </div>
+          <div class="box open">
+            <p><i class="fa fa-clock-o" aria-hidden="true"></i>Open Hour:</p>
+            <div class="box-desc">
+              <p>Mon - Sunday</p>
+              <p>09:00 AM - 05:00 PM<span>Closed Now !</span></p>
+            </div>
+          </div>
+          <div class="involve">
+            <h4>You Might Also like</h4>
+            <ul>
+              <li class="box">
+                <div class="img-box">
+                  <img src="<%= image_path 'small-01.png' %>" alt="">
+                </div>
+                <div class="involve-desc">
+                  <div class="title"><a href="#" title="">Asia Restaurant</a></div>
+                  <div class="queue">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                  </div>
+                  <p>Restaurant</p>
+                </div>
+              </li>
+              <li class="box">
+                <div class="img-box">
+                  <img src="<%= image_path 'small-02.png' %>" alt="">
+                </div>
+                <div class="involve-desc">
+                  <div class="title"><a href="#" title="">Don Pub</a></div>
+                  <div class="queue">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                  </div>
+                  <p>Drink - Play</p>
+                </div>
+              </li>
+              <li class="box">
+                <div class="img-box">
+                  <img src="<%= image_path 'small-03.png' %>" alt="">
+                </div>
+                <div class="involve-desc">
+                  <div class="title"><a href="#" title="">Alacate Hotel</a></div>
+                  <div class="queue">
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star-o" aria-hidden="true"></i>
-                  </span>
-                  <span>Good!!!</span>
+                  </div>
+                  <p>Hotel</p>
                 </div>
-              </div><!-- /.comment-respond -->
-            </div><!-- /.comment-area -->
-          </div><!-- /.col-md-8 -->
-          <div class="col-md-4">
-            <div class="sidebar">
-              <div class="box pdmap style1" id="flat-map-4">
-                      <div class="flat-maps" data-address="Ngõ 178 Nguyễn Lương Bằng, Chợ Dừa, Đống Đa, Hà Nội, Việt Nam" data-image="<%= image_path 'map.png' %>" data-name="Themesflat Map"></div>
-                      <div class="gm-map">
-                          <div class="map-4"></div>
-                      </div>
-                  </div><!-- /#flat-map -->
-                  <div class="box contact-box">
-                    <ul class="contact-list">
-                      <li class="address"><i class="fa fa-map-marker" aria-hidden="true"></i>2 / 51 Hoang Cau Street, Hanoi, Vietnam</li>
-                  <li><i class="fa fa-phone" aria-hidden="true"></i><a href="#">(+84) 936 736 288</a></li>
-                  <li><i class="fa fa-globe" aria-hidden="true"></i><a href="#" title="">http://www.anrestaurant.com</a></li>
-                    </ul>
-                  </div>
-                  <div class="box open">
-                    <p><i class="fa fa-clock-o" aria-hidden="true"></i>Open Hour:</p>
-                    <div class="box-desc">
-                      <p>Mon - Sunday</p>
-                      <p>09:00 AM - 05:00 PM<span>Closed Now !</span></p>
-                    </div>
-                  </div>
-                  <div class="involve">
-                    <h4>You Might Also like</h4>
-                    <ul>
-                      <li class="box">
-                        <div class="img-box">
-                          <img src="<%= image_path 'small-01.png' %>" alt="">
-                        </div>
-                        <div class="involve-desc">
-                          <div class="title"><a href="#" title="">Asia Restaurant</a></div>
-                          <div class="queue">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                          </div>
-                          <p>Restaurant</p>
-                        </div>
-                      </li>
-                      <li class="box">
-                        <div class="img-box">
-                          <img src="<%= image_path 'small-02.png' %>" alt="">
-                        </div>
-                        <div class="involve-desc">
-                          <div class="title"><a href="#" title="">Don Pub</a></div>
-                          <div class="queue">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                          </div>
-                          <p>Drink - Play</p>
-                        </div>
-                      </li>
-                      <li class="box">
-                        <div class="img-box">
-                          <img src="<%= image_path 'small-03.png' %>" alt="">
-                        </div>
-                        <div class="involve-desc">
-                          <div class="title"><a href="#" title="">Alacate Hotel</a></div>
-                          <div class="queue">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                          </div>
-                          <p>Hotel</p>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-            </div>
-          </div><!-- /.col-md-4 -->
-        </div><!-- /.row -->
-      </div><!-- /.container -->
-    </section><!-- /.flat-explore-detail <-->
-
-
-<%= link_to 'Destroy', space_path(@space), method: :delete %>
-
-<%= render 'bookings/form', space: @space, booking: @booking  %>
-
-<h1>bookings</h1>
-<ul>
-  <%= render partial: 'bookings/booking', collection: @space.bookings, as: :booking %>
-</ul>
-
-
-<%= link_to "Talk to host", conversations_path(host_id: @space.user.id), method: :post %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div><!-- /.col-md-4 -->
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+</section><!-- /.flat-explore-detail <-->

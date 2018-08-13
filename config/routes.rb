@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :spaces do
     resources :favorites, only: [:create]
-    resources :bookings, only: [:create]
+    resources :bookings, only: [:create, :new]
     collection do
       post 'query', to: 'spaces#index'
     end
