@@ -38,7 +38,19 @@ en:
 
 # Navbar
   navbar:
-    explore:
+    bookings: "Bookings"
+    messages: "Messages"
+    log_in: "Log in"
+    log_out: "Log out"
+    sign_up: "Sign up"
+    list_your_space: "List your space"
+
+# Subscribe
+  subscribe:
+      subscribe_and_be_notified: "Subscribe and be notified about new locations"
+      your_email: "Your email"
+
+
 
 
 

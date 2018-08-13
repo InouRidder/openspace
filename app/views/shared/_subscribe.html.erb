@@ -2,8 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-7">
-        <div class="subscribe-text">
-          Subscribe and be notified about new locations
+        <div class="subscribe-text"><%= t('subscribe_and_be_notified') %>
         </div>
       </div><!-- /.col-sm-7 -->
       <div class="col-sm-5">
@@ -11,7 +10,7 @@
           <form action="#" method="get" accept-charset="utf-8">
             <div class="subscribe-content">
               <div class="input-field">
-                <input type="email" name="yourEmail" placeholder="Your Email" />
+                <input type="email" name="yourEmail" placeholder=<%= t('your_email') %> />
               </div>
               <button><span class="arrow_right"></span></button>
             </div>

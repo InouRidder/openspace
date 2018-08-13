@@ -5,21 +5,23 @@
         <div class="header-wrap">
           <div id="logo" class="logo">
             <a href="<%= root_path %>" title="">
-              openspace
+              OpenSpace
             </a>
           </div><!-- /.logo -->
           <div class="nav-wrap">
             <nav id="mainnav" class="mainnav">
              <ul class="menu">
               <li>
-                <a href="/spaces" title="">Explore</a>
+                <a href="/spaces" title=""><%= t('search') %></a>
               </li>
+
+              <!-- User signed in-->
               <% if user_signed_in? %>
               <li>
-                <%= link_to 'Trips', "#" %>
+                <%= link_to t('navbar.bookings'), "#" %>
               </li>
               <li>
-                <%= link_to 'Messages', conversations_path, id: 'conversation-button' %>
+                <%= link_to t('navbar.messages'), conversations_path, id: 'conversation-button' %>
                 <ul class="submenu">
                   <% current_user.conversations.each do |conversation| %>
                     <li>
@@ -30,20 +32,28 @@
                   <% end %>
                 </ul>
               </li>
-              <% else %>
               <li>
-                <%= link_to 'Log in', new_user_session_path %>
+                <%= link_to t('navbar.log_out'), destroy_user_session_path, method: :delete  %>
               </li>
-              <% end %>
+
+              <!-- User not signed in -->
+              <% else %>
               <div class="button-header">
                 <%= link_to new_space_path do %>
                 <i class="ti-plus"></i>
-                Add Your Space
+                <%= t('list_your_space') %>
                 <% end %>
               </div>
+              <li>
+                <%= link_to t('navbar.sign_up'),new_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to t('navbar.log_in'), new_user_session_path %>
+              </li>
+              <% end %>
             </ul>
           </nav><!-- /.mainnav -->
-          <div class="show-search">
+         <!--  <div class="show-search">
             <button><span class="ti-search"></span></button>
             <div class="submenu top-search search-header">
               <form role="search" method="get" class="search-form" action="#">
@@ -53,7 +63,7 @@
                 <button class="search-submit-form" title="Search now"><i class="fa fa-search" aria-hidden="true"></i></button>
               </form>
             </div>
-          </div><!-- /.show-search -->
+          </div> --><!-- /.show-search -->
           <div class="btn-menu">
             <span></span>
           </div><!-- //mobile menu button -->
