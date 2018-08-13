@@ -1,2 +1,20 @@
-<h1>Conversations#index</h1>
-<p>Find me in app/views/conversations/index.html.erb</p>
+<section class="flat-row flat-explore-detail">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="comment-area">
+          <h3 class="comment-title"> Conversations </h3>
+          <ol class="comment-list">
+            <% @conversations.each do |conversation| %>
+            <% message = conversation.last_message(current_user) %>
+              <%= render 'messages/message', message: message,user_is_messages_author: message.user == current_user %>
+              <div class="btn-more">
+                <%= link_to "Chat", conversation_path(conversation) %>
+              </div>
+            <% end %>
+          </ol><!-- /.comment-list -->
+        </div><!-- /.comment-area -->
+      </div>
+    </div>
+  </div>
+</section>
