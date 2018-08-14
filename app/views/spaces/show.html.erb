@@ -160,12 +160,52 @@
           </div><!-- /.comment-respond -->
         </div><!-- /.comment-area -->
       </div><!-- /.col-md-8 -->
+
       <div class="col-md-4">
         <div class="sidebar">
           <div class="box pdmap style1" id="flat-map-4">
-            <div class="flat-maps" data-address="Ngõ 178 Nguyễn Lương Bằng, Chợ Dừa, Đống Đa, Hà Nội, Việt Nam" data-image="<%= image_path 'map.png' %>" data-name="Themesflat Map"></div>
-            <div class="gm-map">
-              <div class="map-4"></div>
+            <div class="booking-box">
+              <div class="info-box">
+                <div class="info-title">
+                  <h2>
+                   €<%= @space.price_per_hour.round %> <small> /hr</small>
+                  </h2>
+                </div>
+                <div class="info-details">
+                  <p>
+                  <small> <%= @space.capacity %> attendees</small>
+                  </p>
+                </div>
+              </div>
+
+              <style>
+                .price-line {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                }
+              </style>
+              <div class="booking-form">
+                <%= render 'bookings/form', space: @space, booking: @booking %>
+              </div>
+              <div id="price-box" hidden>
+                <h6>
+                  PRICE
+                </h6>
+                <div class="price-line">
+                <p>price per hour: </p>
+                <p id="time-price"></p>
+                </div>
+                <div class="price-line">
+                  <p>fee: </p>
+                  <p id="fee-price"></p>
+                </div>
+                <hr>
+                <div class="price-line">
+                  <p>total: </p>
+                  <p id="total-price"></p>
+                </div>
+              </div>
             </div>
           </div><!-- /#flat-map -->
           <div class="box contact-box">

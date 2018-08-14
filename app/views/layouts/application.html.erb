@@ -6,11 +6,14 @@
     <title>TODO</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
+
     <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_pack_tag 'application' %>
+
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_BROWSER_KEY']}" %>
+    <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag "application" %>
     <%= javascript_pack_tag "map" %>
-    <%= javascript_include_tag 'application' %>
   </head>
   <body class="header_sticky">
     <%= render 'shared/navbar' %>

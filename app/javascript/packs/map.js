@@ -1,4 +1,4 @@
-import { autocomplete } from '../components/autocomplete';
+import { autocomplete } from '../plugins/autocomplete';
 import GMaps from 'gmaps/gmaps.js';
 
 document.addEventListener('turbolinks:load', () => {

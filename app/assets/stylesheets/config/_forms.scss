@@ -26,5 +26,36 @@
 }
 
 .inline-form {
-  // display: flex;
+  display: flex;
 }
+
+.booking-form {
+  background-color: rgba(245,245,245,1);
+  padding: 0px 10px;
+}
+
+.no-margin-top {
+  margin-top: 0px;
+}
+
+.info-box {
+  padding: 20px 0px;
+  width: 100%;
+}
+
+.info-title {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.booking-form {
+  padding: 20px 10px;
+}
+
