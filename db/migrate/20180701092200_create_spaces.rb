@@ -7,6 +7,9 @@ class CreateSpaces < ActiveRecord::Migration[5.1]
       t.integer :capacity
       t.float :price_per_hour
       t.float :price_per_day
+      t.time :opens
+      t.time :closes
+      t.integer :minimum_booking_hours
       t.string :state
       t.text :description
 

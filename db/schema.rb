@@ -21,8 +21,9 @@ ActiveRecord::Schema.define(version: 20180802093719) do
     t.string "billable_adress"
     t.float "total_price"
     t.string "state"
-    t.datetime "start_datetime"
-    t.datetime "end_datetime"
+    t.date "date"
+    t.time "start_time"
+    t.time "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["space_id"], name: "index_bookings_on_space_id"
@@ -90,6 +91,9 @@ ActiveRecord::Schema.define(version: 20180802093719) do
     t.integer "capacity"
     t.float "price_per_hour"
     t.float "price_per_day"
+    t.time "opens"
+    t.time "closes"
+    t.integer "minimum_booking_hours"
     t.string "state"
     t.text "description"
     t.datetime "created_at", null: false

@@ -32,4 +32,17 @@ class Space < ApplicationRecord
   def partial_map_box
     "<h1> #{title} </h1>"
   end
+
+  def open_hours
+    times = []
+    open_incremental = opens
+    until open_incremental > closes
+      times << open_incremental.strftime("%H:%M")
+      open_incremental += 1800
+    end
+    {
+      start: times[0..-((minimum_booking_hours * 2) + 1)],
+      end: times[(minimum_booking_hours * 2)..-1]
+    }
+  end
 end

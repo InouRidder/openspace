@@ -27,6 +27,9 @@ class SpacesController < ApplicationController
 
   def show
     @booking = Booking.new
+    hours = @space.open_hours
+    @start_times = hours[:start]
+    @end_times = hours[:end]
     @favorite = Favorite.new
   end
 

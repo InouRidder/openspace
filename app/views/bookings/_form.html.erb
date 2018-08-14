@@ -1,5 +1,11 @@
 <%= simple_form_for([space, booking]) do |f| %>
-  <%= f.input :start_datetime %>
-  <%= f.input :end_datetime %>
-  <%= f.submit %>
+  <div class="inline-form">
+    <%= f.input :date, as: :string, label: "Date", required: false, input_html: {class: "datepicker", value: Date.today } %>
+    <%= f.input :start_time, collection: @start_times, selected: 1, required: false, label: "Start" %>
+    <%= f.input :end_time, collection: @end_times, selected: 2, required: false, label: "End"  %>
+    </div>
+  <div class="btn-more review no-margin-top">
+    <a id="booking-submit-button" data-step="0" data-price="<%= space.price_per_hour %>"> Start Booking</a>
+  </div>
 <% end %>
+

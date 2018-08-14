@@ -1,8 +1,8 @@
 puts "Clearing DB!"
 
 User.destroy_all
-User.create(email: 'a@a.a', password: 'password')
-User.create(email: 'b@b.b', password: 'password')
+User.create(first_name: "inou", last_name: "ridder", email: 'a@a.a', password: 'password')
+User.create(first_name: "irvin", last_name: "hoogland", email: 'b@b.b', password: 'password')
 
 
 puts "Destroying all properties"
@@ -15,6 +15,8 @@ space_types = %w(Auditorium Ballroom Banquet Hall Bar Boardroom Cabin Cafe Churc
 activity_types = ["Corporate Event", "Dinner", "Film Shoot", "Fitness Class", "Meeting","Networking","Party","Performance","Photo Shoot","Pop-Up","Retreat","Wedding","Workshop"]
 cities = %w(Amsterdam Delft Haarlem Utrecht Amstelveen Berlin Barcelona Madrid Taragona Potsdam Oranienburg Leipzig Magdeburg Sabadell Terrassa)
 
+opening_times = ["10:00", "12:00", "14:00"]
+closing_times = ["18:00", "20:00", "23:00"]
 features.each do |feature|
   Property.create(content: feature, kind: 'feature', quantifiable: true)
 end
@@ -33,11 +35,40 @@ Space.destroy_all
 puts "Creating spaces"
 50.times do
   price_hour = rand(100)
-  space = Space.create(title: Faker::Artist.name, address: Faker::Address.full_address, user: User.all.sample, capacity: rand(50), price_per_hour: price_hour, price_per_day: price_hour * 8, address: cities.sample, description: Faker::Lorem.paragraph)
+  space = Space.create({
+    title: Faker::Artist.name,
+    address: Faker::Address.full_address,
+    user: User.all.sample,
+    capacity: rand(50),
+    price_per_hour: price_hour,
+    price_per_day: price_hour * 8,
+    address: cities.sample,
+    description: Faker::Lorem.paragraph,
+    opens: Time.parse(opening_times.sample),
+    closes: Time.parse(closing_times.sample),
+    minimum_booking_hours: rand(4)
+    })
   Property.all.sample(rand(18)).each do |prop|
-    SpaceProperty.create(space: space, property: prop, quantity: prop.quantifiable? ? rand(3) : nil)
+    SpaceProperty.create({
+      space: space,
+      property: prop,
+      quantity: prop.quantifiable? ? rand(3) : nil
+    })
   end
   puts space.title + " " + "created!"
 end
 
 puts "Bye!"
+
+
+
+
+
+
+
+
+
+
+
+
+
