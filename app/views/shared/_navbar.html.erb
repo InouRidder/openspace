@@ -24,7 +24,7 @@
                   <% current_user.conversations.each do |conversation| %>
                     <li>
                       <%= link_to conversation_path(conversation) do %>
-                        <%= conversation.last_message(current_user).content %>
+                        <%= conversation.last_message(current_user).try(:content) %>
                       <% end %>
                     </li>
                   <% end %>
