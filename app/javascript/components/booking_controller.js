@@ -52,7 +52,7 @@ const bookingController = {
 
   validateDates: function(startDate, endDate) {
     return (startDate > endDate) || (startDate.getHours() === endDate.getHours());
-  }
+  },
 
   calculatePrice: function() {
 
