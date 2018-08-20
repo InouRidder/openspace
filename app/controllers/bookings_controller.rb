@@ -1,10 +1,21 @@
 class BookingsController < ApplicationController
+  include HtmlRender
   before_action :set_space, only: [:create, :new]
-  before_action :set_booking, only: [:destroy, :update]
+  before_action :set_booking, only: [:destroy, :update, :show, :update_state]
 
   def index
-    @user_bookings = current_user.bookings.includes(:space)
-    @spaces_bookings = current_user.spaces_bookings.includes(:space)
+    @bookings = current_user.bookings.includes(:space)
+  end
+
+  def show
+    @space = @booking.space
+    @markers = [
+      {
+        lat: @space.latitude,
+        lng: @space.longitude,
+        infoWindow: { content: render_html_content(partial: "/spaces/map_box", locals: { space: @space })}
+      }
+    ]
   end
 
   def new
@@ -16,7 +27,7 @@ class BookingsController < ApplicationController
     @booking.space = @space
     @booking.user = current_user
     if @booking.save
-      redirect_to root_path
+      redirect_to booking_path(@booking)
     else
       render 'spaces/show'
     end
@@ -30,6 +41,15 @@ class BookingsController < ApplicationController
       @user_bookings = current_user.bookings.includes(:spaces)
       @spaces_bookings = current_user.spaces_bookings.includes(:spaces)
       render :index
+    end
+  end
+
+  def update_state
+    @booking.update_state(params[:state])
+    if @booking.save
+      redirect_to bookings_path
+    else
+      render :show
     end
   end
 

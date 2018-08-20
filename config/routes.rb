@@ -20,7 +20,11 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
-  resources :bookings, except: [:create, :edit]
+  resources :bookings, except: [:create, :edit] do
+      member do
+        patch 'update_state'
+      end
+    end
 
   resources :favorites, only: [:index, :destroy]
 

@@ -5,7 +5,7 @@ class CreateBookings < ActiveRecord::Migration[5.1]
       t.references :space, foreign_key: true
       t.string :billable_adress
       t.float :total_price
-      t.string :state
+      t.string :state, default: 'unconfirmed'
       t.date :date
       t.time :start_time
       t.time :end_time

@@ -1,5 +1,3 @@
-const moment = require('moment');
-
 const bookingController = {
   initialize: function() {
     console.log('settling in')
@@ -70,7 +68,7 @@ const bookingController = {
       return;
     }
 
-    let totalHours = Math.abs(endDate - startDate) / 36e5
+    let totalHours = Math.abs(endDate - startDate) / 36e5 // convert date difference to hours
     let hourPrice = totalHours * this.pricePerHour
     let fee = hourPrice * 0.05
     let totalPrice = fee + hourPrice
