@@ -36,6 +36,11 @@ class SpacesController < ApplicationController
   def new
     @space = Space.new
     @selected_props = []
+    times = Space.working_hours
+    @hours = {
+      opening: times[0..-24],
+      closing: times[24..-1]
+    }
     property_selection_objects
   end
 
@@ -80,7 +85,7 @@ class SpacesController < ApplicationController
   end
 
   def space_params
-    params.require(:space).permit(:capacity, :address, :price_per_day, :price_per_hour, :title)
+    params.require(:space).permit(:capacity, :address, :price_per_day, :price_per_hour, :title, :opens, :closes, :minimum_booking_hours)
   end
 
   def search_params

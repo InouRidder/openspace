@@ -5,7 +5,6 @@ class Space < ApplicationRecord
   has_many :properties, through: :space_properties
   has_many :favorites, dependent: :destroy
   has_many :bookings, dependent: :destroy
-
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
@@ -33,11 +32,23 @@ class Space < ApplicationRecord
     "<h1> #{title} </h1>"
   end
 
+  def self.working_hours
+    # Using a 1970 as a zero point
+    start_time = Time.new(1970, 1, 1) # start on day january first
+    end_time = Time.new(1970, 1, 2, 8) # end time can be chosen until january second 8 in the morning
+    times = []
+    while start_time < end_time
+      times << [start_time.strftime('%I:%M %p'), start_time.strftime('%a, %e %b %Y %H:%M:%S')]
+      start_time += 1800
+    end
+    times
+  end
+
   def open_hours
     times = []
     open_incremental = opens
     until open_incremental > closes
-      times << open_incremental.strftime("%H:%M")
+      times << [open_incremental.strftime('%I:%M %p'), open_incremental.strftime('%a, %e %b %Y %H:%M:%S')]
       open_incremental += 1800
     end
     {

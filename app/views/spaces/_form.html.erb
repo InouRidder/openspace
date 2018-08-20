@@ -23,6 +23,19 @@
   <div class="clearfix"></div>
 </div><!-- /.inner-box -->
 
+<div class="inner-box form">
+  <div class="wrap-listing one-half">
+    <%= f.input :opens, collection: @hours[:opening], label_method: :first, value_method: :second %>
+  </div><!-- /.wrap-listing -->
+  <div class="wrap-listing one-half">
+    <%= f.input :closes, collection: @hours[:closing], label_method: :first, value_method: :second  %>
+  </div><!-- /.wrap-listing -->
+  <div class="wrap-listing">
+    <%= f.input :minimum_booking_hours %>
+  </div><!-- /.wrap-listing -->
+  <div class="clearfix"></div>
+</div>
+
 <div class="inner-box form style2">
   <div class="amenities">
     <h3>Possible activities</h3>
