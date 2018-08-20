@@ -13,14 +13,14 @@ class Booking < ApplicationRecord
 
   def overlap
     # (StartA <= EndB) and (EndA >= StartB)
-    if space.bookings.where('start_time <= ? AND end_time >= ?', self.end_time, self.start_time).any?
-      self.errors.add(:start_datetime, "Overlapping dates")
+    if space.bookings.where(date: date).where('start_time <= ? AND end_time >= ?', self.end_time, self.start_time).any?
+      self.errors.add(:start_datetime, "The property is not available for that time and specific date")
     end
   end
 
   def set_state_unconfirmed
     update_state('unconfirmed')
-    save
+    self.save
   end
 
   def update_state(new_state)

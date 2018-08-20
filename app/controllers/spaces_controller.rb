@@ -1,6 +1,6 @@
 class SpacesController < ApplicationController
   include HtmlRender
-  skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token, only: :index
   skip_before_action :authenticate_user!, only: [:show, :index]
   before_action :set_space, only: [:show, :edit, :update, :destroy]
 
@@ -36,11 +36,6 @@ class SpacesController < ApplicationController
   def new
     @space = Space.new
     @selected_props = []
-    times = Space.working_hours
-    @hours = {
-      opening: times[0..-24],
-      closing: times[24..-1]
-    }
     property_selection_objects
   end
 
@@ -95,6 +90,11 @@ class SpacesController < ApplicationController
   def property_selection_objects
     @features = Property.features
     @space_types = Property.space_types
+    times = Space.working_hours
+    @hours = {
+      opening: times[0..-24],
+      closing: times[24..-1]
+    }
   end
 
   def load_markers

@@ -16,6 +16,15 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :host do
+    resources :bookings, only: [:index] do
+      member do
+        patch 'update_state'
+      end
+    end
+    resources :spaces, only: [:index]
+  end
+
   resources :conversations do
     resources :messages, only: [:create]
   end

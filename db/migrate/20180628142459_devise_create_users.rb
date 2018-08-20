@@ -39,6 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :country
       t.string :bio
       t.string :avatar
+      t.boolean :host, default: false
 
 
       t.timestamps null: false

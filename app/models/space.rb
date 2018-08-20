@@ -7,6 +7,14 @@ class Space < ApplicationRecord
   has_many :bookings, dependent: :destroy
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+  after_create :user_is_host
+
+  def user_is_host
+    unless user.is_host?
+      user.host = true
+      user.save
+    end
+  end
 
   def set_properties(property_ids)
     property_ids.each { |property_id| SpaceProperty.create(property_id: property_id, space: self) }
@@ -21,8 +29,6 @@ class Space < ApplicationRecord
     end
     to_destroy.each { |space_property_id| SpaceProperty.find_by(space: self, property: space_property_id).destroy }
   end
-
-  # TO DO: Use collections to render the JSON file. Need to figure out a better way, looping and partial rendering is slow!
 
   def partial_to_string
     ApplicationController.render(partial: 'spaces/space', locals: { space: self, favorite: Favorite.new })

@@ -1,0 +1,52 @@
+<section class="flat-map-zoom-in">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <div class="wrap-imagebox style1 scrollbox" id="space-container">
+          <%= render partial: 'spaces/space', collection: @spaces, as: :space %>
+        </div><!-- /.wrap-imagebox -->
+      </div><!-- /.row -->
+      <div class="col-xs-12 col-md-6">
+
+        <section class="flat-row flat-price">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="price">
+                  <!-- /.price-box -->
+                  <div class="price-box basic col-xs-6">
+                    <div class="price-title">
+                      <h3>All your spaces</h3>
+                    </div>
+                    <div class="price-header">
+                      <div class="price-number">
+                        <%= @spaces.count %>
+                        <span>total spaces</span>
+                      </div>
+                    </div>
+                    <div class="price-content">
+                      <div class="button-header">
+                        <%= link_to new_space_path do %>
+                        <i class="ti-plus"></i>
+                        Add Another Space
+                        <% end %>
+                      </div>
+                    </div>
+                  </div><!-- /.price-box -->
+                  <div class="clearfix"></div>
+                </div><!-- /.price -->
+              </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+          </div><!-- /.container -->
+        </section><!-- /.flat-price -->
+
+
+      </div>
+    </div><!-- /.container-fluid -->
+  </div>
+</section><!-- /.flat-map-zoom-in -->
+
+
+
+
+
