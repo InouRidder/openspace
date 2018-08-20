@@ -50,20 +50,19 @@ const bookingController = {
     document.getElementById('error-message').innerHTML = error;
   },
 
+  validateDates: function(startDate, endDate) {
+    return (startDate > endDate) || (startDate.getHours() === endDate.getHours());
+  }
+
   calculatePrice: function() {
 
     let startTime = this.form.querySelector('#booking_start_time').value;
     let endTime = this.form.querySelector('#booking_end_time').value;
 
-    if (endTime === "" || startTime === "") {
-      this.errors("either start or end time not filled in");
-      return;
-    }
-
     let startDate = new Date(startTime)
     let endDate = new Date(endTime)
 
-    if (startDate > endDate) {
+    if (this.validateDates(startDate, endDate)) {
       this.errors("start time must be before end time");
       return;
     }
