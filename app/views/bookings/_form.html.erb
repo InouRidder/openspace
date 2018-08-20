@@ -1,11 +1,31 @@
 <%= simple_form_for([space, booking]) do |f| %>
-  <div class="inline-form">
-    <%= f.input :date, as: :string, label: "Date", required: false, input_html: {class: "datepicker", value: Date.today } %>
-    <%= f.input :start_time, collection: @start_times, selected: 1, label_method: :first, value_method: :second, required: false, label: "Start" %>
-    <%= f.input :end_time, collection: @end_times,  label_method: :first, value_method: :second, selected: 2, required: false, label: "End"  %>
-    </div>
-  <div class="btn-more review no-margin-top">
-    <a id="booking-submit-button" data-step="0" data-price="<%= space.price_per_hour %>"> Start Booking</a>
+<div class="inline-form">
+  <%= f.input :date, as: :string, label: "Date", required: false, input_html: {class: "datepicker", value: Date.today } %>
+  <%= f.input :start_time, collection: @start_times, selected: 1, label_method: :first, value_method: :second, required: false, label: "Start" %>
+  <%= f.input :end_time, collection: @end_times,  label_method: :first, value_method: :second, selected: 2, required: false, label: "End"  %>
+</div>
+<div id="price-box" hidden>
+  <h6>
+    PRICE
+  </h6>
+  <div class="price-line">
+    <p>price per hour: </p>
+    <p id="time-price"></p>
   </div>
+  <div class="price-line">
+    <p>fee: </p>
+    <p id="fee-price"></p>
+  </div>
+  <hr>
+  <div class="price-line">
+    <p>total: </p>
+    <p id="total-price"></p>
+  </div>
+  <p id="error-message">
+    </p>
+</div>
+<div class="btn-more review no-margin-top">
+  <a id="booking-submit-button" data-step="0" data-price="<%= space.price_per_hour %>"> Start Booking</a>
+</div>
 <% end %>
 

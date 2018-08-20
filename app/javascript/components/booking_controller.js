@@ -19,10 +19,12 @@ const bookingController = {
 
   initiateChange: function(e) {
     e.preventDefault();
+
     let currentStep = e.currentTarget.dataset.step
     if (currentStep === "1") {
       this.submitForm();
     } else if (currentStep === "0") {
+      e.currentTarget.dataset.step = "1";
       this.form.addEventListener('change', this.updateUI.bind(this))
       this.priceBox.hidden = false;
       this.updateUI();
@@ -30,8 +32,9 @@ const bookingController = {
   },
 
   updateUI: function() {
-    let prices = this.calculatePrice();
+    this.clearError();
 
+    let prices = this.calculatePrice();
     this.priceBox.querySelector('#time-price').innerHTML = prices.hourPrice
     this.priceBox.querySelector('#fee-price').innerHTML = prices.fee
     this.priceBox.querySelector('#total-price').innerHTML = prices.totalPrice
@@ -41,38 +44,33 @@ const bookingController = {
     this.form.submit();
   },
 
+  clearError: function() {
+    document.getElementById('error-message').innerHTML = "";
+  },
+
   errors: function(error) {
-    console.log(error);
+    document.getElementById('error-message').innerHTML = error;
   },
 
   calculatePrice: function() {
-
-    function parseTime(time) {
-      let times = time.split(":")
-      let num = Number.parseInt(times[0])
-      if (times[1].includes("3")) {
-        num += 0.5
-      }
-      return num;
-    }
-
 
     let startTime = this.form.querySelector('#booking_start_time').value;
     let endTime = this.form.querySelector('#booking_end_time').value;
 
     if (endTime === "" || startTime === "") {
-      this.errors("either start or end time not filled in")
+      this.errors("either start or end time not filled in");
+      return;
     }
 
-    let startHour = parseTime(startTime)
-    let endHour = parseTime(endTime)
+    let startDate = new Date(startTime)
+    let endDate = new Date(endTime)
 
-    if (startHour > endHour) {
-      this.errors("start time must be after smaller than end hour");
+    if (startDate > endDate) {
+      this.errors("start time must be before end time");
+      return;
     }
 
-    let totalHours = endHour - startHour
-
+    let totalHours = Math.abs(endDate - startDate) / 36e5
     let hourPrice = totalHours * this.pricePerHour
     let fee = hourPrice * 0.05
     let totalPrice = fee + hourPrice
