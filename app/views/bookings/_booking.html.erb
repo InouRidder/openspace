@@ -1,5 +1,5 @@
 <li>
-  <%= booking.space.title %>
+  <%= link_to booking.space.title, booking_path(booking)  %>
   <%= booking.start_time.strftime("%b %e, %l:%M %p") %>
   <b> -> </b>
   <%= booking.end_time.strftime("%b %e, %l:%M %p") %>

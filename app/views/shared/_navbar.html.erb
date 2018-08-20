@@ -16,7 +16,10 @@
               </li>
               <% if user_signed_in? %>
               <li>
-                <%= link_to 'Trips', "#" %>
+                <%= link_to 'Trips', bookings_path %>
+              </li>
+              <li>
+                <%= link_to 'Favorites', favorites_path %>
               </li>
               <li>
                 <%= link_to 'Messages', conversations_path, id: 'conversation-button' %>

@@ -16,7 +16,8 @@
       </div><!-- /.box-header -->
       <div class="box-content">
         <div class="box-title">
-          <a href="#" title=""><%= space.title %></a><i class="fa fa-check-circle" aria-hidden="true"></i>
+          <%= link_to space_path(space) do %> <%= space.title %></a><i class="fa fa-check-circle" aria-hidden="true"></i>
+          <% end %>
         </div>
         <ul class="rating">
           <li>PER HOUR:<%= space.price_per_hour %></li>

@@ -2,7 +2,13 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-6">
 			<ul id="space-container">
-        <%= render partial: 'spaces/space', collection: @spaces, as: :space %>
+        <% if @spaces.empty? %>
+          <h1>
+           Check out some <%= link_to 'spaces', spaces_path %> and find your favorites
+         </h1>
+        <% else %>
+          <%= render partial: 'spaces/space', collection: @spaces, as: :space %>
+        <% end %>
 			</ul>
 		</div>
 	</div>
