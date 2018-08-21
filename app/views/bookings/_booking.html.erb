@@ -1,19 +1,66 @@
-<li>
-  <%= link_to booking.space.title, booking_path(booking)  %>
-  <%= booking.start_time.strftime("%b %e, %l:%M %p") %>
-  <b> -> </b>
-  <%= booking.end_time.strftime("%b %e, %l:%M %p") %>
-  <% if booking.user_id == current_user.id %>
-    <%= link_to 'Cancel', booking_path(booking), method: :delete %>
-  <% end %>
-  <% if booking.space.user_id == current_user.id %>
-    <% if booking.approved? %>
-      <%= link_to 'Decline', update_state_booking_path(booking, state: 'declined'), method: :patch %>
-    <% else %>
-      <%= link_to 'Approve', update_state_booking_path(booking, state: 'approved'), method: :patch %>
-    <% end %>
-  <% end %>
-  <% if booking.can_review?(current_user) %>
-    <%= link_to 'Add review', new_review_path(booking.class.to_s.downcase, booking.id) %>
-  <% end %>
-</li>
+<div class="col-sm-12">
+  <div class="imagebox style2">
+    <div class="box-imagebox">
+      <div class="box-header">
+        <div class="box-image">
+          <img src="<%= image_path 'img-v2-01.png' %>" alt="">
+        </div>
+      </div><!-- /.box-header -->
+      <div class="box-content">
+        <div class="box-title ad">
+          <%= link_to booking_path(booking) do %>
+            <%= booking.space.title %>
+            <% if booking.confirmed? %>
+              <i class="fa fa-check-circle" aria-hidden="true"></i>
+            <% end %>
+          <% end %>
+          <div class="queue">
+            <%= booking.state %>
+          </div>
+        </div>
+        <ul class="rating">
+          <li><%= booking.date.strftime("%A, %b %d") %></li>
+          <li><%= booking.start_time.strftime("%l:%M %p") %> - <%= booking.end_time.strftime("%l:%M %p") %></li>
+          <li><%= booking.space.address %></li>
+        </ul>
+        <div class="box-desc">
+          <p>
+            <%= booking.total_price %>
+          </p>
+          <p>
+            <%= host_route? ? booking.user.full_name : booking.space.user.full_name%>
+          </p>
+          <p>
+            <i class="fas fa-comments"></i>
+            <%= link_to "Chat", conversations_path(host_id: host_route? ? booking.user.id : booking.space.user.id), method: :post %>
+          </p>
+        </div>
+        <ul class="location">
+          <% if booking.user_id == current_user.id %>
+          <li>
+            <%= link_to 'Cancel', booking_path(booking), method: :delete %>
+          </li>
+          <% end %>
+          <li>
+            <% if booking.space.user_id == current_user.id %>
+              <% if booking.approved? %>
+                <%= link_to 'Decline', update_state_booking_path(booking, state: 'declined'), method: :patch %>
+              <% else %>
+                <%= link_to 'Approve', update_state_booking_path(booking, state: 'approved'), method: :patch %>
+              <% end %>
+            <% end %>
+          </li>
+          <% if booking.can_review?(current_user) %>
+            <li>
+              <%= link_to 'Add review', new_review_path(booking.class.to_s.downcase, booking.id) %>
+            </li>
+          <% end %>
+        </ul>
+      </div><!-- /.box-content -->
+    </div><!-- /.box-imagebox -->
+  </div><!-- /.imagebox style2 -->
+</div><!-- /.col-sm-12 -->
+
+
+
+

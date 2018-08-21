@@ -60,12 +60,6 @@
           <p>
             <%= render 'favorites/form', space: @space, favorite: @favorite %>
           </p>
-          <div class="btn-more review">
-            <%= link_to 'Review', new_review_path(reviewable: @space.class_to_route, reviewable_id: @space.id) %>
-          </div>
-          <div class="btn-more">
-            <%= link_to 'Book Now', new_space_booking_path(@space) %>
-          </div>
           <div class="clearfix"></div>
         </div><!-- /.title-right -->
       </div><!-- /.col-md-4 -->

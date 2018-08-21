@@ -66,7 +66,7 @@ class SpacesController < ApplicationController
 
   def destroy
     @space.destroy
-    redirect_to spaces_path
+    redirect_to host_spaces_path
   end
 
   private

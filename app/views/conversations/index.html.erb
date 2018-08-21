@@ -1,3 +1,4 @@
+<% if @conversations.any? %>
 <section class="flat-row flat-explore-detail">
   <div class="container">
     <div class="row">
@@ -7,10 +8,10 @@
           <ol class="comment-list">
             <% @conversations.each do |conversation| %>
             <% message = conversation.last_message(current_user) %>
-              <%= render 'messages/message', message: message,user_is_messages_author: message.user == current_user %>
-              <div class="btn-more">
-                <%= link_to "Chat", conversation_path(conversation) %>
-              </div>
+            <%= render 'messages/message', message: message,user_is_messages_author: message.user == current_user %>
+            <div class="btn-more">
+              <%= link_to "Chat", conversation_path(conversation) %>
+            </div>
             <% end %>
           </ol><!-- /.comment-list -->
         </div><!-- /.comment-area -->
@@ -18,3 +19,24 @@
     </div>
   </div>
 </section>
+<% else %>
+<section class="flat-row flat-error-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="wrap-error center">
+          <div class="info-error">
+            <div class="error-title">
+              No conversations yet!
+            </div>
+          </div>
+          <div class="button-header">
+            <%= link_to "Check out our spaces", spaces_path %>
+          </div>
+          <br>
+        </div><!-- /.wrap-error -->
+      </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+</section><!-- /.flat-error-page -->
+<% end %>

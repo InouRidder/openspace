@@ -514,6 +514,16 @@
 	}
 }
 
+@media only screen and (max-width: 700px) {
+  .imagebox.style2 .box-content {
+    width: 100% !important;
+  }
+  .imagebox.style2 .box-header {
+    width: 100% !important;
+  }
+
+}
+
 @media only screen and (max-width: 600px) {
 	.wrap-box-search.style2.v2 form > span,
 	.filter .select-filter ul.list-filter.one-half,

@@ -24,7 +24,8 @@ class Booking < ApplicationRecord
   end
 
   def update_state(new_state)
-    state = new_state
+    self.state = new_state
+    self.save
   end
 
   def confirmed?
@@ -44,7 +45,7 @@ class Booking < ApplicationRecord
   end
 
   def completed?
-    approved? && end_date < Time.now
+    approved? && date < Time.now
   end
 
   def approved?

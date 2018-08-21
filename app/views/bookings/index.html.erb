@@ -1,8 +1,34 @@
-<div class="container">
-  <div class="row">
-    <h1> My trips</h1>
-    <%= render partial: 'bookings/booking', collection: @bookings, as: :booking %>
-  </div>
-</div>
-
-<%= link_to "Switch to Host", host_bookings_path %>
+<section class="flat-row flat-imagebox style3">
+  <div class="container">
+    <div class="wrap-imagebox style3">
+      <div class="row">
+        <% if @bookings.any? %>
+          <%= render partial: 'bookings/booking', collection: @bookings, as: :booking %>
+        <% else %>
+          <section class="flat-row flat-error-page">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="wrap-error center">
+                    <div class="info-error">
+                      <div class="error-title">
+                        No bookings yet!
+                      </div>
+                    </div>
+                    <div class="button-header">
+                      <%= link_to "Check out our spaces", spaces_path %>
+                    </div>
+                    <br>
+                  </div><!-- /.wrap-error -->
+                </div><!-- /.col-md-12 -->
+              </div><!-- /.row -->
+            </div><!-- /.container -->
+          </section><!-- /.flat-error-page -->
+        <% end %>
+        <div class="button-header">
+          <%= link_to "Switch to Host", host_bookings_path %>
+        </div>
+      </div><!-- /.row -->
+    </div>
+  </div><!-- /.container -->
+</section><!-- /.flat-imagebox style3 -->
