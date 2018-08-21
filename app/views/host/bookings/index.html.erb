@@ -1,6 +1,12 @@
-<div class="container">
-  <div class="row">
-    <h1> All my bookings</h1>
-    <%= render partial: 'bookings/booking', collection: @bookings, as: :booking %>
-  </div>
-</div>
+<section class="flat-row flat-imagebox style3">
+  <div class="container">
+    <div class="wrap-imagebox style3">
+      <div class="row">
+        <%= render partial: 'bookings/booking', collection: @bookings, as: :booking %>
+      </div><!-- /.row -->
+      <div class="button-header">
+          <%= link_to "Switch to Trips", bookings_path %>
+        </div>
+    </div>
+  </div><!-- /.container -->
+</section><!-- /.flat-imagebox style3 -->

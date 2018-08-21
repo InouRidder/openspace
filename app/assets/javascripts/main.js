@@ -46,17 +46,14 @@
                 var currMenuType = 'desktop';
                 if ( matchMedia( 'only screen and (max-width: 991px)' ).matches ) {
                     currMenuType = 'mobile';
-                    console.log('its mobile');
                 }
 
                 if ( currMenuType !== menuType ) {
                     menuType = currMenuType;
 
                     if ( currMenuType === 'mobile' ) {
-                      console.log('here')
                         var $mobileMenu = $('#mainnav').attr('id', 'mainnav-mobi').hide();
                         var hasChildMenu = $('#mainnav-mobi').find('li:has(ul)');
-                        console.log(hasChildMenu)
                         $('.header').after($mobileMenu);
                         hasChildMenu.children('ul').hide();
                         hasChildMenu.children('a').after('<span class="btn-submenu"></span>');

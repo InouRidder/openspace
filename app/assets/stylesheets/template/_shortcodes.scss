@@ -254,7 +254,7 @@
 }
 
 .flat-imagebox.background {
-	background: url('../images/page/bg-01.png') top center repeat-y;
+	background: asset-url('bg-01.png') top center repeat-y;
 	padding: 100px 0 100px;
 }
 
@@ -950,7 +950,7 @@
 /* Flat Main Blog Style2
 -------------------------------------------------------------- */
 .flat-main-blog.style2 {
-	background: url('../images/page/bg-01.png') top center repeat-y;
+	background: asset-url('bg-01.png') top center repeat-y;
 	padding: 80px 0 92px;
 }
 
@@ -1189,9 +1189,6 @@
 
 /* Flat Error
 -------------------------------------------------------------- */
-.flat-error-page {
-	padding: 80px 0 93px;
-}
 
 /* Wrap Error */
 .wrap-error .info-error {
@@ -1230,7 +1227,7 @@
 -------------------------------------------------------------- */
 .flat-count {
 	padding: 143px 0;
-	background: url('../images/parallax/01.png') top center repeat;
+	background: asset-url('01.png') top center repeat;
 }
 
 .flat-count .container,
@@ -2486,7 +2483,7 @@ form.form-listing .inner-box button.submit-form-listing:hover {
 	background-size: cover;
 }
 
-.parallax1 { background-image: url('../images/parallax/01.png'); }
+.parallax1 { background-image: asset-url('01.png'); }
 
 /* Go Top
 ---------------------------------------------------------------*/

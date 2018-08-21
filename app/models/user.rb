@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :spaces_bookings, through: :spaces, source: :bookings
   has_many :subscriptions, dependent: :destroy
   has_many :conversations, through: :subscriptions
+  has_many :messages, dependent: :destroy
 
   def favorited?(space)
     favorites.find_by(space: space)

@@ -31,7 +31,7 @@
       <li class="address"><span class="ti-location-pin"></span><%= space.address %></li>
       <% if host_route? %>
       <li>
-        <%= link_to 'Delete', spaces_path(space), method: :delete %>
+        <%= link_to 'Delete', space_path(space), method: :delete %>
         <%= link_to 'Edit', edit_space_path(space) %>
       </li>
       <% end %>

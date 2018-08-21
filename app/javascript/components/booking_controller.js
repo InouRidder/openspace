@@ -1,6 +1,5 @@
 const bookingController = {
   initialize: function() {
-    console.log('settling in')
     this.form = document.getElementById('new_booking');
 
     if (!this.form) return;
