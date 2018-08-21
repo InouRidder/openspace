@@ -187,6 +187,11 @@
               </style>
               <div class="booking-form">
                 <%= render 'bookings/form', space: @space, booking: @booking %>
+                <% if @booking.errors.any? %>
+                  <p>
+                    <%= @booking.errors.full_messages.join(",") %>
+                  </p>
+                <% end %>
               </div>
             </div>
           </div><!-- /#flat-map -->

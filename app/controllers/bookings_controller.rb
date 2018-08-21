@@ -29,6 +29,7 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to booking_path(@booking)
     else
+      load_space_show_objects
       render 'spaces/show'
     end
   end
@@ -59,6 +60,13 @@ class BookingsController < ApplicationController
   end
 
   private
+
+  def load_space_show_objects
+    hours = @booking.space.open_hours
+    @start_times = hours[:start]
+    @end_times = hours[:end]
+    @favorite = Favorite.new
+  end
 
   def booking_params
     params.require(:booking).permit(:date, :end_time, :start_time)

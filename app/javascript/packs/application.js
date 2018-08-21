@@ -9,6 +9,7 @@ import "../plugins/flatpickr"
 
 Turbolinks.start();
 Rails.start();
+
 document.addEventListener('turbolinks:load', () => {
   spaceQuery.startListening();
   bookingController.initialize();

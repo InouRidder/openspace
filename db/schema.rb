@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20180802093719) do
     t.bigint "space_id"
     t.string "billable_adress"
     t.float "total_price"
-    t.string "state"
+    t.string "state", default: "unconfirmed"
     t.date "date"
     t.time "start_time"
     t.time "end_time"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20180802093719) do
     t.string "country"
     t.string "bio"
     t.string "avatar"
+    t.boolean "host", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

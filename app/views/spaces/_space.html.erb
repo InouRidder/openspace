@@ -1,35 +1,41 @@
 <div class="imagebox style3">
   <%= link_to space_path(space) do %>
-    <div class="box-imagebox">
-      <div class="box-header">
-        <div class="box-image">
-          <img src="<%= image_path 'img-v3-02.png' %>" alt="">
-          <div class="overlay"></div>
-          <div class="queue">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </div>
+  <div class="box-imagebox">
+    <div class="box-header">
+      <div class="box-image">
+        <img src="<%= image_path 'img-v3-02.png' %>" alt="">
+        <div class="overlay"></div>
+        <div class="queue">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          <i class="fa fa-star" aria-hidden="true"></i>
         </div>
-      </div><!-- /.box-header -->
-      <div class="box-content">
-        <div class="box-title">
-          <%= link_to space_path(space) do %> <%= space.title %></a><i class="fa fa-check-circle" aria-hidden="true"></i>
-          <% end %>
-        </div>
-        <ul class="rating">
-          <li>PER HOUR:<%= space.price_per_hour %></li>
-          <li>CAPACITY: <%= space.capacity %></li>
-        </ul>
-        <div class="box-desc">
-          Lorem ipsum dolor sit amet, consectetur<br /> adipisicing elit, sed do eiusmod tempor<br /> incididunt ut labore et dolore magna aliqua.
-        </div>
-      </div><!-- /.box-content -->
-      <ul class="location">
-        <li class="address"><span class="ti-location-pin"></span><%= space.address %></li>
-      </ul><!-- /.location -->
-    </div><!-- /.box-imagebox -->
-<% end %>
+      </div>
+    </div><!-- /.box-header -->
+    <div class="box-content">
+      <div class="box-title">
+        <%= link_to space_path(space) do %> <%= space.title %></a><i class="fa fa-check-circle" aria-hidden="true"></i>
+        <% end %>
+      </div>
+      <ul class="rating">
+        <li>PER HOUR:<%= space.price_per_hour %></li>
+        <li>CAPACITY: <%= space.capacity %></li>
+      </ul>
+      <div class="box-desc">
+        Lorem ipsum dolor sit amet, consectetur<br /> adipisicing elit, sed do eiusmod tempor<br /> incididunt ut labore et dolore magna aliqua.
+      </div>
+    </div><!-- /.box-content -->
+    <ul class="location" style="display: flex; justify-content: space-between;">
+      <li class="address"><span class="ti-location-pin"></span><%= space.address %></li>
+      <% if host_route? %>
+      <li>
+        <%= link_to 'Delete', spaces_path(space), method: :delete %>
+        <%= link_to 'Edit', edit_space_path(space) %>
+      </li>
+      <% end %>
+    </ul><!-- /.location -->
+  </div><!-- /.box-imagebox -->
+  <% end %>
 </div>

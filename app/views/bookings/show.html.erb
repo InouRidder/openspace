@@ -4,7 +4,11 @@
     <div class="row">
       <div class="col-md-12">
         <div class="page-title-heading">
-          Your trip to
+          <% if @booking.user == current_user %>
+            Your trip to
+          <% else %>
+            Booking on your flat
+          <% end %>
           <%= @booking.space.title %>
         </div>
         <ul class="breadcrumbs">
@@ -41,14 +45,20 @@
                 <li>Total Price: <strong><%= @booking.total_price %></strong></li>
                 <li>Billable address: <strong> <%= @booking.billable_adress %></strong></li>
               </ul>
-              <% if @booking.confirmed? %>
-              <div class="btn-more">
-                <a href="#" title="">Confirmed! Waiting for <%= @space.user.full_name %> approval!</a>
-              </div>
+              <% if @booking.space.user == current_user %>
+                  <div class="btn-more">
+                    <%= link_to 'Approve Booking', update_state_host_booking_path(@booking, state: 'approved'), method: :patch %>
+                  </div>
               <% else %>
+                <% if @booking.confirmed? %>
                 <div class="btn-more">
-                  <%= link_to 'Confirm Booking', update_state_booking_path(@booking, state: 'confirmed'), method: :patch %>
+                  <a href="#" title="">Confirmed! Waiting for <%= @space.user.full_name %> approval!</a>
                 </div>
+                <% else %>
+                  <div class="btn-more">
+                    <%= link_to 'Confirm Booking', update_state_booking_path(@booking, state: 'confirmed'), method: :patch %>
+                  </div>
+                <% end %>
               <% end %>
             </div>
           </div><!-- /.price-box -->
