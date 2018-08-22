@@ -1132,5 +1132,4 @@
         goTop();
         removePreloader();
     });
-
 })(jQuery);

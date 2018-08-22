@@ -6,7 +6,7 @@ const chatController = {
   },
 
   addMessage: function(messagePartial) {
-    this.messages.insertAdjacentHTML('beforeend', messagePartial);
+    this.messages.insertAdjacentHTML('afterbegin', messagePartial);
   },
 
   clearForm: function() {
@@ -22,10 +22,7 @@ const chatController = {
 
   scrollLastMessageIntoView: function() {
     const messages = document.querySelectorAll('.message');
-    const lastMessage = messages[messages.length - 1];
-    if (lastMessage !== undefined) {
-      lastMessage.scrollIntoView();
-    }
+    messages.scrollTop = messages.scrollHeight;
   }
 }
 

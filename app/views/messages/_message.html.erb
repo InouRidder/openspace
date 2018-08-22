@@ -12,7 +12,9 @@
           <%= message.content %>
         </p>
         <div class="comment-metadata">
-          <%= message.created_at.strftime("%A, %b %d") %>
+          <p>
+            <%= message.created_at.strftime("%A, %b %d") %>
+          </p>
         </div>
       </div><!-- /.comment-content -->
     </article><!-- /.comment-body -->
