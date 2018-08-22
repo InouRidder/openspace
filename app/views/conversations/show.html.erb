@@ -11,12 +11,20 @@
           </ol><!-- /.comment-list -->
         </div><!-- /.comment-area -->
       </div>
-      <%= simple_form_for([@conversation, @message], remote: true) do |f| %>
-        <div class="">
-          <%= f.input :content, label: false %>
-          <%= f.submit %>
-        </div>
-      <% end %>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-xs-12">
+        <style>
+          #white-btn {
+            color: white;
+          }
+        </style>
+        <%= simple_form_for([@conversation, @message], remote: true) do |f| %>
+            <%= f.input :content, label: false %>
+            <%= f.submit value: 'Send Message', id: 'white-btn' %>
+        <% end %>
+      </div>
     </div>
   </div>
 </section>
@@ -30,7 +38,6 @@
     { channel: 'ConversationsChannel', conversation_id: <%= @conversation.id %> },
     { received: (data) => chatController.receive(data) }
   )
-
 </script>
 
 

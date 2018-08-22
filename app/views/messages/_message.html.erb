@@ -5,15 +5,15 @@
         <img src="<%= image_path 'comment_01.png' %>" alt="">
       </div><!-- /.comment-image -->
       <div class="comment-content">
-        <div class="comment-metadata">
-          <%= message.created_at.strftime("%A, %b %d") %>
-        </div>
         <div class="comment-author">
-          by <a href="#" title=""><%= message.user.full_name %></a>
+          <a href="#" title=""><%= message.user.full_name %></a>
         </div>
         <p>
           <%= message.content %>
         </p>
+        <div class="comment-metadata">
+          <%= message.created_at.strftime("%A, %b %d") %>
+        </div>
       </div><!-- /.comment-content -->
     </article><!-- /.comment-body -->
   </li><!-- /.comment -->

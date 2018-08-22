@@ -56,12 +56,15 @@
                         var hasChildMenu = $('#mainnav-mobi').find('li:has(ul)');
                         $('.header').after($mobileMenu);
                         hasChildMenu.children('ul').hide();
+                        $('.header').find('.button-header').hide();
+                        $('.header').find('#button-header-mobile').attr('display', 'block');
                         hasChildMenu.children('a').after('<span class="btn-submenu"></span>');
                         $('.btn-menu').removeClass('active');
                         $('.btn-menu').show();
                     } else {
                         var $desktopMenu = $('#mainnav-mobi').attr('id', 'mainnav').removeAttr('style');
-
+                        $('.header').find('.button-header').show();
+                        $('.header').find('#button-header-mobile').attr('display', 'none');
                         $desktopMenu.find('.submenu').removeAttr('style');
                         $('.header').find('.button-header').before($desktopMenu);
                         $('.btn-submenu').remove();
