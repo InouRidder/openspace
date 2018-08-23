@@ -1,16 +1,22 @@
 <%= simple_form_for :search, url: root_path, html: { method: 'get', id: 'query-form'} do |f| %>
-<div id="character_inputs">
-  <%= f.input :price_per_hour, collection: [['Any', nil], ['Under 80', 80], ['80 - 150', '80,150'], ['150-300', '150,300'], ['300 and up', '300']], label_method: :first, value_method: :second, label: false, prompt: 'Price per hour', input_html: {"data-name" => "price", class: "text-input"} %>
-  <%= f.input :location, label: false, placeholder: 'Location', input_html: {"data-name" => "location", id: 'space_address_autocomplete', class: "text-input" } %>
-  <%= f.input :event_type, label: false, prompt: 'What are you planning?',collection: Property.activity_types, label_method: :content, value_method: :id , input_html: {class: 'property'}%>
-  <%= f.input :capacity, collection: [['Any', nil], ['10+', 10], ['25+',25], ['50+',50], ['100+',100]], label_method: :first, value_method: :second, label: false, prompt: 'Attendees',input_html: {"data-name" => "capacity", class: "text-input"}%>
+<div id="character_inputs" class="button-centered">
+  <%= f.input :price_per_hour, collection: [['Any', nil], ['Under 80', 80], ['80 - 150', '80,150'], ['150-300', '150,300'], ['300 and up', '300']], label_method: :first, value_method: :second, label: false, prompt: 'Price per hour', input_html: {"data-name" => "price", class: "mobile-hidden text-input"} %>
+  <%= f.input :location, label: false, placeholder: 'Location', input_html: {"data-name" => "location", id: 'space_address_autocomplete', class: "mobile-hidden text-input" } %>
+  <%= f.input :event_type, label: false, prompt: 'What are you planning?',collection: Property.activity_types, label_method: :content, value_method: :id , input_html: {class: 'mobile-hidden property'}%>
+  <%= f.input :capacity, collection: [['Any', nil], ['10+', 10], ['25+',25], ['50+',50], ['100+',100]], label_method: :first, value_method: :second, label: false, prompt: 'Attendees',input_html: {"data-name" => "capacity", class: "mobile-hidden text-input"}%>
   <button id="more-filters" data-hidden="hidden">
-    More filters
+    Filters
   </button>
 </div>
 
-
 <div id="filter-container" hidden>
+  <div id="character_inputs">
+    <%= f.input :price_per_hour, collection: [['Any', nil], ['Under 80', 80], ['80 - 150', '80,150'], ['150-300', '150,300'], ['300 and up', '300']], label_method: :first, value_method: :second, label: false, prompt: 'Price per hour', input_html: {"data-name" => "price", class: "mobile-show text-input"} %>
+    <%= f.input :location, label: false, placeholder: 'Location', input_html: {"data-name" => "location", id: 'space_address_autocomplete', class: "mobile-show text-input" } %>
+    <%= f.input :event_type, label: false, prompt: 'What are you planning?',collection: Property.activity_types, label_method: :content, value_method: :id , input_html: {class: 'mobile-show property'}%>
+    <%= f.input :capacity, collection: [['Any', nil], ['10+', 10], ['25+',25], ['50+',50], ['100+',100]], label_method: :first, value_method: :second, label: false, prompt: 'Attendees',input_html: {"data-name" => "capacity", class: "mobile-show text-input"}%>
+  </div>
+
   <div id="properties">
     <div class="row">
       <h1>
