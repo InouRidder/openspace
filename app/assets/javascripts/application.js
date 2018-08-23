@@ -7,6 +7,9 @@
 //= require snazzy-info-window.min
 //= require bootstrap-slider.min
 
+//= require revolution/jquery.themepunch.revolution.min
+//= require revolution/jquery.themepunch.tools.min
+//= require revolution/slider
 //= require main
 
 //= require_tree .

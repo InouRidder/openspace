@@ -1,0 +1,18 @@
+<li class="comment">
+  <article class="comment-body">
+    <div class="comment-image">
+      <img src="<%= image_path 'comment_01.png' %>" alt="">
+    </div><!-- /.comment-image -->
+    <div class="comment-content">
+      <div class="comment-metadata">
+        <%= review.created_at.strftime("%A, %b %d") %>
+      </div>
+      <div class="comment-author">
+        by <a href="#" title=""><%= review.user.try(:full_name) %></a>
+      </div>
+      <p>
+        <%= review.content %>
+      </p>
+    </div><!-- /.comment-content -->
+  </article><!-- /.comment-body -->
+</li><!-- /.comment -->

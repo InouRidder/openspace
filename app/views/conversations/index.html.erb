@@ -1,16 +1,35 @@
+<section class="page-title parallax parallax1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="page-title-heading">
+          Conversations
+        </div>
+      </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+  <div class="overlay"></div>
+</section><!-- /.page-title -->
+
 <% if @conversations.any? %>
 <section class="flat-row flat-explore-detail">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
         <div class="comment-area">
-          <h3 class="comment-title"> Conversations </h3>
+          <h3 class="comment-title"></h3>
           <ol class="comment-list">
             <% @conversations.each do |conversation| %>
-            <% message = conversation.last_message(current_user) %>
-            <%= render 'messages/message', message: message,user_is_messages_author: message.user == current_user %>
-            <div class="btn-more">
-              <%= link_to "Chat", conversation_path(conversation) %>
+            <div class="row">
+              <div class="col-xs-12 col-sm-8 col-sm-offset-3">
+                <% message = conversation.last_message(current_user) %>
+                <%= render 'messages/message', message: message  %>
+              </div>
+              <div class="col-xs-12 col-sm-1">
+                <div class="btn-more" style=>
+                  <%= link_to "Chat", conversation_path(conversation) %>
+                </div>
+              </div>
             </div>
             <% end %>
           </ol><!-- /.comment-list -->
@@ -27,7 +46,7 @@
         <div class="wrap-error center">
           <div class="info-error">
             <div class="error-title">
-              No conversations yet!
+              Get to talking!
             </div>
           </div>
           <div class="button-header">

@@ -20,7 +20,6 @@ class Booking < ApplicationRecord
 
   def set_state_unconfirmed
     update_state('unconfirmed')
-    self.save
   end
 
   def update_state(new_state)
