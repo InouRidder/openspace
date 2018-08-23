@@ -1,4 +1,4 @@
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 750px) {
   .mobile-hidden {
     display: true !important;
   }
@@ -15,7 +15,7 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 750px) {
   .mobile-show {
     display: true !important;
   }
