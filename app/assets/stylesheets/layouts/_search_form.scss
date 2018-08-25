@@ -1,0 +1,34 @@
+@media only screen and (min-width: 750px) {
+  .mobile-hidden {
+    display: true !important;
+  }
+  .mobile-show {
+    display: none !important;
+  }
+  #character_inputs {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    .input {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .mobile-show {
+    display: true !important;
+  }
+  .mobile-hidden {
+    display: none !important;
+  }
+  .button-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 15px;
+    width: 100%;
+  }
+}
+
+
