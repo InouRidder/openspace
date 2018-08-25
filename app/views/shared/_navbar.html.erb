@@ -76,8 +76,15 @@
             <div class="show-search">
                 <button><span class="ti-search"></span></button>
               <div class="submenu top-search search-header">
-                <%= simple_form_for :search, url: spaces_path, html: { method: 'get'} do |f| %>
-                  <%= f.input :event_type, label: false, prompt: 'What are you planning?',collection: Property.activity_types, label_method: :content, value_method: :id , input_html: {class: 'property', style: "background: white;"}%>
+                <%= simple_form_for :search, url: spaces_path, html: { method: 'get', class: 'inline-form' } do |f| %>
+                  <div class="input select required search_event_type">
+                    <select class="select required property" style="background: white;" name="search[properties][]" id="search_event_type">
+                      <option value="">Even type?</option>
+                      <% Property.activity_types.each do |prop| %>
+                        <option value="<%= prop.id %>"><%= prop.content.capitalize %></option>
+                      <% end %>
+                    </select>
+                  </div>
                 <%= f.submit value: "Go!", id: 'white-btn' %>
                 <% end %>
               </div>

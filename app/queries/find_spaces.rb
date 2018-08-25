@@ -56,9 +56,6 @@ class FindSpaces
       # TO DO: Find an inclusive search through SQL query to improve performancegem -> Did not want to attribute time to investigating
       # ActiveRecord::Base.connection.execute("SELECT * FROM spaces s JOIN space_properties sp ON sp.space_id = s.id WHERE sp.property_id = ALL (SELECT property_id FROM space_properties WHERE property_id IN (#{properties.join(",")}))")
       properties.map!(&:to_i)
-      # sql = "SELECT *, COUNT(sp.id) as c FROM spaces s JOIN space_properties sp ON sp.space_id = s.id WHERE c >= ALL(SELECT COUNT(*) FROM space_properties spd WHERE spd.property_id IN (#{properties.join(",")}))"
-      # query = properties.map {|prop| "space_properties.property_id = #{prop}"}.join(" AND ")
-      # scoped.joins(:space_properties).where(query)
       scoped.select { |space| (space.space_properties.pluck(:property_id) & properties).length == properties.length }
     else
       scoped
