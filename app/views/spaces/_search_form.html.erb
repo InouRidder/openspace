@@ -1,6 +1,6 @@
 <%= simple_form_for :search, url: root_path, html: { method: 'get', id: 'query-form'} do |f| %>
 <!-- DESKTOP FORM -->
-<div id="character_inputs" class="button-centered">
+<div id="character_inputs" class="button-centered desktop-search-form">
   <%= f.input :price_per_hour, collection: [['Any', nil], ['Under 80', 80], ['80 - 150', '80,150'], ['150-300', '150,300'], ['300 and up', '300']], label_method: :first, value_method: :second, label: false, prompt: 'Price per hour', input_html: {"data-name" => "price", class: "mobile-hidden text-input"} %>
   <%= f.input :location, label: false, input_html: {"data-name" => "location", id: 'space_address_autocomplete', class: "mobile-hidden text-input", placeholder: "Location", value: @location } %>
   <%= f.input :event_type, label: false, prompt: 'What are you planning?', collection: Property.activity_types, label_method: :content, value_method: :id , input_html: {class: 'mobile-hidden property'} %>
@@ -12,7 +12,7 @@
 
 <div id="filter-container" hidden>
   <!-- MOBILE FORM -->
-  <div id="character_inputs">
+  <div id="character_inputs" class="mobile-search-form">
     <%= f.input :price_per_hour, collection: [['Any', nil], ['Under 80', 80], ['80 - 150', '80,150'], ['150-300', '150,300'], ['300 and up', '300']], label_method: :first, value_method: :second, label: false, prompt: 'Price per hour', input_html: {"data-name" => "price", class: "mobile-show text-input"} %>
     <%= f.input :location, label: false, placeholder: 'Location', input_html: {"data-name" => "location", id: 'space_address_autocomplete', class: "mobile-show text-input" } %>
     <%= f.input :event_type, label: false, prompt: 'What are you planning?',collection: Property.activity_types, label_method: :content, value_method: :id , input_html: {class: 'mobile-show property'}%>

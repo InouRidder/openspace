@@ -84,7 +84,7 @@ class SpacesController < ApplicationController
   end
 
   def search_params
-    params.require(:search).permit(:capacity, :location, :price, :properties => [])
+    params.require(:search).permit(:capacity, :location, :price, :properties, :properties => [])
   end
 
   def property_selection_objects

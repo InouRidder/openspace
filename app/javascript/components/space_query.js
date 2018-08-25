@@ -33,13 +33,10 @@ const spaceQuery = {
   setProps: function(form) {
     this.form = form;
     this.properties = Array.from(form.querySelectorAll('.property'));
-    this.characterInputs = form.querySelectorAll('.text-input');
 
     this.resultCount = document.getElementById('result-count');
     this.filterContainer = document.getElementById('filter-container');
     this.filterButton = document.getElementById('more-filters');
-    this.capacityForm = form.querySelector('#search_capacity');
-    this.priceForm = form.querySelector('#search_price_per_hour');
     this.spaceContainer = document.getElementById('space-container');
   },
 
@@ -97,7 +94,11 @@ const spaceQuery = {
         body.properties.push(input.value)
       }
     })
-    this.characterInputs.forEach((input) => {
+
+    let desktop_or_mobile = window.innerWidth > 750 ? '.desktop-search-form' : '.mobile-search-form' ;
+
+    let inputs = this.form.querySelector(desktop_or_mobile).querySelectorAll('.text-input');
+    inputs.forEach((input) => {
       body[input.dataset.name] = input.value
     })
   return body;
