@@ -50,7 +50,7 @@
                     <%= link_to 'Approve Booking', booking_state_path(@booking, state: 'approved'), method: :patch %>
                   </div>
               <% end %>
-              <% if policy(@booking).confirm? %>
+              <% if policy(@booking).confirmed? %>
                 <div class="btn-more">
                   <a href="#" title="">Confirmed! Waiting for <%= @space.user.full_name %> approval!</a>
                 </div>

@@ -18,25 +18,32 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def confirmed?
-    owner_or_booker && record.may_confirm?
+    is_booker? && record.may_confirm?
   end
 
   def declined?
-    owner_or_booker && record.may_decline?
+    is_owner? && record.may_decline?
   end
 
   def approved?
-    owner_or_booker && record.may_approve?
-
+    is_owner? && record.may_approve?
   end
 
   def cancelled?
-    owner_or_booker && record.may_decline?
+    owner_or_booker && record.may_cancel?
   end
 
   private
 
+  def is_owner?
+    record.space.user == user
+  end
+
+  def is_booker?
+    record.user == user
+  end
+
   def owner_or_booker
-    record.user == user || record.space.user == user
+    is_owner? || is_booker?
   end
 end
