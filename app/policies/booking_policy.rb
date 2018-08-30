@@ -17,9 +17,21 @@ class BookingPolicy < ApplicationPolicy
     show?
   end
 
-  def update_state?
-    true
-    # This needs to be thought through. BookingStateController? state machine?
+  def confirmed?
+    owner_or_booker && record.may_confirm?
+  end
+
+  def declined?
+    owner_or_booker && record.may_decline?
+  end
+
+  def approved?
+    owner_or_booker && record.may_approve?
+
+  end
+
+  def cancelled?
+    owner_or_booker && record.may_decline?
   end
 
   private

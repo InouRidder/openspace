@@ -1,5 +1,5 @@
 class Host::SpacesController < ApplicationController
   def index
-    @spaces = current_user.spaces
+    @spaces = policy_scope(Space)
   end
 end

@@ -1,7 +1,7 @@
 class Host::SpacePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      user.spaces
     end
   end
 end

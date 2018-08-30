@@ -1,7 +1,7 @@
 class Host::BookingPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      user.spaces_bookings
     end
   end
 end

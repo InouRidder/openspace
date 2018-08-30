@@ -16,12 +16,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :booking_states, only: [:update]
+
   namespace :host do
-    resources :bookings, only: [:index] do
-      member do
-        patch 'update_state'
-      end
-    end
+    resources :bookings, only: [:index]
     resources :spaces, only: [:index]
   end
 
@@ -29,11 +27,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
-  resources :bookings, except: [:create, :edit] do
-      member do
-        patch 'update_state'
-      end
-    end
+  resources :bookings, except: [:create, :edit]
 
   resources :favorites, only: [:index, :destroy]
 

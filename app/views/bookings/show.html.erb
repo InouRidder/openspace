@@ -45,20 +45,19 @@
                 <li>Total Price: <strong><%= @booking.total_price %></strong></li>
                 <li>Billable address: <strong> <%= @booking.billable_adress %></strong></li>
               </ul>
-              <% if @booking.space.user == current_user %>
+              <% if policy(@booking).approve? %>
                   <div class="btn-more">
-                    <%= link_to 'Approve Booking', update_state_host_booking_path(@booking, state: 'approved'), method: :patch %>
+                    <%= link_to 'Approve Booking', booking_state_path(@booking, state: 'approved'), method: :patch %>
                   </div>
-              <% else %>
-                <% if @booking.confirmed? %>
+              <% end %>
+              <% if policy(@booking).confirm? %>
                 <div class="btn-more">
                   <a href="#" title="">Confirmed! Waiting for <%= @space.user.full_name %> approval!</a>
                 </div>
                 <% else %>
                   <div class="btn-more">
-                    <%= link_to 'Confirm Booking', update_state_booking_path(@booking, state: 'confirmed'), method: :patch %>
+                    <%= link_to 'Confirm Booking', booking_state_path(@booking, state: 'confirmed'), method: :patch %>
                   </div>
-                <% end %>
               <% end %>
             </div>
           </div><!-- /.price-box -->

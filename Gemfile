@@ -30,6 +30,9 @@ gem 'faker'
 
 gem 'date_validator'
 
+gem 'aasm'
+
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end

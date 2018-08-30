@@ -8,4 +8,8 @@ module ApplicationHelper
     word = word.pluralize unless count == 1
     "#{count} #{word}"
   end
+
+  def to_policy(word)
+    (word + "?").to_sym
+  end
 end
