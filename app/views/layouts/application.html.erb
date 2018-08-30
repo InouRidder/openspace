@@ -10,10 +10,6 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'application' %>
 
-    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_BROWSER_KEY']}" %>
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag "application" %>
-    <%= javascript_pack_tag "map" %>
   </head>
   <body class="header_sticky">
     <%= render 'shared/navbar' %>
@@ -23,4 +19,8 @@
     </div>
     <%= render 'shared/footer' %>
   </body>
+  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_BROWSER_KEY']}" %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_pack_tag "application" %>
+  <%= javascript_pack_tag "map" %>
 </html>
