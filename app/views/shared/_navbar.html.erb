@@ -26,33 +26,23 @@
                 <li>
                   <%= link_to 'Trips', bookings_path %>
                 </li>
-                <li>
-                  <%= link_to 'Favorites', favorites_path %>
-                </li>
-                <li>
-                  <%= link_to 'Messages', conversations_path, id: 'conversation-button' %>
-                  <ul class="submenu">
-                    <% current_user.conversations.each do |conversation| %>
-                    <li>
-                      <%= link_to conversation_path(conversation) do %>
-                      <%= conversation.last_message(current_user).try(:content) %>
-                      -
-                      <%= conversation.partner(current_user).try(:full_name) %>
-                      <% end %>
-                    </li>
-                    <% end %>
-                  </ul>
-                </li>
                 <% end %>
                 <li>
-                  <%= link_to "Host", host_bookings_path %>
+                  <%= link_to '#', class: "fa fa-user" do %>
+                  <% end %>
                   <ul class="submenu">
                     <% if current_user.is_host? %>
                     <li>
                       <%= link_to "Bookings", host_bookings_path %>
                     </li>
                     <li>
-                      <%= link_to "My Spaces", host_spaces_path %>
+                      <%= link_to 'Favorites', favorites_path %>
+                    </li>
+                    <li>
+                      <%= link_to 'Messages', conversations_path, id: 'conversation-button' %>
+                    </li>
+                    <li>
+                      <%= link_to "Host", host_bookings_path %>
                     </li>
                     <% end %>
                     <li>
@@ -74,17 +64,17 @@
               <% end %>
             </div>
             <div class="show-search">
-                <button><span class="ti-search"></span></button>
+              <button><span class="ti-search"></span></button>
               <div class="submenu top-search search-header">
                 <%= simple_form_for :search, url: spaces_path, html: { method: 'get', class: 'inline-form' } do |f| %>
-                  <div class="input select required search_event_type">
-                    <select class="select required property" style="background: white;" name="search[properties][]" id="search_event_type">
-                      <option value="">Even type?</option>
-                      <% Property.activity_types.each do |prop| %>
-                        <option value="<%= prop.id %>"><%= prop.content.capitalize %></option>
-                      <% end %>
-                    </select>
-                  </div>
+                <div class="input select required search_event_type">
+                  <select class="select required property" style="background: white;" name="search[properties][]" id="search_event_type">
+                    <option value="">Even type?</option>
+                    <% Property.activity_types.each do |prop| %>
+                    <option value="<%= prop.id %>"><%= prop.content.capitalize %></option>
+                    <% end %>
+                  </select>
+                </div>
                 <%= f.submit value: "Go!", id: 'white-btn' %>
                 <% end %>
               </div>
@@ -103,49 +93,31 @@
         <a href="/spaces" title="">Explore</a>
       </li>
       <% if user_signed_in? %>
-      <% if host_route? %>
-      <li>
-        <%= link_to 'Bookings', host_bookings_path %>
-      </li>
-      <li>
-        <%= link_to 'My Spaces', host_spaces_path %>
-      </li>
-      <% else %>
-      <li>
-        <%= link_to 'Trips', bookings_path %>
-      </li>
-      <li>
-        <%= link_to 'Favorites', favorites_path %>
-      </li>
-      <li>
-        <%= link_to 'Messages', conversations_path, id: 'conversation-button' %> <span class="btn-submenu"></span>
-        <ul class="submenu" style="display: none;">
-          <% current_user.conversations.each do |conversation| %>
-          <li>
-            <%= link_to conversation_path(conversation) do %>
-            <%= conversation.last_message(current_user).try(:content) %>
-            -
-            <%= conversation.partner(current_user).try(:full_name) %>
-            <% end %>
-          </li>
-          <% end %>
-        </ul>
-      </li>
-      <% end %>
-      <li>
+        <li>
+          <%= link_to 'My Trips', bookings_path %>
+        </li>
+        <li>
+          <%= link_to 'Favorites', favorites_path %>
+        </li>
+        <li>
+          <%= link_to 'Messages', conversations_path, id: 'conversation-button' %>
+        </li>
         <% if current_user.is_host? %>
-        <%= link_to "Host", host_bookings_path %> <span class="btn-submenu"></span>
-        <ul class="submenu" style="display: none;">
-          <li>
-            <%= link_to "Bookings", host_bookings_path %>
-          </li>
-          <li>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-          </li>
-        </ul>
-        <% else %>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+        <li>
+          <%= link_to "Host", host_bookings_path %>
+          <span class="btn-submenu"></span>
+          <ul class="submenu" style="display: none;">
+            <li>
+                <%= link_to "Bookings", host_bookings_path %>
+            </li>
+            <li>
+                <%= link_to "My Spaces", host_spaces_path %>
+            </li>
+          </ul>
         <% end %>
+        </li>
+      <li>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
       </li>
       <% else %>
       <li>
