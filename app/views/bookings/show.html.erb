@@ -45,7 +45,7 @@
                 <li>Total Price: <strong><%= @booking.total_price %></strong></li>
                 <li>Billable address: <strong> <%= @booking.billable_adress %></strong></li>
               </ul>
-              <% if policy(@booking).approve? %>
+              <% if policy(@booking).approved? %>
                   <div class="btn-more">
                     <%= link_to 'Approve Booking', booking_state_path(@booking, state: 'approved'), method: :patch %>
                   </div>
