@@ -1,31 +1,30 @@
 class BookingPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      user.bookings
     end
   end
 
-  def index?
-    true
-  end
-
-  def create?
-    user
-  end
-
-  def new?
-    create?
+  def show?
+    owner_or_booker
   end
 
   def update?
-    record.user == user
-  end
-
-  def edit?
-    update?
+    show?
   end
 
   def destroy?
-    update?
+    show?
+  end
+
+  def update_state?
+    true
+    # This needs to be thought through. BookingStateController? state machine?
+  end
+
+  private
+
+  def owner_or_booker
+    record.user == user || record.space.user == user
   end
 end

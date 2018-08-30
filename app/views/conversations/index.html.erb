@@ -1,15 +1,4 @@
-<section class="page-title parallax parallax1">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="page-title-heading">
-          Conversations
-        </div>
-      </div><!-- /.col-md-12 -->
-    </div><!-- /.row -->
-  </div><!-- /.container -->
-  <div class="overlay"></div>
-</section><!-- /.page-title -->
+<%= render 'shared/title', title: "Conversations" %>
 
 <% if @conversations.any? %>
 <section class="flat-row flat-explore-detail">

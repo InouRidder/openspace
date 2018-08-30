@@ -1,7 +1,7 @@
 class FavoritePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      user.favorited_spaces
     end
   end
 end

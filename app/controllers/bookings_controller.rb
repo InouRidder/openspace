@@ -2,9 +2,10 @@ class BookingsController < ApplicationController
   include HtmlRender
   before_action :set_space, only: [:create, :new]
   before_action :set_booking, only: [:destroy, :update, :show, :update_state]
+  after_action :authorize_booking, except: :index
 
   def index
-    @bookings = current_user.bookings.includes(:space)
+    @bookings = policy_scope(current_user.bookings).includes(:space)
   end
 
   def show
@@ -60,6 +61,10 @@ class BookingsController < ApplicationController
   end
 
   private
+
+  def authorize_booking
+    authorize @booking
+  end
 
   def load_space_show_objects
     hours = @booking.space.open_hours

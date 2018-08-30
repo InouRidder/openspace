@@ -83,13 +83,13 @@
             document.querySelector('.btn-menu').addEventListener('click', function() {
               $('#mainnav-mobi').slideToggle(300);
                 // console.log('hi');;
-                // $(this).toggleClass('active');
-                // return false;
+                $(this).toggleClass('active');
+                return false;
             })
 
             $(document).on('click', '#mainnav-mobi li .btn-submenu', function(e) {
                 $(this).toggleClass('active').next('ul').slideToggle(300);
-                // e.stopImmediatePropagation();
+                e.stopImmediatePropagation();
                 return false;
             });
           })
