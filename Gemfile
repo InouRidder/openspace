@@ -21,6 +21,8 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 
+gem 'country_select', '~> 3.1', '>= 3.1.1'
+
 # GOOGLE GEMS FOR LOCATION SERVICES
 gem "geocoder"
 

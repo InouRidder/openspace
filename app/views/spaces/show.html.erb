@@ -45,7 +45,11 @@
           </div><!-- /.box-title -->
           <ul class="box-address">
             <li class="address"><i class="fa fa-map-marker" aria-hidden="true"></i><%= @space.address %> </li>
-            <li class="phone"><i class="fa fa-phone" aria-hidden="true"></i></li>
+            <li class="phone"><i class="fa fa-phone" aria-hidden="true"></i>
+              <%= link_to user_path(@space.user) do %>
+                <%= @space.user.full_name %>
+              <% end %>
+            </li>
             <li>
               <i class="fas fa-comments"></i>
             <%= link_to "Talk to host", conversations_path(host_id: @space.user.id), method: :post %>

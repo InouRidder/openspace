@@ -1,0 +1,46 @@
+<%= simple_form_for current_user, html: {class: 'form-listing'} do |f| %>
+  <div class="inner-box form">
+    <div class="wrap-listing one-half">
+      <%= f.input :first_name %>
+    </div><!-- /.wrap-listing -->
+    <div class="wrap-listing one-half">
+      <%= f.input :last_name %>
+    </div><!-- /.wrap-listing -->
+    <div class="clearfix"></div>
+    <div class="wrap-listing location">
+      <%= f.input :bio %>
+    </div><!-- /.wrap-listing -->
+    <div class="clearfix"></div>
+  </div><!-- /.inner-box -->
+
+  <div class="inner-box form">
+    <div class="wrap-listing one-half">
+      <%= f.input :address, input_html: { id: 'space_address_autocomplete', placeholder: "Location" } %>
+    </div><!-- /.wrap-listing -->
+    <div class="wrap-listing one-half">
+      <%= f.input :country %>
+    </div><!-- /.wrap-listing -->
+    <div class="clearfix"></div>
+  </div><!-- /.inner-box -->
+
+  <div class="inner-box style3">
+    <div class="one-half">
+      <label>Your profile picture</label>
+      <div class="browse">
+        <p>Drag & Drop files here</p>
+        <span>or</span>
+        <div class="upload">
+          <span>Browse files</span>
+          <input type="file" name="upload-file">
+        </div>
+      </div>
+    </div><!-- /.one-half -->
+    <div class="one-half">
+      <label>Your Business video(Optional)</label>
+      <input type="text" value="" placeholder="ex: https://www.youtube.com/watch?v=XZiki0D_81U">
+      <button class="submit-form-listing" type="submit">Save & Preview</button>
+    </div><!-- /.one-half -->
+    <div class="clearfix"></div>
+  </div><!-- /.inner-box -->
+  </form><!-- /.form-listing -->
+<% end %>
