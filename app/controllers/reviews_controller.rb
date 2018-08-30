@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_reviewable
+  after_action :authorize_review
 
   def new
     @review = Review.new
@@ -17,6 +18,10 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+  def authorize_review
+    authorize @review
+  end
 
   def set_reviewable
     @reviewable = params[:reviewable].singularize.capitalize.constantize.find(params[:reviewable_id])

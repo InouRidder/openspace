@@ -11,6 +11,8 @@ gem 'puma'
 gem 'rails', '5.1.6'
 gem 'redis'
 
+gem "pundit"
+
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'font-awesome-sass', '~> 5.0.9'
@@ -27,6 +29,9 @@ gem 'htmlrender'
 gem 'faker'
 
 gem 'date_validator'
+
+gem 'aasm'
+
 
 group :development do
   gem 'web-console', '>= 3.3.0'

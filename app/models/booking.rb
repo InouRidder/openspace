@@ -4,12 +4,33 @@ class Booking < ApplicationRecord
   has_many :reviews, as: :reviewable
 
   before_save :set_total_price
-  after_create :set_state_unconfirmed
 
   validate :overlap, on: :create
   validates :end_time, presence: true, date: { after_or_equal_to:  :start_time }, on: :create
 
   scope :confirmed, -> { where.not(state: 'unconfirmed') }
+
+  include AASM
+  aasm column: 'state' do
+    state :pending, :initial => true
+    state :confirmed, :approved, :cancelled, :declined
+
+    event :approve do
+      transitions :from => :confirmed, :to => :approved
+    end
+
+    event :confirm do
+      transitions :from => :pending, :to => :confirmed
+    end
+
+    event :cancel do
+      transitions :from => [:confirmed, :pending, :approved], :to => :cancelled
+    end
+
+    event :decline do
+      transitions :from => :confirmed, :to => :declined
+    end
+  end
 
   def overlap
     # (StartA <= EndB) and (EndA >= StartB)
@@ -18,17 +39,9 @@ class Booking < ApplicationRecord
     end
   end
 
-  def set_state_unconfirmed
-    update_state('unconfirmed')
-  end
-
   def update_state(new_state)
     self.state = new_state
     self.save
-  end
-
-  def confirmed?
-    state == 'confirmed'
   end
 
   def total_hours
@@ -45,10 +58,6 @@ class Booking < ApplicationRecord
 
   def completed?
     approved? && date < Time.now
-  end
-
-  def approved?
-    state == 'approved'
   end
 
 end

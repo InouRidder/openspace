@@ -3,12 +3,13 @@ class SpacesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :index
   skip_before_action :authenticate_user!, only: [:show, :index]
   before_action :set_space, only: [:show, :edit, :update, :destroy]
+  after_action :authorize_space, except: :index
 
   def index
     if params[:search]
-      @spaces = FindSpaces.new(Space.includes(:space_properties)).call(search_params)
+      @spaces = FindSpaces.new(policy_scope(Space).includes(:space_properties)).call(search_params)
     else
-      @spaces = Space.all
+      @spaces = policy_scope(Space)
     end
 
     property_selection_objects unless request.format.json?
@@ -31,12 +32,14 @@ class SpacesController < ApplicationController
     @start_times = hours[:start]
     @end_times = hours[:end]
     @favorite = Favorite.new
+    authorize @space
   end
 
   def new
     @space = Space.new
     @selected_props = []
     property_selection_objects
+    authorize @space
   end
 
   def create
@@ -70,6 +73,10 @@ class SpacesController < ApplicationController
   end
 
   private
+
+  def authorize_space
+    authorize @space
+  end
 
   def set_space
     @space = Space.find(params[:id])

@@ -23,12 +23,12 @@
             </ul>
           </div><!-- /.filter-result -->
         </div><!-- /.col-xs-12 -->
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
           <div class="wrap-imagebox style1 scrollbox" id="space-container">
             <%= render partial: 'spaces/space', collection: @spaces, as: :space %>
           </div><!-- /.wrap-imagebox -->
         </div><!-- /.flat-filter -->
-      <div class="col-md-6">
+      <div class="col-md-6 col-xs-12">
         <div id="map" style="width: 100%; height: 100vh;" data-markers="<%= @markers.to_json %>">
         </div>
       </div><!-- /.col-md-6 -->

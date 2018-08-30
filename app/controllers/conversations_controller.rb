@@ -1,6 +1,8 @@
 class ConversationsController < ApplicationController
+  after_action :authorize_conversation
+
   def index
-    @conversations = current_user.conversations.includes(:messages)
+    @conversations = policy_scope(Conversation).includes(:messages)
     respond_to do |format|
       format.html
       format.json { render json: {succes: 200} }
@@ -16,5 +18,9 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.find_or_create([current_user.id, params[:host_id].to_i])
     redirect_to conversation_path(@conversation)
   end
+  private
 
+  def authorize_conversation
+    authorize_conversation
+  end
 end

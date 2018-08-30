@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_conversation
+  after_action :authorize_message
 
   def create
     @message = Message.new(message_params)
@@ -17,6 +18,10 @@ class MessagesController < ApplicationController
   end
 
   private
+
+  def authorize_message
+    authorize_message
+  end
 
   def message_params
     params.require(:message).permit(:content)

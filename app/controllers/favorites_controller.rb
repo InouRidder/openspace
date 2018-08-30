@@ -1,9 +1,10 @@
 class FavoritesController < ApplicationController
   before_action :set_space, only: :create
   before_action :set_favorite, only: :destroy
+  after_action :authorize_favorite, except: :index
 
   def index
-    @spaces = current_user.favorited_spaces
+    @spaces = policy_scope(Space)
   end
 
   def create
@@ -20,6 +21,10 @@ class FavoritesController < ApplicationController
   end
 
   private
+
+  def authorize_favorite
+    authorize @favorite
+  end
 
   def set_space
     @space = Space.find(params[:space_id])
