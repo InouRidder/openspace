@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
+  resources :users, only: [:edit, :show, :update]
+
   resources :bookings, except: [:create, :edit]
 
   resources :favorites, only: [:index, :destroy]

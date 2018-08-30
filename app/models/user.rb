@@ -33,4 +33,13 @@ class User < ApplicationRecord
     end
   end
 
+  def confirmed?
+    true
+    # validations on user, email / phone
+  end
+
+  def profile_image
+    'img-v2-01.png'
+  end
+
 end

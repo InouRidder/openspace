@@ -1,0 +1,100 @@
+<section class="flat-row flat-imagebox style3">
+  <div class="container">
+    <div class="wrap-imagebox style3">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="imagebox style2">
+            <div class="box-imagebox">
+              <div class="box-header">
+                <div class="box-image">
+                  <img src="<%= image_path current_user.profile_image %>" alt="">
+                </div>
+              </div><!-- /.box-header -->
+              <div class="box-content">
+                <div class="box-title ad">
+                  <%= current_user.full_name %>
+                  <% if current_user.confirmed? %>
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                  <% end %>
+                  <div class="queue">
+                    Joined <%= current_user.created_at.strftime("%A, %b %d") %>
+                  </div>
+                </div>
+                <ul class="rating">
+                  <% if current_user.spaces.any? %>
+                    <li>
+                      <%= current_user.spaces.count %> spaces
+                    </li>
+                  <% end %>
+                </ul>
+                <div class="box-desc">
+                  <p>
+                    <%= current_user.bio %>
+                  </p>
+                  <p>
+                    <i class="fas fa-comments"></i>
+                    <%= link_to "Chat", conversations_path(host_id: current_user.id), method: :post %>
+                  </p>
+                </div>
+                <ul class="location">
+                  <li>
+                    <%= current_user.address %>
+                  </li>
+                  <li>
+                    <%= current_user.country %>
+                  </li>
+                  <li>
+                    <% if policy(current_user).edit? %>
+                    <li>
+                      <%= link_to "Edit", edit_user_path(current_user) %>
+                    </li>
+                    <li>
+                      <%= link_to "Change Registration Details", edit_user_registration_path(current_user) %>
+                    </li>
+                    <% end %>
+                  </li>
+                </ul>
+              </div><!-- /.box-content -->
+            </div><!-- /.box-imagebox -->
+          </div><!-- /.imagebox style2 -->
+        </div><!-- /.col-sm-12 -->
+      </div><!-- /.row -->
+    </div>
+  </div><!-- /.container -->
+</section><!-- /.flat-imagebox style3 -->
+
+<section class="flat-map-zoom-in">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="col-md-6 col-xs-12">
+          <div class="wrap-imagebox style1 scrollbox" id="space-container">
+            <%= render partial: 'spaces/space', collection: current_user.spaces, as: :space %>
+          </div><!-- /.wrap-imagebox -->
+        </div><!-- /.flat-filter -->
+      <div class="col-md-6 col-xs-12">
+        <section class="flat-row flat-explore-detail">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="comment-area">
+                  <h3 class="comment-title"><%= pluralize 'review', current_user.reviews.count %> </h3>
+                  <ol class="comment-list">
+                    <%= render partial: 'reviews/review', collection: current_user.reviews, as: :review %>
+                  </ol><!-- /.comment-list -->
+                </div><!-- /.comment-area -->
+              </div><!-- /.col-md-8 -->
+            </div><!-- /.row -->
+          </div><!-- /.container -->
+        </section><!-- /.flat-explore-detail <-->
+      </div><!-- /.col-md-6 -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</section><!-- /.flat-map-zoom-in -->
+
+
+
+
+
+
+
