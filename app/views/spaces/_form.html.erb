@@ -40,6 +40,7 @@
 </div>
 
 <div id="properties">
+  <% sliced = 2 %>
   <% ["features", "activity_types", "space_types"].each do |type| %>
     <div class="inner-box form style2">
       <section class="flat-row flat-explore-detail">
@@ -49,7 +50,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="amenities">
-                <% Property.send(type).each_slice(8) do |props| %>
+                <% Property.send(type).each_slice(sliced) do |props| %>
                 <ul class="quater">
                   <% props.each do |prop| %>
                     <% selected = @selected_props.include?(prop.id) %>
@@ -67,6 +68,7 @@
         </div><!-- /.container -->
       </section><!-- /.flat-explore-detail <-->
     </div>
+    <% sliced *= 2 %>
   <% end %>
 </div>
 
@@ -83,7 +85,7 @@
     </div>
   </div><!-- /.one-half -->
   <div class="one-half">
-    <label>Your Business video(Optional)</label>
+    <label>Your Business Website(Optional)</label>
     <input type="text" value="" placeholder="ex: https://www.youtube.com/watch?v=XZiki0D_81U">
     <button class="submit-form-listing" type="submit">Save & Preview</button>
   </div><!-- /.one-half -->
