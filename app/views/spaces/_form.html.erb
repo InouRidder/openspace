@@ -4,7 +4,7 @@
     <%= f.input :title %>
   </div><!-- /.wrap-listing -->
   <div class="wrap-listing one-half">
-    <%= f.input :address %>
+    <%= f.input :address, input_html: {id: 'space_address_autocomplete'} %>
   </div><!-- /.wrap-listing -->
   <div class="clearfix"></div>
   <div class="wrap-listing location">
@@ -20,15 +20,18 @@
   <div class="wrap-listing one-half">
     <%= f.input :price_per_day %>
   </div><!-- /.wrap-listing -->
+  <div class="wrap-listing">
+    <%= f.input :capacity %>
+  </div>
   <div class="clearfix"></div>
 </div><!-- /.inner-box -->
 
 <div class="inner-box form">
   <div class="wrap-listing one-half">
-    <%= f.input :opens, collection: @hours[:opening], label_method: :first, value_method: :second %>
+    <%= f.input :opens, collection: @hours[:opening], label_method: :first, value_method: :second, selected: [@space.opens.strftime("%H:%M"), @space.opens] %>
   </div><!-- /.wrap-listing -->
   <div class="wrap-listing one-half">
-    <%= f.input :closes, collection: @hours[:closing], label_method: :first, value_method: :second  %>
+    <%= f.input :closes, collection: @hours[:closing], label_method: :first, value_method: :second, selected: [@space.closes.strftime("%H:%M"), @space.closes] %>
   </div><!-- /.wrap-listing -->
   <div class="wrap-listing">
     <%= f.input :minimum_booking_hours %>
@@ -36,42 +39,36 @@
   <div class="clearfix"></div>
 </div>
 
-<div class="inner-box form style2">
-  <div class="amenities">
-    <h3>Possible activities</h3>
-    <% Property.activity_types.each do |prop| %>
-    <label class="checkbox-inline">
-      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
-    </label>
-    <% end %>
-    <div class="clearfix"></div>
-  </div>
+<div id="properties">
+  <% ["features", "activity_types", "space_types"].each do |type| %>
+    <div class="inner-box form style2">
+      <section class="flat-row flat-explore-detail">
+        <div class="container">
+          <h3><%= type.split("_").first.pluralize.capitalize %></h3>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="amenities">
+                <% Property.send(type).each_slice(8) do |props| %>
+                <ul class="quater">
+                  <% props.each do |prop| %>
+                    <% selected = @selected_props.include?(prop.id) %>
+                    <li>
+                      <span class=" <%= selected ? 'ti-check-box' : 'ti-layout-width-full' %> lightgrey selectable-prop" id="<%= prop.id %>"></span> <%= prop.content.capitalize %>
+                      <input id="prop-<%= prop.id %>" type="checkbox" name="space[properties][]" value="<%= prop.id %>" style="display: none;" <%= 'checked' if selected %> >
+                    </li>
+                  <% end %>
+                </ul>
+                <% end %>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div><!-- /.row -->
+        </div><!-- /.container -->
+      </section><!-- /.flat-explore-detail <-->
+    </div>
+  <% end %>
 </div>
-
-<div class="inner-box form style2">
-  <div class="amenities">
-    <h3>Features</h3>
-    <% Property.features.each do |prop| %>
-    <label class="checkbox-inline">
-      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
-    </label>
-    <% end %>
-    <div class="clearfix"></div>
-  </div>
-</div><!-- /.inner-box -->
-
-<div class="inner-box form style2">
-  <div class="amenities">
-    <h3>Space Types</h3>
-    <% Property.space_types.each do |prop| %>
-    <label class="checkbox-inline">
-      <input type="checkbox" name="space[properties][]" value="<%= prop.id %>" <%= 'checked' if @selected_props.include?(prop.id) %>> <%= prop.content.capitalize %>
-    </label>
-    <% end %>
-    <div class="clearfix"></div>
-  </div>
-</div><!-- /.inner-box -->
-
 
 <div class="inner-box style3">
   <div class="one-half">
@@ -80,8 +77,8 @@
       <p>Drag & Drop files here</p>
       <span>or</span>
       <div class="upload">
-        <span>Browse files</span>
-        <input type="file" name="upload-file">
+        Upload
+        <%= f.file_field :photos, multiple: true %>
       </div>
     </div>
   </div><!-- /.one-half -->

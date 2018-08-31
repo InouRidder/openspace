@@ -5,15 +5,20 @@ class Space < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :reviews, through: :bookings
+
+  validates :address, :capacity, :price_per_hour, :price_per_day, :opens, :closes, presence: true
+
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
   after_create :user_is_host
 
+  mount_uploaders :photos, PhotoUploader
+  serialize :photos, JSON
+
   def user_is_host
-    unless user.is_host?
-      user.host = true
-      user.save
-    end
+    return if user.is_host?
+    user.host = true
+    user.save
   end
 
   def set_properties(property_ids)
