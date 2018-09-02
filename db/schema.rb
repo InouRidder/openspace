@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180830233146) do
+ActiveRecord::Schema.define(version: 20180831211356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,14 @@ ActiveRecord::Schema.define(version: 20180830233146) do
     t.datetime "updated_at", null: false
     t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "space_attachments", force: :cascade do |t|
+    t.bigint "space_id"
+    t.string "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["space_id"], name: "index_space_attachments_on_space_id"
   end
 
   create_table "space_properties", force: :cascade do |t|
@@ -145,6 +153,7 @@ ActiveRecord::Schema.define(version: 20180830233146) do
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "users"
+  add_foreign_key "space_attachments", "spaces"
   add_foreign_key "space_properties", "properties"
   add_foreign_key "space_properties", "spaces"
   add_foreign_key "spaces", "users"

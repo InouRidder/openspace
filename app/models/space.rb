@@ -5,15 +5,15 @@ class Space < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :reviews, through: :bookings
+  has_many :space_attachments
+  accepts_nested_attributes_for :space_attachments
+
 
   validates :address, :capacity, :price_per_hour, :price_per_day, :opens, :closes, presence: true
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
   after_create :user_is_host
-
-  mount_uploaders :photos, PhotoUploader
-  serialize :photos, JSON
 
   def user_is_host
     return if user.is_host?
@@ -23,6 +23,12 @@ class Space < ApplicationRecord
 
   def set_properties(property_ids)
     property_ids.each { |property_id| SpaceProperty.create(property_id: property_id, space: self) }
+  end
+
+  def update_photos(photos)
+    photos.each do |photo|
+      SpaceAttachment.create(space: self, photo: photo)
+    end
   end
 
   def update_properties(property_ids)

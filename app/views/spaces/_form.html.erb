@@ -28,10 +28,10 @@
 
 <div class="inner-box form">
   <div class="wrap-listing one-half">
-    <%= f.input :opens, collection: @hours[:opening], label_method: :first, value_method: :second, selected: [@space.opens.strftime("%H:%M"), @space.opens] %>
+    <%= f.input :opens, collection: @hours[:opening], label_method: :first, value_method: :second, selected: @space.opens %>
   </div><!-- /.wrap-listing -->
   <div class="wrap-listing one-half">
-    <%= f.input :closes, collection: @hours[:closing], label_method: :first, value_method: :second, selected: [@space.closes.strftime("%H:%M"), @space.closes] %>
+    <%= f.input :closes, collection: @hours[:closing], label_method: :first, value_method: :second, selected: @space.closes %>
   </div><!-- /.wrap-listing -->
   <div class="wrap-listing">
     <%= f.input :minimum_booking_hours %>
@@ -42,61 +42,69 @@
 <div id="properties">
   <% sliced = 2 %>
   <% ["features", "activity_types", "space_types"].each do |type| %>
-    <div class="inner-box form style2">
-      <section class="flat-row flat-explore-detail">
-        <div class="container">
-          <h3><%= type.split("_").first.pluralize.capitalize %></h3>
-          <br>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="amenities">
-                <% Property.send(type).each_slice(sliced) do |props| %>
-                <ul class="quater">
-                  <% props.each do |prop| %>
-                    <% selected = @selected_props.include?(prop.id) %>
-                    <li>
-                      <span class=" <%= selected ? 'ti-check-box' : 'ti-layout-width-full' %> lightgrey selectable-prop" id="<%= prop.id %>"></span> <%= prop.content.capitalize %>
-                      <input id="prop-<%= prop.id %>" type="checkbox" name="space[properties][]" value="<%= prop.id %>" style="display: none;" <%= 'checked' if selected %> >
-                    </li>
-                  <% end %>
-                </ul>
+  <div class="inner-box form style2">
+    <section class="flat-row flat-explore-detail">
+      <div class="container">
+        <h3><%= type.split("_").first.pluralize.capitalize %></h3>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="amenities">
+              <% Property.send(type).each_slice(sliced) do |props| %>
+              <ul class="quater">
+                <% props.each do |prop| %>
+                <% selected = @selected_props.include?(prop.id) %>
+                <li>
+                  <span class=" <%= selected ? 'ti-check-box' : 'ti-layout-width-full' %> lightgrey selectable-prop" id="<%= prop.id %>"></span> <%= prop.content.capitalize %>
+                  <input id="prop-<%= prop.id %>" type="checkbox" name="space[properties][]" value="<%= prop.id %>" style="display: none;" <%= 'checked' if selected %> >
+                </li>
                 <% end %>
-                <div class="clearfix"></div>
-              </div>
+              </ul>
+              <% end %>
+              <div class="clearfix"></div>
             </div>
-          </div><!-- /.row -->
-        </div><!-- /.container -->
-      </section><!-- /.flat-explore-detail <-->
-    </div>
-    <% sliced *= 2 %>
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </section><!-- /.flat-explore-detail <-->
+  </div>
+  <% sliced *= 2 %>
   <% end %>
 </div>
 
-<div class="inner-box style3">
-  <div class="one-half">
-    <label>Your Business Images</label>
-    <div class="browse">
-      <p>Drag & Drop files here</p>
-      <span>or</span>
-      <div class="upload">
-        Upload
-        <%= f.file_field :photos, multiple: true %>
+<div class="container-fluid">
+  <div class="col-xs-12 col-md-6">
+    <label>Current Selection</label>
+    <div class="custom-file-container__image-preview custom-file-container__image-preview__active" style="width: 100%;">
+      <% @space.space_attachments.each do |sa| %>
+      <div id="sa-<%= sa.id %>" class="custom-file-container__image-multi-preview" style="background-image: url(<%= sa.photo.try(:url) %>);">
+        <%= link_to space_attachment_path(sa), method: :delete, remote: true, class: "blue-btn" do %>
+          <i class="far fa-times-circle"></i>
+        <% end %>
+      </div>
+      <% end %>
       </div>
     </div>
-  </div><!-- /.one-half -->
-  <div class="one-half">
-    <label>Your Business Website(Optional)</label>
-    <input type="text" value="" placeholder="ex: https://www.youtube.com/watch?v=XZiki0D_81U">
-    <button class="submit-form-listing" type="submit">Save & Preview</button>
-  </div><!-- /.one-half -->
+  <div class="col-xs-12 col-md-6">
+    <div class="custom-file-container" id="custom-file-container" data-upload-id="custom-file-container">
+      <label>Choose Your Files <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+      <label class="custom-file-container__custom-file">
+        <%= f.file_field :photos, multiple: true, input_html: {class: "custom-file-container__custom-file__custom-file-input", accept: "*", name: "space[space_attachments][]"} %>
+        <input type="hidden" name="MAX_FILE_SIZE" value="10485760">
+        <span class="custom-file-container__custom-file__custom-file-control"></span>
+      </label>
+      <div class="custom-file-container__image-preview" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAiQAAAD6CAMAAACmhqw0AAAA+VBMVEUAAAD29u3u7unt7ent7enu7uju7uihoqCio6Gio6KjpKOkpaSmpqSmp6WoqKaqq6mqq6qrq6qsrautrauur62wsa6xsa+xsrCys7GztLK0tbK1trS2t7S3t7W4uba5ure6u7e7vLm8vbu9vrvAwL3Awb3DxMHFxcPGxsPHx8TIycXLzMjLzMnMzMnNzsrPz8vP0MzQ0M3S0s/U1NDV1dLX19TY2NTY2NXZ2dba2tXb29bc3Nfc3Njc3dnd3dre3tre39vg4Nvh4dzi4t3i4t7j497k5N/k5ODl5eDl5eHl5uLm5uHn5+Lo6OPp6eTq6uXr6+bs7Oft7eh54KxIAAAAB3RSTlMAHKbl5uztvql9swAABA1JREFUeNrt3VlT01AYgOG0oEEE910URNzFBVFcqCgKirLU/P8fI3QYbEOSdtrMyJzzvHfMlFx833NBQuY0SRrN8UwqabzZSJLGaYNQVacaSdMUVF0zGTMEVTeWmIH6BYkgESSCRJAIEkEiSCRIBIkgESSCRJAIEkEiQSJIBIkgESSCRJAIEgkSQSJIBIkgESSCRJBIkAgSQSJIBIkgESSCRIJEkAgSQSJIBIkgkSARJIJEkAgSQSJIBIkEiSARJIJEkAgSQSJIJEgEiSARJIJEkAgSQSJBIkgEiSARJIJEkAgSCRJBIkgEiSARJIJEgkSQ5PvxbdS+tyEJuZVb0+noTV579geSQGs/SOvqxiYkYfYwra+rbUhC7NNEjUjSJ5CE2P06jaTnIAmxKwe7vb468t3N14WOki1IAuzMwWrf1HCh3Q6S95AEWGe1b0/WlSCBBBJIIAkdSXvt1aNXa21IICld7dJU5+epJUggKV7tzuzRA4/ZHUggKVrtfNdjsXlIIClY7XLPw9NlSCA5vtqLPUguQgLJsdX+zv0fZhsSSPKrXckhWSn5jV8zG5DEiuR1DsnrEiOX0vMbkESKZDWHZLXMSFqsBJIIkOz1vn40sVdqpFgJJDHc3dzsQXKzwkihEkhiQLI+2f3y+3qVkSIlkMSAJFvsQrJYbaRACSRRIMlenj0UcPZlPyPHlUASB5Jsc+7cwevMc5v9jRxTAkkkSPbb+riVZYMYySuBJB4kJRUYySmBJHYkhUZ6lUASOZISIz1KIIkbSamRbiWQxIZkvT2YkS4lkESGpDV9tz2YkX9KIIkLSWs6TY+U9DFypASSqJC0OicfHSrpa2T/k5BEh6R1eDpWR8kARtIZSGJD0jo6QW1fySBGIIkOSavrlL27PwcxAklsSFo9JzFOppBAkl9ta5jTOiGJCslQRiCJCslwRiCJCcmQRiCJCMmwRiCJB8mXoU+YhyQaJM9TSCCBBBJIIIEEEkgggQQSSCCJAsnyzLA9hiQWJCfnSpBAAgkkkATXxFCnPxfU7iB5B0mAXT5Y7Z3t0Y087SDZgCTA7tX6bZ5TGSQBtlwrkgVIgmy+RiMXdiEJsp3b9Rn5nEESaC/O1/P3yMJuBkm4bX94O2rvNiKbWXRIBIkgESSCRJAIEkEiQSJIBIkgESSCRJAIEgkSQSJIBIkgESSCRIJEkAgSQSJIBIkgESQSJIJEkAgSQSJIBIkgkSARJIJEkAgSQSJIBIkEiSARJIJEkAgSQSJIJEgEiSARJIJEkAgSCRJBIkgEiSARJIJEkEiQCBJBIkgEiSARJIJEgkSQCBJBIkgEiSARJBIkgkSQ6P8gGTMDVTeWNA1B1TWTxmlTUFWnGknSaI4bhMoabzaSv+4BHFVoHZzfAAAAAElFTkSuQmCC&quot;);"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="inner-box style3">
+  <button class="submit-form-listing" type="submit">Save & Preview</button>
   <div class="clearfix"></div>
 </div><!-- /.inner-box -->
-</form><!-- /.form-listing -->
 
 <% end %>
-
-
-
-
 
 

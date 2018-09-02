@@ -1,5 +1,4 @@
 class SpacesController < ApplicationController
-
   include HtmlRender
   skip_before_action :verify_authenticity_token, only: :index
   skip_before_action :authenticate_user!, only: [:show, :index]
@@ -64,6 +63,7 @@ class SpacesController < ApplicationController
   def update
     if @space.update(space_params)
       @space.update_properties(space_properties) unless space_properties.empty?
+      @space.update_photos(params[:space][:photos]) if params[:space][:photos]
       redirect_to space_path(@space)
     else
       render :new
@@ -90,7 +90,7 @@ class SpacesController < ApplicationController
   end
 
   def space_params
-    params.require(:space).permit( :title, :address, :description, :price_per_hour, :price_per_day, :opens, :closes, :minimum_booking_hours, :capacity, {photos: []})
+    params.require(:space).permit( :title, :address, :description, :price_per_hour, :price_per_day, :opens, :closes, :minimum_booking_hours, :capacity)
   end
 
   def search_params
