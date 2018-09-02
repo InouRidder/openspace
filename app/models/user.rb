@@ -6,8 +6,6 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-  after_create :set_avatar
-
   has_many :reviews, as: :reviewable, dependent: :destroy
   has_many :spaces, dependent: :nullify
   has_many :favorites, dependent: :destroy

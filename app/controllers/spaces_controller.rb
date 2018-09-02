@@ -7,9 +7,9 @@ class SpacesController < ApplicationController
 
   def index
     if params[:search]
-      @spaces = FindSpaces.new(policy_scope(Space).includes(:space_properties)).call(search_params)
+      @spaces = FindSpaces.new(policy_scope(Space).includes(:space_properties, :space_attachments)).call(search_params)
     else
-      @spaces = policy_scope(Space)
+      @spaces = policy_scope(Space).includes(:space_properties, :space_attachments)
     end
 
     property_selection_objects unless request.format.json?

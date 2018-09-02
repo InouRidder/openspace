@@ -12,11 +12,8 @@ import "../plugins/flatpickr"
 Rails.start();
 
 document.addEventListener('DOMContentLoaded', () => {
-  spaceQuery.startListening();
+  spaceQuery.initialize();
   bookingController.initialize();
   propController.initialize();
-  const upload = new FileUploadWithPreview('custom-file-container', true)
+  const upload = new FileUploadWithPreview('custom-file-container', true);
 });
-
-global.chatController = chatController;
-global.spaceQuery = spaceQuery;
