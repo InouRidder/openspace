@@ -27,14 +27,8 @@
   <div class="one-half">
     <label>Your profile picture</label>
     <div class="browse">
-      <p>Drag & Drop files here</p>
-      <span>or</span>
-      <div class="upload">
-        <span>
-          <%= f.input :avatar %>
-          <%= f.input :avatar_cache, as: :hidden %>
-        </span>
-      </div>
+      <%= f.input :avatar %>
+      <%= f.input :avatar_cache, as: :hidden %>
     </div>
   </div><!-- /.one-half -->
   <div class="one-half centered">
