@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  mount_uploader :avatar, AvatarUploader
+
+  after_create :set_avatar
+
   has_many :reviews, as: :reviewable, dependent: :destroy
   has_many :spaces, dependent: :nullify
   has_many :favorites, dependent: :destroy
@@ -18,6 +22,7 @@ class User < ApplicationRecord
   def favorited?(space)
     favorites.find_by(space: space)
   end
+
 
   def is_host?
     self.host
@@ -36,10 +41,6 @@ class User < ApplicationRecord
   def confirmed?
     true
     # validations on user, email / phone
-  end
-
-  def profile_image
-    'img-v2-01.png'
   end
 
 end

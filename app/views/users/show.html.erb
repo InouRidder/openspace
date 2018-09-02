@@ -7,49 +7,53 @@
             <div class="box-imagebox">
               <div class="box-header">
                 <div class="box-image">
-                  <img src="<%= image_path current_user.profile_image %>" alt="">
+                  <% if @user.avatar? %>
+                  <%= cl_image_tag @user.avatar, class: 'full-img' %>
+                  <% else %>
+                  <%= cl_image_tag @user.avatar.default_url, class: 'full-img' %>
+                  <% end %>
                 </div>
               </div><!-- /.box-header -->
               <div class="box-content">
                 <div class="box-title ad">
-                  <%= current_user.full_name %>
-                  <% if current_user.confirmed? %>
+                  <%= @user.full_name %>
+                  <% if @user.confirmed? %>
                     <i class="fa fa-check-circle" aria-hidden="true"></i>
                   <% end %>
                   <div class="queue">
-                    Joined <%= current_user.created_at.strftime("%A, %b %d") %>
+                    Joined <%= @user.created_at.strftime("%A, %b %d") %>
                   </div>
                 </div>
                 <ul class="rating">
-                  <% if current_user.spaces.any? %>
+                  <% if @user.spaces.any? %>
                     <li>
-                      <%= current_user.spaces.count %> spaces
+                      <%= @user.spaces.count %> spaces
                     </li>
                   <% end %>
                 </ul>
                 <div class="box-desc">
                   <p>
-                    <%= current_user.bio %>
+                    <%= @user.bio %>
                   </p>
                   <p>
                     <i class="fas fa-comments"></i>
-                    <%= link_to "Chat", conversations_path(host_id: current_user.id), method: :post %>
+                    <%= link_to "Chat", conversations_path(host_id: @user.id), method: :post %>
                   </p>
                 </div>
                 <ul class="location">
                   <li>
-                    <%= current_user.address %>
+                    <%= @user.address %>
                   </li>
                   <li>
-                    <%= current_user.country %>
+                    <%= @user.country %>
                   </li>
                   <li>
-                    <% if policy(current_user).edit? %>
+                    <% if policy(@user).edit? %>
                     <li>
-                      <%= link_to "Edit", edit_user_path(current_user) %>
+                      <%= link_to "Edit", edit_user_path(@user) %>
                     </li>
                     <li>
-                      <%= link_to "Change Registration Details", edit_user_registration_path(current_user) %>
+                      <%= link_to "Change Registration Details", edit_user_registration_path(@user) %>
                     </li>
                     <% end %>
                   </li>
@@ -69,7 +73,7 @@
       <div class="col-xs-12">
         <div class="col-md-6 col-xs-12">
           <div class="wrap-imagebox style1 scrollbox" id="space-container">
-            <%= render partial: 'spaces/space', collection: current_user.spaces, as: :space %>
+            <%= render partial: 'spaces/space', collection: @user.spaces, as: :space %>
           </div><!-- /.wrap-imagebox -->
         </div><!-- /.flat-filter -->
       <div class="col-md-6 col-xs-12">
@@ -78,9 +82,9 @@
             <div class="row">
               <div class="col-md-8">
                 <div class="comment-area">
-                  <h3 class="comment-title"><%= pluralize 'review', current_user.reviews.count %> </h3>
+                  <h3 class="comment-title"><%= pluralize 'review', @user.reviews.count %> </h3>
                   <ol class="comment-list">
-                    <%= render partial: 'reviews/review', collection: current_user.reviews, as: :review %>
+                    <%= render partial: 'reviews/review', collection: @user.reviews, as: :review %>
                   </ol><!-- /.comment-list -->
                 </div><!-- /.comment-area -->
               </div><!-- /.col-md-8 -->

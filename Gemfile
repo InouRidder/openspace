@@ -23,6 +23,10 @@ gem 'webpacker'
 
 gem 'country_select', '~> 3.1', '>= 3.1.1'
 
+gem 'cloudinary'
+gem 'carrierwave', '~> 1.2'
+
+
 # GOOGLE GEMS FOR LOCATION SERVICES
 gem "geocoder"
 

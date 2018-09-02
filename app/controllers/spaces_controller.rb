@@ -45,10 +45,12 @@ class SpacesController < ApplicationController
   def create
     @space = Space.new(space_params)
     @space.user = current_user
-    @space.set_properties(space_properties) unless space_properties.empty?
     if @space.save
+      @space.set_properties(space_properties) unless space_properties.empty?
       redirect_to space_path(@space)
     else
+      property_selection_objects
+      @selected_props = space_properties
       render :new
     end
   end
@@ -61,6 +63,7 @@ class SpacesController < ApplicationController
   def update
     if @space.update(space_params)
       @space.update_properties(space_properties) unless space_properties.empty?
+      @space.update_photos(params[:space][:photos]) if params[:space][:photos]
       redirect_to space_path(@space)
     else
       render :new
@@ -87,7 +90,7 @@ class SpacesController < ApplicationController
   end
 
   def space_params
-    params.require(:space).permit(:capacity, :address, :price_per_day, :price_per_hour, :title, :opens, :closes, :minimum_booking_hours)
+    params.require(:space).permit( :title, :address, :description, :price_per_hour, :price_per_day, :opens, :closes, :minimum_booking_hours, :capacity)
   end
 
   def search_params

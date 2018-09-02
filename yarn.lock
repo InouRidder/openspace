@@ -2128,6 +2128,10 @@ file-loader@^1.1.11:
     loader-utils "^1.0.2"
     schema-utils "^0.4.5"
 
+file-upload-with-preview@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/file-upload-with-preview/-/file-upload-with-preview-2.1.1.tgz#239c19dbf97c4fd6b56a0530f7361a0634e9570b"
+
 filename-regex@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/filename-regex/-/filename-regex-2.0.1.tgz#c1c4b9bee3e09725ddb106b75c1e301fe2f18b26"

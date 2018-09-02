@@ -28,10 +28,14 @@
                 </li>
                 <% end %>
                 <li>
-                  <%= link_to '#', class: "fa fa-user" do %>
+                  <%= link_to '#' do %>
+                    <% if current_user.avatar? %>
+                      <%= cl_image_tag current_user.avatar, class: 'avatar' %>
+                    <% else %>
+                      <%= cl_image_tag current_user.avatar.default_url, class: 'avatar' %>
+                    <% end %>
                   <% end %>
                   <ul class="submenu">
-                    <% if current_user.is_host? %>
                     <li>
                       <%= link_to "Bookings", host_bookings_path %>
                     </li>
@@ -39,11 +43,15 @@
                       <%= link_to 'Favorites', favorites_path %>
                     </li>
                     <li>
-                      <%= link_to 'Messages', conversations_path, id: 'conversation-button' %>
+                      <%= link_to "Profile", user_path(current_user) %>
                     </li>
                     <li>
-                      <%= link_to "Host", host_bookings_path %>
+                      <%= link_to 'Messages', conversations_path, id: 'conversation-button' %>
                     </li>
+                    <% if current_user.host? %>
+                      <li>
+                        <%= link_to "Host", host_bookings_path %>
+                      </li>
                     <% end %>
                     <li>
                       <%= link_to "Log out", destroy_user_session_path, method: :delete %>
@@ -95,6 +103,9 @@
       <% if user_signed_in? %>
         <li>
           <%= link_to 'My Trips', bookings_path %>
+        </li>
+        <li>
+          <%= link_to 'Profile', user_path(current_user) %>
         </li>
         <li>
           <%= link_to 'Favorites', favorites_path %>
