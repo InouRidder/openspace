@@ -6,7 +6,7 @@ const chatController = {
   },
 
   addMessage: function(messagePartial) {
-    this.messages.insertAdjacentHTML('afterbegin', messagePartial);
+    this.messages.insertAdjacentHTML('beforeend', messagePartial);
   },
 
   clearForm: function() {
