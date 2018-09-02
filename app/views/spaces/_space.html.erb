@@ -2,16 +2,8 @@
   <%= link_to space_path(space) do %>
   <div class="box-imagebox">
     <div class="box-header">
-      <div class="box-image">
-        <img src="<%= image_path 'img-02.png' %>" alt="">
-        <div class="overlay"></div>
-        <div class="queue">
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-          <i class="fa fa-star" aria-hidden="true"></i>
-        </div>
+      <% photo = space.space_attachments.first.try(:photo) %>
+      <div class="box-image capped-image" style="background: url('<%= cl_image_path photo if photo %>'); background-size: cover;">
       </div>
     </div><!-- /.box-header -->
     <div class="box-content">

@@ -528,6 +528,15 @@
 		width: 100%;
 	}
 
+  .imagebox.style3 {
+    width: 100% !important;
+  }
+
+  .capped-image {
+    height: 300px;
+    overflow: hidden;
+  }
+
 	.wrap-box-search.style2.v2 form > span.location {
 	    padding-right: 10px;
 	    padding-left: 15px;

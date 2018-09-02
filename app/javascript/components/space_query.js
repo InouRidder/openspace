@@ -1,5 +1,5 @@
 const spaceQuery = {
-  startListening: function() {
+  initialize: function() {
     const form = document.getElementById('query-form');
     if (!form) return;
 

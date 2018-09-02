@@ -1,4 +1,4 @@
-/** 
+/**
   *	Wrap Box Search
   * Highlights
   * Flat Imagebox
@@ -15,7 +15,7 @@
   * Flat Login
   * Infobox
   * Box Search
-  * Box Slider 
+  * Box Slider
   * Flat Iconbox Style2
   * Flat Contact
   * Flat Listing
@@ -147,7 +147,7 @@
 }
 
 .wrap-box-search form span input:-moz-placeholder,
-.wrap-box-search form span input::-moz-placeholder {		
+.wrap-box-search form span input::-moz-placeholder {
 	color: #2c3e50;
 	opacity: 1;
 }
@@ -269,6 +269,7 @@
 .comment-area ol.comment-list li.comment {
 	display: none;
 }
+
 
 /* Imagebox */
 .imagebox .box-imagebox {
@@ -1671,7 +1672,7 @@
     right: 32px;
 }
 
-/* Box Slider 
+/* Box Slider
 -------------------------------------------------------------- */
 .box-slider #ex1Slider .slider-selection {
    background: #BABABA;

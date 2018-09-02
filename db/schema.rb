@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20180831211356) do
     t.bigint "space_id"
     t.string "billable_adress"
     t.float "total_price"
-    t.string "state", default: "unconfirmed"
+    t.string "state", default: "pending"
     t.date "date"
     t.time "start_time"
     t.time "end_time"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20180831211356) do
   create_table "space_attachments", force: :cascade do |t|
     t.bigint "space_id"
     t.string "photo"
+    t.boolean "main", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["space_id"], name: "index_space_attachments_on_space_id"
