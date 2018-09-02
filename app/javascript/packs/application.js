@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
   spaceQuery.initialize();
   bookingController.initialize();
   propController.initialize();
-  const upload = new FileUploadWithPreview('custom-file-container', true);
+  if (document.getElementById('custom-file-container')) {
+    const upload = new FileUploadWithPreview('custom-file-container', true);
+  }
 });
 
 global.chatController = chatController;
