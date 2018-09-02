@@ -270,10 +270,6 @@
 	display: none;
 }
 
-.imagebox.style3 .box-header .box-image {
-  height: 200px;
-  overflow: hidden;
-}
 
 /* Imagebox */
 .imagebox .box-imagebox {

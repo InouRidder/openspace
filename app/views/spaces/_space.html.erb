@@ -3,8 +3,7 @@
   <div class="box-imagebox">
     <div class="box-header">
       <% photo = space.space_attachments.first.try(:photo) %>
-      <div class="box-image" style="height: 200px; overflow: hidden; background: url('<%= cl_image_path photo if photo %>'); background-size: cover;">
-
+      <div class="box-image capped-image" style="background: url('<%= cl_image_path photo if photo %>'); background-size: cover;">
       </div>
     </div><!-- /.box-header -->
     <div class="box-content">
