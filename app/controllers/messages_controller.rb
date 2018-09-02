@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
   private
 
   def authorize_message
-    authorize_message
+    authorize @message
   end
 
   def message_params

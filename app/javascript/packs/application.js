@@ -17,3 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
   propController.initialize();
   const upload = new FileUploadWithPreview('custom-file-container', true);
 });
+
+global.chatController = chatController;
+global.spaceQuery = spaceQuery;

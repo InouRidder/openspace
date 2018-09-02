@@ -2,11 +2,13 @@
   <li class="comment">
     <article class="comment-body">
       <div class="comment-image">
-        <img src="<%= image_path 'comment_01.png' %>" alt="">
+        <%= cl_image_tag message.user.avatar, class: "med-avatar" %>
       </div><!-- /.comment-image -->
       <div class="comment-content">
         <div class="comment-author">
-          <a href="#" title=""><%= message.user.full_name %></a>
+          <%= link_to user_path(message.user) do %>
+            <%= message.user.full_name %>
+          <% end %>
         </div>
         <p>
           <%= message.content %>
