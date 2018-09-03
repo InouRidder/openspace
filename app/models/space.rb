@@ -5,7 +5,7 @@ class Space < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :reviews, through: :bookings
-  has_many :space_attachments
+  has_many :space_attachments, dependent: :destroy
   accepts_nested_attributes_for :space_attachments
 
 

@@ -37,71 +37,28 @@
         <div class="row">
           <div class="col-md-12">
             <div class="flat-row-title center">
-              <h2>Our Top Destinations</h2>
+              <h2>Our Top Spaces</h2>
               <p>
-                Cities you must explore this summer
+                Spaces you must explore this summer
               </p>
             </div>
           </div><!-- /.col-md-12 -->
         </div><!-- /.row -->
+
+        <% spaces = Space.all %>
         <div class="row">
           <div class="col-md-6">
-            <div class="imagebox style5">
-              <div class="box-image">
-                <img src="<%= image_path 'halong.png' %> " alt="">
-                <div class="overlay"></div>
-              </div>
-              <div class="box-content">
-                <a href="#" title="">Ha Long</a>
-                <p>Viet Nam</p>
-              </div>
-            </div><!-- /.imagebox style5 -->
+            <%= render 'spaces/space_sm', space: spaces.last %>
           </div><!-- /.col-md-6 -->
           <div class="col-md-3 col-sm-6">
-            <div class="imagebox style5">
-              <div class="box-image">
-                <img src="<%= image_path 'tokyo.png' %> " alt="">
-                <div class="overlay"></div>
-              </div>
-              <div class="box-content">
-                <a href="#" title="">Tokyo</a>
-                <p>Japan</p>
-              </div>
-            </div><!-- /.imaebox style5 -->
+            <%= render 'spaces/space_sm', space: spaces.sample %>
             <div class="height20"></div>
-            <div class="imagebox style5">
-              <div class="box-image">
-                <img src="<%= image_path 'hanoi.png' %> " alt="">
-                <div class="overlay"></div>
-              </div>
-              <div class="box-content">
-                <a href="#" title="">Ha Noi</a>
-                <p>Viet Nam</p>
-              </div>
-            </div><!-- /.imaebox style5 -->
+            <%= render 'spaces/space_sm', space: spaces.sample %>
           </div><!-- /.col-md-3 col-sm-6 -->
           <div class="col-md-3 col-sm-6">
-            <div class="imagebox style5">
-              <div class="box-image">
-                <img src="<%= image_path 'newyork.png' %>" alt="">
-                <div class="overlay"></div>
-              </div>
-              <div class="box-content">
-                <a href="#" title="">New York</a>
-                <p>USA</p>
-              </div>
-            </div><!-- /.imagebox style5 -->
+            <%= render 'spaces/space_sm', space: spaces.sample %>
             <div class="height20"></div>
-            <div class="imagebox style5">
-              <div class="box-image">
-                <img src="<%= image_path 'seoul.png' %>" alt="">
-                <div class="overlay"></div>
-              </div>
-              <div class="box-content">
-                <a href="#" title="">Seoul</a>
-                <p>Korea</p>
-              </div>
-            </div><!-- /.imagebox style5 -->
+            <%= render 'spaces/space_sm', space: spaces.sample %>
           </div><!-- /.col-md-3 col-sm-6 -->
         </div><!-- /.row -->
       </div><!-- /.container -->
@@ -120,117 +77,11 @@
           </div><!-- /.col-md-12 -->
         </div><!-- /.row -->
         <div class="row">
-          <div class="col-md-4">
-            <div class="imagebox">
-              <div class="box-imagebox">
-                <div class="box-header">
-                  <div class="box-image">
-                    <img src="<%= image_path 'img-01.png' %>" alt="">
-                    <a href="#" title="">Preview</a>
-                    <div class="overlay"></div>
-                    <div class="queue">
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                    </div>
-                  </div>
-                </div><!-- /.box-header -->
-                <div class="box-content">
-                  <div class="box-title ad">
-                    <span>Ad</span><a href="#" title="">AN Restaurant</a><i class="fa fa-check-circle" aria-hidden="true"></i>
-                  </div>
-                  <ul class="rating">
-                    <li>5 rating</li>
-                    <li>Moderate</li>
-                    <li>Restaurant</li>
-                  </ul>
-                  <div class="box-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </div>
-                </div><!-- /.box-content -->
-                <ul class="location">
-                  <li class="address"><span class="ti-location-pin"></span>Hanoi, Vietnam</li>
-                  <li class="closed">Closed Now !</li>
-                </ul><!-- /.location -->
-              </div><!-- /.box-imagebox -->
-            </div><!-- /.imaegbox -->
-          </div><!-- /.col-md-4 -->
-          <div class="col-md-4">
-            <div class="imagebox">
-              <div class="box-imagebox">
-                <div class="box-header">
-                  <div class="box-image">
-                    <img src="<%= image_path 'img-02.png' %>" alt="">
-                    <a href="#" title="">Preview</a>
-                    <div class="overlay"></div>
-                    <div class="queue">
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                    </div>
-                  </div>
-                </div><!-- /.box-header -->
-                <div class="box-content">
-                  <div class="box-title">
-                    <a href="#" title="">Acantara</a><i class="fa fa-check-circle" aria-hidden="true"></i>
-                  </div>
-                  <ul class="rating">
-                    <li>10 rating</li>
-                    <li>Ultra High End</li>
-                    <li>Hotel</li>
-                  </ul>
-                  <div class="box-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </div>
-                </div><!-- /.box-content -->
-                <ul class="location">
-                  <li class="address"><span class="ti-location-pin"></span>Seoul, Korea</li>
-                  <li class="open">Open Now !</li>
-                </ul><!-- /.location -->
-              </div><!-- /.box-imagebox -->
-            </div><!-- /.imaegbox -->
-          </div><!-- /.col-md-4 -->
-          <div class="col-md-4">
-            <div class="imagebox">
-              <div class="box-imagebox">
-                <div class="box-header">
-                  <div class="box-image">
-                    <img src="<%= image_path 'img-03.png' %>" alt="">
-                    <a href="#" title="">Preview</a>
-                    <div class="overlay"></div>
-                    <div class="queue">
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                      <i class="fa fa-star" aria-hidden="true"></i>
-                    </div>
-                  </div>
-                </div><!-- /.box-header -->
-                <div class="box-content">
-                  <div class="box-title">
-                    <a href="#" title="">Intercontinental</a><i class="fa fa-check-circle" aria-hidden="true"></i>
-                  </div>
-                  <ul class="rating">
-                    <li>6 rating</li>
-                    <li>Pricey</li>
-                    <li>Hotel</li>
-                  </ul>
-                  <div class="box-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </div>
-                </div><!-- /.box-content -->
-                <ul class="location">
-                  <li class="address"><span class="ti-location-pin"></span>Seoul, Korea</li>
-                  <li class="open">Open Now !</li>
-                </ul><!-- /.location -->
-              </div><!-- /.box-imagebox -->
-            </div><!-- /.imaegbox -->
-          </div><!-- /.col-md-4 -->
+          <% Space.includes(:space_attachments).first(3).each do |space| %>
+            <div class="col-md-4">
+              <%= render 'spaces/space_lg', space: space %>
+            </div><!-- /.col-md-4 -->
+          <% end %>
         </div><!-- /.row -->
       </div><!-- /.container -->
     </section><!-- /.flat-imagebox style2 -->
@@ -242,7 +93,7 @@
             <div class="flat-row-title center">
               <h2>See How It Works</h2>
               <p>
-                Discover how Dailist can you help you find everything you want.
+                Discover how openspace can you help you find everything you want.
               </p>
             </div><!-- /.flat-row-title -->
           </div><!-- /.col-md-12 -->
@@ -258,7 +109,7 @@
               <div class="box-content">
                 <h4 class="box-title">Choose What To Do</h4>
                 <div class="box-desc">
-                  Looking for a cozy hotel to stay, a restaurant to eat or a mall to do some shopping?
+                  Looking for a great place for your meeting, wedding, or anything you can think of!
                 </div>
               </div><!-- /.box-content -->
             </div><!-- /.iconbox style1 -->
@@ -273,7 +124,7 @@
               <div class="box-content">
                 <h4 class="box-title">Find What You Want</h4>
                 <div class="box-desc">
-                  Search and filter hundreds of listings, read reviews and find the perfect spot.
+                  Search and filter hundreds of listings, read reviews and find the perfect space.
                 </div>
               </div><!-- /.box-content -->
             </div><!-- /.iconbox style1 -->
@@ -303,7 +154,7 @@
           <div class="col-md-12">
             <div class="text-title center">
               <h2>
-                Browse Listing and Find Your Love
+                Browse Listings and Find Your Space
               </h2>
             </div>
           </div>
@@ -316,7 +167,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="flat-row-title center">
-              <h2>Team Behind Dailist</h2>
+              <h2>Team Behind openspace</h2>
               <p>
                 We are one
               </p>
@@ -387,188 +238,4 @@
       </div><!-- /.container -->
     </section><!-- /.flat-team -->
 
-    <section class="flat-row flat-main-blog style2">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="flat-row-title center">
-              <h2>Tips & Articles</h2>
-              <p>
-                Browse the latest articles from our blog.
-              </p>
-            </div><!-- /.flat-row-title -->
-          </div><!-- /.col-md-12 -->
-        </div><!-- /.row -->
-        <div class="row">
-          <div class="col-lg-3 col-sm-6">
-            <article class="blog-post">
-              <div class="featured-post">
-                <a href="#" title="">
-                  <img src="<%= image_path '01.png' %>" alt="">
-                  <div class="overlay"></div>
-                </a>
-              </div><!-- /.featured-post -->
-              <div class="content-post">
-                <div class="entry-post">
-                  <ul class="entry-meta">
-                    <li class="topic">
-                      <a href="#" title="">Vocation</a>
-                    </li>
-                    <li class="date">
-                      <a href="#" title="">June 08, 2017</a>
-                    </li>
-                  </ul>
-
-                  <h2 class="entry-title">
-                    <a href="#" title="">
-                      Working While Traveling
-                      Around the World
-                    </a>
-                  </h2>
-                </div>
-                <p>
-                  Combining wanderlust and a steady job can be done for a year, with planning, permission and at a cost
-                </p>
-                <div class="author-post">
-                  By <a href="#" title="">Patricia R. Olsen</a>
-                </div>
-              </div><!-- /.content-post -->
-            </article><!-- /.blog-post -->
-          </div><!-- /.col-lg-3 col-sm-6 -->
-          <div class="col-lg-3 col-sm-6">
-            <article class="blog-post">
-              <div class="featured-post">
-                <a href="#" title="">
-                  <img src="<%= image_path '02.png' %>" alt="">
-                  <div class="overlay"></div>
-                </a>
-              </div><!-- /.featured-post -->
-              <div class="content-post">
-                <div class="entry-post">
-                  <ul class="entry-meta">
-                    <li class="topic">
-                      <a href="#" title="">Trending</a>
-                    </li>
-                    <li class="date">
-                      <a href="#" title="">June 08, 2017</a>
-                    </li>
-                  </ul>
-                  <h2 class="entry-title">
-                    <a href="#" title="">
-                      For Summer, <br />
-                      Five Hot Destinations
-                    </a>
-                  </h2>
-                </div>
-                <p>
-                  Americans will likely travel more this summer than last, with Croatia, South Africa and Greece among the popular destinations.
-                </p>
-                <div class="author-post">
-                  By <a href="#" title="">Sivani Vora</a>
-                </div>
-              </div><!-- /.content-post -->
-            </article><!-- /.blog-post -->
-          </div><!-- /.col-lg-3 col-sm-6 -->
-          <div class="col-lg-3 col-sm-6">
-            <article class="blog-post">
-              <div class="featured-post">
-                <a href="#" title="">
-                  <img src="<%= image_path '03.png' %>" alt="">
-                  <div class="overlay"></div>
-                </a>
-              </div><!-- /.featured-post -->
-              <div class="content-post">
-                <div class="entry-post">
-                  <ul class="entry-meta">
-                    <li class="topic">
-                      <a href="#" title="">Surfacing</a>
-                    </li>
-                    <li class="date">
-                      <a href="#" title="">May 25, 2017</a>
-                    </li>
-                  </ul>
-                  <h2 class="entry-title">
-                    <a href="#" title="">
-                      Five Places to Go in
-                      Downtown Albuquerque
-                    </a>
-                  </h2>
-                </div>
-                <p>
-                  Residents and in-the-know visitors to New Mexico’s largest city head to a once-derelict district that.
-                </p>
-                <div class="author-post">
-                  By <a href="#" title="">Nick Pachelli</a>
-                </div>
-              </div><!-- /.content-post -->
-            </article><!-- /.blog-post -->
-          </div><!-- /.col-lg-3 col-sm-6 -->
-          <div class="col-lg-3 col-sm-6">
-            <article class="blog-post">
-              <div class="featured-post">
-                <a href="#" title="">
-                  <img src="<%= image_path '04.png' %>" alt="">
-                  <div class="overlay"></div>
-                </a>
-              </div><!-- /.featured-post -->
-              <div class="content-post">
-                <div class="entry-post">
-                  <ul class="entry-meta">
-                    <li class="topic">
-                      <a href="#" title="">24 Hour</a>
-                    </li>
-                    <li class="date">
-                      <a href="#" title="">May 25, 2017</a>
-                    </li>
-                  </ul>
-                  <h2 class="entry-title">
-                    <a href="#" title="">
-                      24 Hours in Indianapolis
-                    </a>
-                  </h2>
-                </div>
-                <p>
-                  There is more to Indiana’s capital city than the Memorial Day weekend whirlwind known as the Indy 500.
-                </p>
-                <div class="author-post">
-                  By <a href="#" title="">Elaine Glusac</a>
-                </div>
-              </div><!-- /.content-post -->
-            </article><!-- /.blog-post -->
-          </div><!-- /.col-lg-3 col-sm-6 -->
-        </div><!-- /.row -->
-        <div class="row">
-          <div class="col-md-12">
-            <div class="btn-more">
-              <a href="blog.html" title="">View Blog</a>
-            </div>
-          </div>
-        </div><!-- /.row -->
-      </div><!-- /.container -->
-    </section><!-- /.flat-main-blog style2 -->
-
-    <section class="flat-row flat-subscribe">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-7">
-            <div class="subscribe-text">
-              Subscribe and be notified about new locations
-            </div>
-          </div><!-- /.col-sm-7 -->
-          <div class="col-sm-5">
-            <div class="subscribe-form">
-              <form action="#" method="get" accept-charset="utf-8">
-                <div class="subscribe-content">
-                  <div class="input-field">
-                    <input type="email" name="yourEmail" placeholder="Your Email" />
-                  </div>
-                  <button><span class="arrow_right"></span></button>
-                </div>
-              </form>
-            </div><!-- /.subscribe-form -->
-          </div><!-- /.col-sm-5 -->
-        </div><!-- /.row -->
-      </div><!-- /.container -->
-    </section><!-- /.flat-subscibe -->
-
-
+<%= render 'shared/subscribe' %>
