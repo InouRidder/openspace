@@ -1,0 +1,11 @@
+<div class="imagebox style5">
+  <div class="box-image image-overflow-hidden">
+    <% photo = space.space_attachments.first.try(:photo) %>
+    <%= cl_image_tag photo, class: 'image-size-parent' if photo %>
+    <div class="overlay"></div>
+  </div>
+  <div class="box-content">
+    <a href="#" title=""><%= space.title %></a>
+    <p><%= space.address %></p>
+  </div>
+</div><!-- /.imagebox style5 -->

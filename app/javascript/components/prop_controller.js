@@ -1,6 +1,5 @@
 const propController = {
   initialize: function() {
-    console.log('clicked');
     this.properties = document.getElementById('properties');
     if (!this.properties) return;
     this.props = properties.querySelectorAll('.selectable-prop');
